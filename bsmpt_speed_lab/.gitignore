@@ -1,0 +1,7 @@
+# Rebuildable local artifacts; never publish them in the validated snapshot.
+/build-*/
+/__pycache__/
+/upstream/**
+/upstream-nostack-exact/
+
+# The exact-fast source overlay under upstream/ is force-added explicitly.

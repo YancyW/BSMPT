@@ -1,0 +1,32 @@
+diff --git a/src/models/ClassPotentialOrigin.cpp b/src/models/ClassPotentialOrigin.cpp
+--- a/src/models/ClassPotentialOrigin.cpp
++++ b/src/models/ClassPotentialOrigin.cpp
+@@ -7,6 +7,7 @@
+ 
+ #include <gsl/gsl_sf_gamma.h>
+ #include <iomanip>
+ #include <random>
++#include <cstdlib>
+ 
+ #include "Eigen/Dense"
+@@ -2588,9 +2588,19 @@
+   }
+   MatrixXd MassMatrix(NGauge, NGauge);
+   double ZeroMass = std::pow(10, -5);
++  // Opt-in because this is intended for numerical validation first.  The
++  // existing code computes every entry and then overwrites the lower
++  // triangle from the upper triangle below.  Computing only that retained
++  // triangle leaves the final matrix (and the summation order of retained
++  // entries) unchanged.
++  static const bool UseUpperOnly = [] {
++    const char *env = std::getenv("BSMPT_SAFE_GAUGE_UPPER_ONLY");
++    return env != nullptr && env[0] == '1';
++  }();
+   for (std::size_t a = 0; a < NGauge; a++)
+   {
+-    for (std::size_t b = 0; b < NGauge; b++)
++    const std::size_t bBegin = UseUpperOnly ? a : 0;
++    for (std::size_t b = bBegin; b < NGauge; b++)
+     {
+       MassMatrix(a, b) = 0;
+       for (std::size_t i = 0; i < NHiggs; i++)

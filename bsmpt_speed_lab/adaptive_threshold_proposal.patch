@@ -1,0 +1,238 @@
+diff --git a/src/bounce_solution/action_calculation.cpp b/src/bounce_solution/action_calculation.cpp
+--- a/src/bounce_solution/action_calculation.cpp
++++ b/src/bounce_solution/action_calculation.cpp
+@@ -592,38 +595,199 @@
+ void BounceActionInt::CalculateExactSolutionThreshold(double MinError)
+ {
+-  CalcGWProfiler::exact_threshold_call();
+-  double NumberOfSteps = 1000;
+-  double Error, l0, l, inital_exponent, final_exponent;
+-
+-  std::vector<double> MinSol, LinSol;
+-  inital_exponent = log((Spline.L - Initial_lmin) / 100.) -
+-                    10; // Search from 4e-7% spline path
+-  final_exponent =
+-      log((Spline.L - Initial_lmin) / 100.); // Search until 10% spline path
+-
+-  for (double exponent = inital_exponent; exponent <= final_exponent;
+-       exponent += (final_exponent - inital_exponent) / NumberOfSteps)
+-  {
+-    CalcGWProfiler::exact_threshold_iteration();
+-    l0_minus_lmin = exp(exponent);
+-    l0            = Initial_lmin + l0_minus_lmin;
+-    l             = l0 + Spline.L * FractionOfThePathExact;
+-    MinSol        = ExactSolutionFromMinimum(l);
+-    LinSol        = ExactSolutionLin(l0, l, Calc_dVdl(l0), Calc_d2Vdl2(l0));
+-    Error         = 0.5 *
+-            abs((LinSol.at(0) - MinSol.at(0)) / (LinSol.at(0) + MinSol.at(0)));
+-    if (Error < MinError)
+-    {
+-      // Found a better ExactSolutionThreshold
+-      MinError               = Error;
+-      ExactSolutionThreshold = l0_minus_lmin;
+-    }
+-  }
+-
+-  if (MinError > 1e-2) // Error not small enough
+-  {
+-    if (FractionOfThePathExact <= 1e-4) return;
+-    FractionOfThePathExact /= 10.;
+-    CalculateExactSolutionThreshold(MinError);
+-  }
++  // The historical scan below remains the reference path.  The adaptive
++  // prototype is deliberately opt-in because this routine controls which
++  // analytical branch is used by the bounce integrator.
++  auto run_full_scan = [&]()
++  {
++    double NumberOfSteps = 1000;
++    double Error, l0, l, inital_exponent, final_exponent;
++    std::vector<double> MinSol, LinSol;
++    inital_exponent = log((Spline.L - Initial_lmin) / 100.) - 10;
++    final_exponent = log((Spline.L - Initial_lmin) / 100.);
++    for (double exponent = inital_exponent; exponent <= final_exponent;
++         exponent += (final_exponent - inital_exponent) / NumberOfSteps)
++    {
++      CalcGWProfiler::exact_threshold_iteration();
++      l0_minus_lmin = exp(exponent);
++      l0            = Initial_lmin + l0_minus_lmin;
++      l             = l0 + Spline.L * FractionOfThePathExact;
++      MinSol        = ExactSolutionFromMinimum(l);
++      LinSol = ExactSolutionLin(l0, l, Calc_dVdl(l0), Calc_d2Vdl2(l0));
++      Error = 0.5 * abs((LinSol.at(0) - MinSol.at(0)) /
++                        (LinSol.at(0) + MinSol.at(0)));
++      if (Error < MinError)
++      {
++        MinError               = Error;
++        ExactSolutionThreshold = l0_minus_lmin;
++      }
++    }
++  };
++
++  const char *adaptive_env = std::getenv("BSMPT_ADAPTIVE_THRESHOLD");
++  const char *grid_env = std::getenv("BSMPT_ADAPTIVE_THRESHOLD_GRID");
++  int coarse_grid = 64;
++  if (grid_env != nullptr)
++  {
++    coarse_grid = std::atoi(grid_env);
++    if (coarse_grid != 32 && coarse_grid != 64) coarse_grid = 0;
++  }
++  const bool use_adaptive = adaptive_env != nullptr && adaptive_env[0] != '\0' &&
++                            adaptive_env[0] != '0' && coarse_grid != 0;
++
++  if (!use_adaptive)
++  {
++    run_full_scan();
++  }
++  else
++  {
++    struct ThresholdSample
++    {
++      double exponent = 0.0;
++      double error = 1e300;
++      bool valid = false;
++    };
++
++    auto run_adaptive_scan = [&]() -> bool
++    {
++      const double initial_exponent =
++          log((Spline.L - Initial_lmin) / 100.) - 10;
++      const double final_exponent =
++          log((Spline.L - Initial_lmin) / 100.);
++      if (!std::isfinite(initial_exponent) ||
++          !std::isfinite(final_exponent) ||
++          !(final_exponent > initial_exponent))
++        return false;
++
++      auto evaluate = [&](double exponent, ThresholdSample &sample) -> bool
++      {
++        try
++        {
++          CalcGWProfiler::exact_threshold_iteration();
++          const double delta = std::exp(exponent);
++          const double l0 = Initial_lmin + delta;
++          const double l = l0 + Spline.L * FractionOfThePathExact;
++          if (!std::isfinite(delta) || !std::isfinite(l0) ||
++              !std::isfinite(l))
++            return false;
++          l0_minus_lmin = delta;
++          const auto min_sol = ExactSolutionFromMinimum(l);
++          const auto lin_sol =
++              ExactSolutionLin(l0, l, Calc_dVdl(l0), Calc_d2Vdl2(l0));
++          if (min_sol.size() < 3 || lin_sol.size() < 3)
++            return false;
++          const double denominator = lin_sol.at(0) + min_sol.at(0);
++          const double error =
++              0.5 * std::abs((lin_sol.at(0) - min_sol.at(0)) / denominator);
++          if (!std::isfinite(denominator) || denominator == 0.0 ||
++              !std::isfinite(error) || error < 0.0 || error > 1e8)
++            return false;
++          sample.exponent = exponent;
++          sample.error = error;
++          sample.valid = true;
++          return true;
++        }
++        catch (...)
++        {
++          return false;
++        }
++      };
++
++      std::vector<ThresholdSample> coarse(coarse_grid + 1);
++      for (int i = 0; i <= coarse_grid; ++i)
++      {
++        const double exponent =
++            initial_exponent + (final_exponent - initial_exponent) *
++                                    i / static_cast<double>(coarse_grid);
++        if (!evaluate(exponent, coarse.at(i))) return false;
++      }
++
++      // A very large adjacent jump is a conservative indicator that the
++      // analytical branches or a numerical derivative are not smooth on this
++      // grid.  In that case the caller uses the unchanged 1001-point scan.
++      for (int i = 1; i <= coarse_grid; ++i)
++      {
++        const double jump = std::abs(coarse.at(i).error -
++                                     coarse.at(i - 1).error);
++        const double scale = std::max(
++            1e-14, std::max(std::abs(coarse.at(i).error),
++                            std::abs(coarse.at(i - 1).error)));
++        if (jump > 1e8 * scale && jump > 1e-8) return false;
++      }
++
++      auto accept = [&](const ThresholdSample &sample)
++      {
++        if (sample.valid && sample.error < MinError)
++        {
++          MinError = sample.error;
++          l0_minus_lmin = std::exp(sample.exponent);
++          ExactSolutionThreshold = l0_minus_lmin;
++        }
++      };
++      for (const auto &sample : coarse) accept(sample);
++
++      std::vector<int> candidates;
++      for (int i = 0; i <= coarse_grid; ++i)
++      {
++        const bool left_ok = i == 0 || coarse.at(i).error <= coarse.at(i - 1).error;
++        const bool right_ok = i == coarse_grid ||
++                              coarse.at(i).error <= coarse.at(i + 1).error;
++        if (left_ok && right_ok) candidates.push_back(i);
++      }
++      std::vector<int> by_error(coarse_grid + 1);
++      std::iota(by_error.begin(), by_error.end(), 0);
++      std::sort(by_error.begin(), by_error.end(), [&](int a, int b)
++                { return coarse.at(a).error < coarse.at(b).error; });
++      for (int index : by_error)
++      {
++        if (std::find(candidates.begin(), candidates.end(), index) ==
++            candidates.end())
++          candidates.push_back(index);
++        if (candidates.size() >= 6) break;
++      }
++
++      // Refine several local minima.  Six levels of eight subintervals give a
++      // bounded budget (<= 6*6*7 extra evaluations) and always terminate.
++      const int refinement_levels = 6;
++      const int subdivisions = 8;
++      for (std::size_t candidate = 0;
++           candidate < candidates.size() && candidate < 6; ++candidate)
++      {
++        const int index = candidates.at(candidate);
++        double left = index == 0 ? initial_exponent : coarse.at(index - 1).exponent;
++        double right = index == coarse_grid ? final_exponent : coarse.at(index + 1).exponent;
++        ThresholdSample best = coarse.at(index);
++        for (int level = 0; level < refinement_levels; ++level)
++        {
++          const double width = (right - left) / subdivisions;
++          for (int k = 1; k < subdivisions; ++k)
++          {
++            ThresholdSample trial;
++            if (!evaluate(left + width * k, trial)) return false;
++            if (trial.error < best.error) best = trial;
++          }
++          const double new_left = std::max(left, best.exponent - width);
++          const double new_right = std::min(right, best.exponent + width);
++          if (!(new_right > new_left)) break;
++          left = new_left;
++          right = new_right;
++        }
++        accept(best);
++      }
++      return true;
++    };
++
++    bool adaptive_ok = false;
++    try { adaptive_ok = run_adaptive_scan(); }
++    catch (...) { adaptive_ok = false; }
++    if (!adaptive_ok) run_full_scan();
++  }
++
++  // Preserve the original retry rule and its termination condition.  The
++  // loop is equivalent to the old recursion but prevents adaptive retries
++  // from nesting indefinitely after a fallback.
++  while (MinError > 1e-2 && FractionOfThePathExact > 1e-4)
++  {
++    FractionOfThePathExact /= 10.;
++    run_full_scan();
++  }
+ }
