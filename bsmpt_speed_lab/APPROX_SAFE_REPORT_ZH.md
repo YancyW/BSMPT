@@ -65,3 +65,38 @@ BSMPT_APPROX_SNR_CUTS=10,100 \
 风险回退会先付出一次近似计算再运行严格计算，因此它在大量失败/弱信号点上可能
 比直接 exact-fast 更慢。它适合预期存在较多明确强信号、且需要保护 cut 附近点的
 扫描。最终入选点仍建议用 `run_calcgw_exact_fast.sh` 复核。
+
+## central2 guarded 首遍
+
+进一步测试把 `BSMPT_USE_CENTRAL2_GRADIENT=1` 与解析 lepton 谱组合，仅用于
+guarded 首遍。42 行完整矩阵（NLO 内/外侧、A/B/C、高 SNR Yukawa）中，原始
+首遍合计从 exact-fast 的 2173.759 s 降至 1597.228 s，减少 26.52%。默认 guard
+接受 6 行、严格回退 36 行；六个接受点的最大 SNR 分量相对偏差为 3.89%。
+
+central2 产生了一个额外的重要反例：B 组第八数据行从严格版 bounce `failure`、
+GW=`not_set` 变为近似版完整 GW=`success`。该近似信号只有 `3.21e-28`，因此被
+默认 `1e-20` SNR 地板捕获并强制严格重算。A 组原有的反向状态翻转也仍被风险
+状态检测捕获。C 组 10/10 状态与历史不变，最大 SNR 偏差 0.328%，耗时降低
+34.84%；高 SNR 三型最大偏差 3.89%，耗时降低 29.34%。
+
+基于这些结果，`run_calcgw_approx_safe.sh` 默认选择
+`run_calcgw_approx_central2.sh` 作为首遍。可通过 `BSMPT_APPROX_FIRST_PASS` 指回
+同目录内的 `run_calcgw_approx_guarded.sh`，恢复 analytic-only 首遍。直接调用
+central2 wrapper 仍不安全，也不属于可接受结果入口。
+
+### 假阳性边界邻域
+
+围绕 B 组 central2 假 GW success 点，对除 Yukawa type 外的七个输入同时施加
+`-1e-5、-3e-6、+3e-6、+1e-5` 相对扰动。四点 exact-fast/central2 结果为：
+
+- 三点 exact-fast 为 bounce `failure`、GW=`not_set`，central2 均误报完整
+  GW=`success`；近似总 SNR 为 `3.21e-28--1.15e-27`，全部低于默认地板并回退；
+- 一点 exact-fast 为完整 GW=`success`，central2 的 GW 为 `failure/nan`，由风险
+  状态规则回退；
+- 因此该邻域 4/4 错误近似结果均不会成为 guarded 最终输出。
+
+这一邻域的原始 central2 总耗时为 663.720 s，exact-fast 为 689.692 s，只减少
+3.77%，前三点 central2 甚至更慢。触发回退后总成本必然高于直接 exact-fast。
+因此安全近似版并不承诺在边缘区加速；它以边缘区严格回退换取稳定强信号区约
+29% 的已测首遍收益。邻域输入和输出以
+`central2_false_positive_neighborhood_4*` 命名。

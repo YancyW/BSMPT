@@ -542,3 +542,19 @@ current 42-row study found two counterexamples to unguarded approximation; both
 are caught by this policy.  Among the six rows accepted by the default guard,
 the maximum observed SNR-component error is 4.36%.  This is empirical evidence,
 not a whole-parameter-space guarantee; see `APPROX_SAFE_REPORT_ZH.md`.
+
+The default guarded first pass now combines the analytic lepton spectrum with
+the central two-point gradient.  On the 42-row matrix its raw runtime is 26.52%
+lower than exact-fast.  The guard accepts six rows (maximum observed SNR
+component error 3.89%) and sends 36 risky/weak rows to exact-fast.  In
+particular, it catches a central2 false-positive GW transition because its
+signal lies below the conservative SNR floor.  The strict wrapper and binary
+are unchanged.
+
+A four-point relative-perturbation cloud around that false-positive boundary
+was also checked.  Central2 flipped the GW outcome on all four points in both
+directions, but every case is rejected by the guard: three false successes
+have total SNR below `1e-20`, and the fourth reports a failed/non-finite GW.
+This boundary region has essentially no raw speed benefit and becomes slower
+after exact fallback; the guarded profile targets stable signal regions, not
+uniform acceleration of every point.

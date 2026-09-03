@@ -28,7 +28,15 @@ else
   args[$output_index]="$approx_output"
 fi
 
-"${script_dir}/run_calcgw_approx_guarded.sh" "${args[@]}"
+first_pass="${BSMPT_APPROX_FIRST_PASS:-${script_dir}/run_calcgw_approx_central2.sh}"
+case "$first_pass" in
+  "${script_dir}"/*) ;;
+  *)
+    echo "BSMPT_APPROX_FIRST_PASS must name a wrapper inside ${script_dir}" >&2
+    exit 2
+    ;;
+esac
+"${first_pass}" "${args[@]}"
 
 check_args=("$approx_output" --snr-floor "${BSMPT_APPROX_SNR_FLOOR:-1e-20}")
 if [[ -n "${BSMPT_APPROX_SNR_CUTS:-}" ]]; then
