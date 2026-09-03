@@ -28,6 +28,7 @@
 | A6 | 已知危险邻域 exact 前置分流 | 接受 | `3e0bef61` | 已推送 |
 | A7 | 复用既有 PGO 构建审计 | 淘汰 | `d5f9afd0` | 已推送 |
 | A8 | thermal fast powers | 接受并升级默认 | `7320d3db` | 已推送 |
+| A9 | high-temperature fast powers | 淘汰 | 待提交 | 待推送 |
 
 当前研究分支：`special/approx-safe-research-20260903`。
 严格快照分支：`special/exact-fast-validated-20260903`。
@@ -156,6 +157,26 @@
 - 结论：接受并升级 guarded 默认首遍；严格 fallback 继续使用未修改 exact binary。
 - 产物文件：thermal 源码开关、独立 wrapper、control/candidate/mode/integration TSV。
 - commit：`7320d3db`；GitHub：已推送。
+
+## A9：high-temperature fast powers
+
+- 日期：2026-09-03。
+- 思路/假设：在 A8 之上复用 `sqrt(x)`、`1/sqrt(x)` 与 `1/x`，替代高温展开
+  `JInterpolatedHigh` 中 `pow(x, ±l/2)`，进一步减少 thermal 成本。
+- 相对基线与唯一变量：A8 low-temperature fast powers 保持开启，只增加默认关闭的
+  `BSMPT_USE_THERMAL_FAST_HIGH_POWERS=1`。
+- 样本：高 SNR type-3 同负载配对、NLO 有效五点同负载配对、完整 C 组十点。
+- 并发数与资源情况：增量构建 `-j2`；CalcGW 最多两个并发。
+- 状态/history/SNR 检查：三组状态/history 均不变；高 SNR 相对 A8 新增最大 SNR
+  偏差 0.208%，NLO 相对严格最大 5.07%；但 C 组第 9 行 SNR 分量相对严格偏差
+  43.44%，超过 10% 硬门槛。
+- exact / A8 / 候选耗时：高 SNR type-3 23.133→22.338 s；NLO 五点
+  66.585→66.782 s，无收益；C 组 220.950→209.593 s，快 5.14%。
+- 新反例与 guard 是否捕获：C 第 9 行是新的数值敏感反例；当前因弱信号会回退，
+  但其大幅偏差说明不能向未覆盖接受区推广。
+- 结论：淘汰，不加入 A8 wrapper；实验开关默认关闭并保留反例供反查。
+- 产物文件：thermal high source switch、high/NLO/C control/candidate TSV。
+- commit：待提交；GitHub：待推送。
 
 ## 后续轮次模板
 

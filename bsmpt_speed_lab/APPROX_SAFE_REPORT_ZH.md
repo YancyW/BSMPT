@@ -217,3 +217,10 @@ raster500 分别快约 7.22%、7.68%、5.91%、5.93%。两次同负载 type-3 �
 快 1.55%。端到端 safe 测试接受强信号候选并逐字段复现直接候选输出。因此默认
 guarded 首遍升级为 `run_calcgw_approx_c2_adaptive_r500_thermal_fast.sh`；严格回退
 仍使用原 exact-fast binary，实验 binary 环境只存在于首遍子进程。
+
+### high-temperature fast powers 淘汰
+
+进一步复用 `sqrt(x)` 和倒数替代高温展开的 `pow(x, ±l/2)`。高 SNR type-3
+相对 A8 快 3.44%、新增 SNR 偏差 0.208%；NLO 五点无速度收益。完整 C 组虽快
+5.14%，但第 9 行一个 SNR 分量相对严格偏差达到 43.44%。该点会被弱信号 guard
+回退，但大偏差证明高温简化对边缘舍入敏感，故不加入默认 wrapper，开关保持关闭。

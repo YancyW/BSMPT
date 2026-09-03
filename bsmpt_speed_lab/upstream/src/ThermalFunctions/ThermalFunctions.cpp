@@ -81,6 +81,16 @@ bool UseFastThermalPowers()
   }();
   return enabled;
 }
+
+bool UseFastThermalHighPowers()
+{
+  static const bool enabled = []
+  {
+    const char *env = std::getenv("BSMPT_USE_THERMAL_FAST_HIGH_POWERS");
+    return env != nullptr && env[0] == '1';
+  }();
+  return enabled;
+}
 } // namespace
 
 double JfermionInterpolatedLow(const double &x, const int &n, int diff)
@@ -323,6 +333,34 @@ double JInterpolatedHigh(const double &x, const int &n, int diff)
   using std::sqrt;
 
   double res = 0;
+  if (UseFastThermalHighPowers() && n == 3)
+  {
+    const double sqrt_x = sqrt(x);
+    const double inv_sqrt_x = 1.0 / sqrt_x;
+    const double inv_x = inv_sqrt_x * inv_sqrt_x;
+    const double *coefficients =
+        JInterpolatedHighCoefficientCalculator
+            .GetPreCalculatedCoefficentsData();
+    if (diff == 0)
+    {
+      double sum = coefficients[0];
+      sum += coefficients[1] * inv_sqrt_x;
+      sum += coefficients[2] * inv_x;
+      sum += coefficients[3] * inv_x * inv_sqrt_x;
+      res = -exp(-sqrt_x) * sqrt(M_PI / 2 * x * sqrt_x) * sum;
+    }
+    else if (diff == 1)
+    {
+      double sum = coefficients[0] * sqrt_x * (2 * sqrt_x - 3);
+      sum += coefficients[1] * (2 + 2 * sqrt_x - 3);
+      sum += coefficients[2] * inv_sqrt_x * (4 + 2 * sqrt_x - 3);
+      sum += coefficients[3] * inv_x * (6 + 2 * sqrt_x - 3);
+      const double x_three_quarters = sqrt(x * sqrt_x);
+      res = exp(-sqrt_x) * sqrt(2 * M_PI) /
+            (8 * x_three_quarters) * sum;
+    }
+    return res;
+  }
   if (diff == 0)
   {
     double sum = 0;
