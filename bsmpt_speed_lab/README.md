@@ -591,3 +591,8 @@ status/history fields on the NLO, high-SNR, and broad-C probes, but improved
 the three-row high-SNR runtime by only 0.45% and was slower than raster500 on
 the ten-row broad-C set.  Its known A/B boundary divergences remained caught
 by the guard.
+
+For a chronological, commit-linked audit trail of every accepted and rejected
+research round, see `RESEARCH_JOURNAL_ZH.md`.  New experiments must update that
+journal with their hypothesis, sample scope, correctness/runtime result,
+decision, artifacts, and commit/push state.
