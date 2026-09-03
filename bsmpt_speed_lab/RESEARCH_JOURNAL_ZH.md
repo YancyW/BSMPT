@@ -26,7 +26,7 @@
 | A4 | analytic-gradient、adaptive32 | 淘汰 | `77398635` | 已推送 |
 | A5 | raster400 中间值 | 淘汰 | `07fb4c7d` | 已推送 |
 | A6 | 已知危险邻域 exact 前置分流 | 接受 | `3e0bef61` | 已推送 |
-| A7 | 复用既有 PGO 构建审计 | 淘汰 | 待提交 | 待推送 |
+| A7 | 复用既有 PGO 构建审计 | 淘汰 | `d5f9afd0` | 已推送 |
 
 当前研究分支：`special/approx-safe-research-20260903`。
 严格快照分支：`special/exact-fast-validated-20260903`。
@@ -131,7 +131,7 @@
 - 结论：禁止直接用于测速或 safe runner。若未来重启 PGO，必须从当前源码重新生成
   覆盖广域/NLO/强信号的训练集，并在隔离的新目录构建 profile-use 版本。
 - 产物文件：仅本审计日志，无新 binary、无 CalcGW 输出。
-- commit：待提交；GitHub：待推送。
+- commit：`d5f9afd0`；GitHub：已推送。
 
 ## 后续轮次模板
 
