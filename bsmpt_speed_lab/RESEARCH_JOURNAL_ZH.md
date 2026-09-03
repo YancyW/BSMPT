@@ -27,7 +27,7 @@
 | A5 | raster400 中间值 | 淘汰 | `07fb4c7d` | 已推送 |
 | A6 | 已知危险邻域 exact 前置分流 | 接受 | `3e0bef61` | 已推送 |
 | A7 | 复用既有 PGO 构建审计 | 淘汰 | `d5f9afd0` | 已推送 |
-| A8 | thermal fast powers | 接受并升级默认 | 待提交 | 待推送 |
+| A8 | thermal fast powers | 接受并升级默认 | `7320d3db` | 已推送 |
 
 当前研究分支：`special/approx-safe-research-20260903`。
 严格快照分支：`special/exact-fast-validated-20260903`。
@@ -155,7 +155,7 @@
   直接 exact。B 锚点候选 SNR 对旧默认可变 11.21%，但不会进入候选或被接受。
 - 结论：接受并升级 guarded 默认首遍；严格 fallback 继续使用未修改 exact binary。
 - 产物文件：thermal 源码开关、独立 wrapper、control/candidate/mode/integration TSV。
-- commit：待提交；GitHub：待推送。
+- commit：`7320d3db`；GitHub：已推送。
 
 ## 后续轮次模板
 
