@@ -28,7 +28,7 @@
 | A6 | 已知危险邻域 exact 前置分流 | 接受 | `3e0bef61` | 已推送 |
 | A7 | 复用既有 PGO 构建审计 | 淘汰 | `d5f9afd0` | 已推送 |
 | A8 | thermal fast powers | 接受并升级默认 | `7320d3db` | 已推送 |
-| A9 | high-temperature fast powers | 淘汰 | 待提交 | 待推送 |
+| A9 | high-temperature fast powers | 淘汰 | `c8edbcaa` | 已推送 |
 
 当前研究分支：`special/approx-safe-research-20260903`。
 严格快照分支：`special/exact-fast-validated-20260903`。
@@ -176,7 +176,7 @@
   但其大幅偏差说明不能向未覆盖接受区推广。
 - 结论：淘汰，不加入 A8 wrapper；实验开关默认关闭并保留反例供反查。
 - 产物文件：thermal high source switch、high/NLO/C control/candidate TSV。
-- commit：待提交；GitHub：待推送。
+- commit：`c8edbcaa`；GitHub：已推送。
 
 ## 后续轮次模板
 
