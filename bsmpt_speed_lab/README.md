@@ -613,3 +613,8 @@ the recorded raw first-pass total from 940.724 s to about 908.155 s, with the
 same six accepted rows and at most 3.80% accepted SNR-component error.  The
 strict fallback is launched after the first-pass subprocess exits and retains
 the unchanged exact-fast binary.
+
+Remaining work is planned before execution in
+`REMAINING_OPTIMIZATION_ROADMAP_ZH.md`.  It fixes candidate priority, staged
+validation and stop conditions, the two-CalcGW memory limit, and a one-at-a-
+time read-only Luna audit workflow to control compute and model usage.
