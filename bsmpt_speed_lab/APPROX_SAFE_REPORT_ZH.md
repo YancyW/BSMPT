@@ -159,3 +159,17 @@ raster100 相对 raster250 仅再快约 3%：高 SNR 22.842→22.028 s，NLO 五
 1.98 s、CounterTerm 1.85 s、boson thermal 1.59 s、gauge masses 1.49 s；解析
 lepton 已降至 0.64 s。历史 quark 6x6、RK5 fixed/workspace、directional dV/dl
 候选均更慢或改变边界，解析 gauge 又被当前 paired gauge 路径旁路，故不重新加入。
+
+### analytic gradient 与 adaptive32 消融
+
+在 adaptive64+raster500 基础上，分别测试了解析梯度替代 central2，以及将 adaptive
+grid 从 64 减为 32。解析梯度的强信号 type-3 点状态与跃迁史不变，总 SNR 偏差
+0.642%，耗时 26.709 s；但它慢于当前 central2 的 24.326 s。A 组风险点仍发生
+bounce 状态差异并被 guard 捕获；B 组危险点与严格版同为 failure。更重要的是，
+NLO 内侧五点虽然状态与历史一致，但最大 SNR 分量偏差达到 13.19%，超过 10% 门槛，
+且五点均因极低 SNR 回退；其 86.047 s 首遍也慢于当前 67.933 s。因此解析梯度
+候选不升级默认。
+
+adaptive32 在强信号点和 NLO 五点的所有非 runtime 输出与 adaptive64 完全相同，
+但实测分别为 26.314 vs 24.326 s、96.662 vs 67.933 s，没有速度收益，也不升级
+默认。两项消融的 wrapper 与原始 TSV 留在实验目录，便于复查；严格路径未变。

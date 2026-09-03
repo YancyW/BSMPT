@@ -578,3 +578,10 @@ incremental gains over raster500 shrink to roughly 3--6% on the high-SNR and
 NLO probes, while the lower interpolation density expands untested numerical
 risk.  The committed wrappers remain experimental ablations; raster500 stays
 the guarded default.
+
+Two further ablations were rejected.  Replacing central2 with the analytic
+gradient exceeded the 10% component-SNR limit on the five-point NLO boundary
+set (13.19%) and was slower on the accepted high-SNR probe.  Reducing the
+adaptive grid from 64 to 32 produced identical non-runtime output on the
+high-SNR and NLO probes but was slower in both measurements.  Neither changes
+the guarded default.
