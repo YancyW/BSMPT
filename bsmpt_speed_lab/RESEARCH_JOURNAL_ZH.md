@@ -31,7 +31,7 @@
 | A9 | high-temperature fast powers | 淘汰 | `c8edbcaa` | 已推送 |
 | A10 | boson coefficient data pointer | 淘汰 | `e016ebaa` | 已推送 |
 | A11 | low-temperature fermion/boson split | 保留消融 | `dcd9e6b1` | 已推送 |
-| A12 | exact-key thermal last-value cache | 淘汰 | 待提交 | 待推送 |
+| A12 | exact-key thermal last-value cache | 淘汰 | `a9a10e63` | 已推送 |
 
 当前研究分支：`special/approx-safe-research-20260903`。
 严格快照分支：`special/exact-fast-validated-20260903`。
@@ -237,7 +237,7 @@
   算术，属于纯性能失败。
 - 结论：淘汰，不扩展完整矩阵；observer 与默认关闭的实验开关保留供反查。
 - 产物文件：profiler/thermal instrumentation、profile/control/candidate TSV。
-- commit：待提交；GitHub：待推送。
+- commit：`a9a10e63`；GitHub：已推送。
 
 ## 后续轮次模板
 
