@@ -29,7 +29,7 @@
 | A7 | 复用既有 PGO 构建审计 | 淘汰 | `d5f9afd0` | 已推送 |
 | A8 | thermal fast powers | 接受并升级默认 | `7320d3db` | 已推送 |
 | A9 | high-temperature fast powers | 淘汰 | `c8edbcaa` | 已推送 |
-| A10 | boson coefficient data pointer | 淘汰 | 待提交 | 待推送 |
+| A10 | boson coefficient data pointer | 淘汰 | `e016ebaa` | 已推送 |
 
 当前研究分支：`special/approx-safe-research-20260903`。
 严格快照分支：`special/exact-fast-validated-20260903`。
@@ -194,7 +194,7 @@
 - 结论：淘汰，不加入 A8 wrapper；原 accessor 已内联，额外环境分支无收益。
 - 产物文件：source experiment、`thermal_coeff_control_high.tsv`、
   `thermal_coeff_candidate_high.tsv`。
-- commit：待提交；GitHub：待推送。
+- commit：`e016ebaa`；GitHub：已推送。
 
 ## 后续轮次模板
 
