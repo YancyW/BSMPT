@@ -14,7 +14,9 @@
 #include <BSMPT/bounce_solution/calcgw_profiler.h>
 #include <BSMPT/models/SMparam.h>
 #include <complex>
+#include <cstdint>
 #include <cstdlib>
+#include <cstring>
 #include <map>
 
 #include <iostream>
@@ -34,6 +36,26 @@ namespace ThermalFunctions
 
 namespace
 {
+void ProfileThermalRepeat(bool fermion, double x, int diff) noexcept
+{
+  if (!CalcGWProfiler::thermal_repeat_enabled()) return;
+  std::uint64_t bits = 0;
+  static_assert(sizeof(bits) == sizeof(x));
+  std::memcpy(&bits, &x, sizeof(bits));
+  struct LastKey
+  {
+    std::uint64_t bits = 0;
+    int diff           = 0;
+    bool fermion       = false;
+    bool valid         = false;
+  };
+  thread_local LastKey last;
+  const bool hit = last.valid && last.bits == bits && last.diff == diff &&
+                   last.fermion == fermion;
+  CalcGWProfiler::thermal_repeat_call(fermion, diff, hit);
+  last = {bits, diff, fermion, true};
+}
+
 ThermalCoefficientCalculator FermionInterpolatedLowCoefficientCalculator(
     [](int l) -> double
     {
@@ -120,6 +142,32 @@ bool UseThermalCoefficientData()
     return env != nullptr && env[0] == '1';
   }();
   return enabled;
+}
+
+bool UseThermalExactLastCache()
+{
+  static const bool enabled = []
+  {
+    const char *env = std::getenv("BSMPT_USE_THERMAL_EXACT_LAST_CACHE");
+    return env != nullptr && env[0] == '1';
+  }();
+  return enabled;
+}
+
+struct ThermalLastValue
+{
+  std::uint64_t bits = 0;
+  int diff           = 0;
+  double value       = 0;
+  bool valid         = false;
+};
+
+std::uint64_t DoubleBits(double value) noexcept
+{
+  std::uint64_t bits = 0;
+  static_assert(sizeof(bits) == sizeof(value));
+  std::memcpy(&bits, &value, sizeof(bits));
+  return bits;
 }
 } // namespace
 
@@ -458,6 +506,12 @@ double JInterpolatedHigh(const double &x, const int &n, int diff)
 
 double JfermionInterpolated(const double &x, int diff)
 {
+  ProfileThermalRepeat(true, x, diff);
+  thread_local ThermalLastValue cache;
+  const bool use_cache = UseThermalExactLastCache();
+  const std::uint64_t bits = use_cache ? DoubleBits(x) : 0;
+  if (use_cache && cache.valid && cache.bits == bits && cache.diff == diff)
+    return cache.value;
   static const bool UseExactLow4 = []
   {
     const char *env = std::getenv("BSMPT_USE_FERMION_LOW4_EXACT");
@@ -474,11 +528,18 @@ double JfermionInterpolated(const double &x, int diff)
                          : JfermionInterpolatedLow(x, 4, diff));
     if (diff == 0) res += -C_FermionShift;
   }
+  if (use_cache) cache = {bits, diff, res, true};
   return res;
 }
 
 double JbosonInterpolated(const double &x, int diff)
 {
+  ProfileThermalRepeat(false, x, diff);
+  thread_local ThermalLastValue cache;
+  const bool use_cache = UseThermalExactLastCache();
+  const std::uint64_t bits = use_cache ? DoubleBits(x) : 0;
+  if (use_cache && cache.valid && cache.bits == bits && cache.diff == diff)
+    return cache.value;
   double res = 0;
   if (x >= C_BosonTheta)
   {
@@ -493,6 +554,7 @@ double JbosonInterpolated(const double &x, int diff)
   {
     res = JbosonInterpolatedNegative(x, diff);
   }
+  if (use_cache) cache = {bits, diff, res, true};
   return res;
 }
 

@@ -31,6 +31,7 @@
 | A9 | high-temperature fast powers | 淘汰 | `c8edbcaa` | 已推送 |
 | A10 | boson coefficient data pointer | 淘汰 | `e016ebaa` | 已推送 |
 | A11 | low-temperature fermion/boson split | 保留消融 | `dcd9e6b1` | 已推送 |
+| A12 | exact-key thermal last-value cache | 淘汰 | 待提交 | 待推送 |
 
 当前研究分支：`special/approx-safe-research-20260903`。
 严格快照分支：`special/exact-fast-validated-20260903`。
@@ -216,6 +217,27 @@
   boson-only 不单独推广。
 - 产物文件：split source switches 与四个 type-3 TSV。
 - commit：`dcd9e6b1`；GitHub：已推送。
+
+## A12：exact-key thermal last-value cache
+
+- 日期：2026-09-04。
+- 思路/假设：由 Luna 只读审计设计默认关闭的连续 bitwise-identical thermal 调用
+  observer；命中率超过 5% 后，实现 thread-local last-value exact-key cache。
+- 相对基线与唯一变量：A8 不变；observer 用
+  `BSMPT_PROFILE_THERMAL_REPEATS=1`，缓存用默认关闭的
+  `BSMPT_USE_THERMAL_EXACT_LAST_CACHE=1`。键包含 kind、diff 与 x 原始位模式，无
+  容差/量化，缓存不跨线程。
+- 样本：高 SNR type-3 profiling 和同负载 control/candidate。
+- 并发数与资源情况：增量构建 `-j2`；profiling 一个 CalcGW，配对两个 CalcGW。
+- 命中率：boson d0 `1,345,263/23,133,504`（5.82%），fermion d0
+  `12,804,236/40,483,632`（31.63%），合计约 22.3%。
+- 状态/history/SNR 检查：cache control/candidate 所有非 runtime 字段逐位一致。
+- exact / control / 候选耗时：control 21.970 s，cache 22.158 s，慢 0.86%。
+- 新反例与 guard 是否捕获：无数值反例；TLS、位键与分支成本超过被省 thermal
+  算术，属于纯性能失败。
+- 结论：淘汰，不扩展完整矩阵；observer 与默认关闭的实验开关保留供反查。
+- 产物文件：profiler/thermal instrumentation、profile/control/candidate TSV。
+- commit：待提交；GitHub：待推送。
 
 ## 后续轮次模板
 

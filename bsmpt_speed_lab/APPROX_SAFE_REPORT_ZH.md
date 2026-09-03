@@ -237,3 +237,10 @@ type-3 同负载为 23.646 vs 23.317 s，慢 1.41%。现有 accessor 已内联�
 24.022→23.711 s（1.29%）；boson-only 会改变总 SNR 和 beta/H，说明 A8 的主要
 数值偏差来自 boson 部分。fermion-only 保留为更保守消融，但收益不足以替换已经
 完成全矩阵验证的 A8 默认；boson-only 不单独推广。
+
+### exact-key thermal cache 淘汰
+
+Luna 只读审计后增加连续 bitwise-identical observer。高 SNR type-3 中 boson d0
+命中 5.82%、fermion d0 命中 31.63%，合计约 22.3%。随后实现的 thread-local
+last-value cache 保持输出逐位一致，但同负载为 22.158 vs 21.970 s，慢 0.86%；
+键检查成本超过被省算术，故按路线图停止，不扩展完整矩阵。

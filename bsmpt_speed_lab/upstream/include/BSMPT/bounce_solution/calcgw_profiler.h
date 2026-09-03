@@ -41,6 +41,8 @@ public:
    * enabled only when BSMPT_CALCGW_PROFILE_VEFF is set to a non-zero value.
    */
   static bool timing_enabled() noexcept;
+  static bool thermal_repeat_enabled() noexcept;
+  static void thermal_repeat_call(bool fermion, int diff, bool hit) noexcept;
 
   static void record_timing(TimingMetric metric,
                             std::uint64_t nanoseconds) noexcept;

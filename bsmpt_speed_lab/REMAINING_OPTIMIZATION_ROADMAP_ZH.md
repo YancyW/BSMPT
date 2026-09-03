@@ -49,6 +49,8 @@
 
 ### P1：exact-key thermal result cache
 
+状态：A12 已完成并淘汰。type-3 连续 exact-key 命中约 22.3%，但缓存慢 0.86%。
+
 先用纯计数 instrumentation 测量连续或小窗口内 `(kind,diff,x-bit-pattern)` 完全相同
 的调用命中率。命中足够高才实现 thread-local 小缓存；禁止量化、容差和近邻复用。
 潜在收益中等，数值风险低。命中率低于 5%，或两次配对收益低于 1% 即停止。

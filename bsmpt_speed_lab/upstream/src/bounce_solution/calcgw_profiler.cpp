@@ -34,11 +34,17 @@ struct Counters
   std::array<std::atomic<std::uint64_t>, static_cast<std::size_t>(
                                              CalcGWProfiler::TimingMetric::Count)>
       timing_nanoseconds{};
+  std::array<std::atomic<std::uint64_t>, 8> thermal_repeat_calls{};
+  std::array<std::atomic<std::uint64_t>, 8> thermal_repeat_hits{};
 
   Counters() noexcept
   {
     for (auto &value : timing_calls) value.store(0, std::memory_order_relaxed);
     for (auto &value : timing_nanoseconds)
+      value.store(0, std::memory_order_relaxed);
+    for (auto &value : thermal_repeat_calls)
+      value.store(0, std::memory_order_relaxed);
+    for (auto &value : thermal_repeat_hits)
       value.store(0, std::memory_order_relaxed);
   }
 };
@@ -61,10 +67,17 @@ bool read_timing_enabled() noexcept
   return value != nullptr && *value != '\0' && std::strcmp(value, "0") != 0;
 }
 
+bool read_thermal_repeat_enabled() noexcept
+{
+  const char *value = std::getenv("BSMPT_PROFILE_THERMAL_REPEATS");
+  return value != nullptr && *value != '\0' && std::strcmp(value, "0") != 0;
+}
+
 void ensure_report_registration() noexcept
 {
   static const bool registered = [] {
-    if (read_enabled() || read_timing_enabled())
+    if (read_enabled() || read_timing_enabled() ||
+        read_thermal_repeat_enabled())
       std::atexit(&CalcGWProfiler::report);
     return true;
   }();
@@ -90,6 +103,31 @@ bool CalcGWProfiler::timing_enabled() noexcept
     return on;
   }();
   return value;
+}
+
+bool CalcGWProfiler::thermal_repeat_enabled() noexcept
+{
+  static const bool value = [] {
+    const bool on = read_thermal_repeat_enabled();
+    if (on) ensure_report_registration();
+    return on;
+  }();
+  return value;
+}
+
+void CalcGWProfiler::thermal_repeat_call(bool fermion,
+                                         int diff,
+                                         bool hit) noexcept
+{
+  if (!thermal_repeat_enabled()) return;
+  const std::size_t diff_index =
+      diff == 0 ? 0 : (diff == 1 ? 1 : (diff == -1 ? 2 : 3));
+  const std::size_t index = (fermion ? 4 : 0) + diff_index;
+  counters().thermal_repeat_calls[index].fetch_add(1,
+                                                    std::memory_order_relaxed);
+  if (hit)
+    counters().thermal_repeat_hits[index].fetch_add(1,
+                                                    std::memory_order_relaxed);
 }
 
 void CalcGWProfiler::record_timing(TimingMetric metric,
@@ -189,7 +227,7 @@ void CalcGWProfiler::active_hessian_dimensions(
 
 void CalcGWProfiler::report() noexcept
 {
-  if (!enabled() && !timing_enabled()) return;
+  if (!enabled() && !timing_enabled() && !thermal_repeat_enabled()) return;
   const auto &c = counters();
   std::cerr << "BSMPT_CALCGW_PROFILE"
             << " rasterized_calls=" << c.rasterized_calls.load()
@@ -227,6 +265,19 @@ void CalcGWProfiler::report() noexcept
     {
       if (i != 0) std::cerr << ',';
       std::cerr << labels[i] << ':' << c.timing_calls[i].load();
+    }
+  }
+  if (thermal_repeat_enabled())
+  {
+    static constexpr const char *labels[] = {
+        "boson_d0", "boson_d1", "boson_dm1", "boson_other",
+        "fermion_d0", "fermion_d1", "fermion_dm1", "fermion_other"};
+    std::cerr << " thermal_repeat=";
+    for (std::size_t i = 0; i < 8; ++i)
+    {
+      if (i != 0) std::cerr << ',';
+      std::cerr << labels[i] << ':' << c.thermal_repeat_hits[i].load() << '/'
+                << c.thermal_repeat_calls[i].load();
     }
   }
   std::cerr << '\n';
