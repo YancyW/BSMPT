@@ -190,3 +190,10 @@ raster400 用于检查 raster500 与 raster250 之间是否存在更好的折中
 0.45%。A、B 两个已知危险点仍分别由失败状态和低 SNR 地板捕获。完整 C 组 10/10
 状态/历史一致、最大 SNR 偏差 0.352%，但耗时 238.339 s，反而慢于 raster500 的
 234.463 s。收益不可重复，因此 raster400 也不升级默认。
+
+### PGO 复用审计
+
+现存 `build-pgo-gcc` 仍是 `-fprofile-generate` instrumentation 构建，并非可测速的
+profile-use 成品。虽然保留 35 个 `.gcda`，但当前源码时间戳晚于训练 binary，无法
+证明画像匹配。因此没有运行该 binary，也不把历史 2–5% PGO 收益叠加到安全版；
+未来若重启，必须从当前源码和广域训练集完整重做。

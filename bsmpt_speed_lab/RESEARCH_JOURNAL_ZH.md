@@ -26,6 +26,7 @@
 | A4 | analytic-gradient、adaptive32 | 淘汰 | `77398635` | 已推送 |
 | A5 | raster400 中间值 | 淘汰 | `07fb4c7d` | 已推送 |
 | A6 | 已知危险邻域 exact 前置分流 | 接受 | `3e0bef61` | 已推送 |
+| A7 | 复用既有 PGO 构建审计 | 淘汰 | 待提交 | 待推送 |
 
 当前研究分支：`special/approx-safe-research-20260903`。
 严格快照分支：`special/exact-fast-validated-20260903`。
@@ -115,6 +116,22 @@
 - 产物文件：`approx_input_prefilter.py`、`approx_exact_direct_anchors.tsv`、
   `approx_prefilter_a_integration.tsv`、更新后的 safe runner 与报告。
 - commit：`3e0bef61`；GitHub：已推送。
+
+## A7：复用既有 PGO 构建审计
+
+- 日期：2026-09-03。
+- 思路/假设：在不改变数值算法的情况下，将现有 PGO binary 叠加到 guarded 首遍，
+  争取历史测试中约 2–5% 的编译级收益。
+- 相对基线与唯一变量：计划仅替换 `BSMPT_CALCGW_BINARY`，其余保持 A6 默认。
+- 样本：计划使用高 SNR 与 NLO 边界；构建资格审计未通过，因此未启动 CalcGW。
+- 并发数与资源情况：零个 CalcGW。
+- 审计结果：`build-pgo-gcc` 的 cache 仍为 `-fprofile-generate`，binary 是 158 MB
+  instrumentation 版本而非 profile-use 成品；目录有 35 个 `.gcda`，但源码时间戳
+  晚于训练 binary，不能证明画像与当前源码匹配。构建目录为 542 MB。
+- 结论：禁止直接用于测速或 safe runner。若未来重启 PGO，必须从当前源码重新生成
+  覆盖广域/NLO/强信号的训练集，并在隔离的新目录构建 profile-use 版本。
+- 产物文件：仅本审计日志，无新 binary、无 CalcGW 输出。
+- commit：待提交；GitHub：待推送。
 
 ## 后续轮次模板
 
