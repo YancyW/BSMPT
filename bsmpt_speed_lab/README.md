@@ -603,3 +603,13 @@ anchors/neighborhoods directly to exact-fast, avoiding an approximate pass
 that is already known to require fallback.  A non-match never bypasses the
 existing output guard.  New anchors must not be added without saved
 exact/approx neighborhood evidence.
+
+The current guarded first pass additionally uses the isolated
+`build-approx-thermal/bin/CalcGW` and `BSMPT_USE_THERMAL_FAST_POWERS=1` through
+`run_calcgw_approx_c2_adaptive_r500_thermal_fast.sh`.  The switch replaces
+only integer/half-integer powers in the existing low-temperature expansions;
+it remains off in the strict binary.  Across the 42-row matrix this reduced
+the recorded raw first-pass total from 940.724 s to about 908.155 s, with the
+same six accepted rows and at most 3.80% accepted SNR-component error.  The
+strict fallback is launched after the first-pass subprocess exits and retains
+the unchanged exact-fast binary.

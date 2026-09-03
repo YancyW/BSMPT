@@ -37,7 +37,7 @@ else
   args[$output_index]="$approx_output"
 fi
 
-first_pass="${BSMPT_APPROX_FIRST_PASS:-${script_dir}/run_calcgw_approx_c2_adaptive_raster500.sh}"
+first_pass="${BSMPT_APPROX_FIRST_PASS:-${script_dir}/run_calcgw_approx_c2_adaptive_r500_thermal_fast.sh}"
 case "$first_pass" in
   "${script_dir}"/*) ;;
   *)

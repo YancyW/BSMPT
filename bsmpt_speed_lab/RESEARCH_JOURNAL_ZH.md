@@ -27,6 +27,7 @@
 | A5 | raster400 中间值 | 淘汰 | `07fb4c7d` | 已推送 |
 | A6 | 已知危险邻域 exact 前置分流 | 接受 | `3e0bef61` | 已推送 |
 | A7 | 复用既有 PGO 构建审计 | 淘汰 | `d5f9afd0` | 已推送 |
+| A8 | thermal fast powers | 接受并升级默认 | 待提交 | 待推送 |
 
 当前研究分支：`special/approx-safe-research-20260903`。
 严格快照分支：`special/exact-fast-validated-20260903`。
@@ -132,6 +133,29 @@
   覆盖广域/NLO/强信号的训练集，并在隔离的新目录构建 profile-use 版本。
 - 产物文件：仅本审计日志，无新 binary、无 CalcGW 输出。
 - commit：`d5f9afd0`；GitHub：已推送。
+
+## A8：thermal fast powers
+
+- 日期：2026-09-03。
+- 思路/假设：低温 thermal 展开中大量整数/半整数 `pow` 可用乘法与一次 `sqrt`
+  代替，在非严格模式允许的舍入差异内减少约 200 万次 VEff 调用的成本。
+- 相对基线与唯一变量：`central2 + adaptive64 + raster500` 不变；独立
+  `build-approx-thermal` 仅增加 `BSMPT_USE_THERMAL_FAST_POWERS=1`。严格 binary
+  不重建，SHA256 仍为 `b598cc...629e`。
+- 样本：42 行 NLO/A/B/C/高 SNR 矩阵，两次 type-3 同负载配对，四种 multistep
+  modes，A/B 已知危险点，端到端 safe 高信号点。
+- 并发数与资源情况：构建 `-j2`；CalcGW 最多两个并发。
+- 状态/history/SNR 检查：接受面仍为 A 三行和高 SNR 三行。A 接受行相对严格
+  最大 SNR 分量误差 0.026%，高 SNR 最大 3.74%；四种 mode 最大 3.80%。C 组
+  10/10、NLO 有效 5/5 状态/history 一致，NLO 外侧 4/4 保持拒绝。
+- exact / 当前默认 / 候选耗时：42 行 2173.759 / 940.724 / 约 908.155 s；候选
+  相对旧默认再降 3.46%，相对 exact 降约 58.22%。C 组 234.463→220.950 s，
+  高 SNR 三型 73.695→71.443 s。
+- 新反例与 guard 是否捕获：没有新反例。A/B 只复现已知状态差异；A6 会在首遍前
+  直接 exact。B 锚点候选 SNR 对旧默认可变 11.21%，但不会进入候选或被接受。
+- 结论：接受并升级 guarded 默认首遍；严格 fallback 继续使用未修改 exact binary。
+- 产物文件：thermal 源码开关、独立 wrapper、control/candidate/mode/integration TSV。
+- commit：待提交；GitHub：待推送。
 
 ## 后续轮次模板
 

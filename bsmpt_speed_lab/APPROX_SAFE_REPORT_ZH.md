@@ -197,3 +197,23 @@ raster400 用于检查 raster500 与 raster250 之间是否存在更好的折中
 profile-use 成品。虽然保留 35 个 `.gcda`，但当前源码时间戳晚于训练 binary，无法
 证明画像匹配。因此没有运行该 binary，也不把历史 2–5% PGO 收益叠加到安全版；
 未来若重启，必须从当前源码和广域训练集完整重做。
+
+## thermal fast powers guarded 首遍
+
+在隔离的 `build-approx-thermal` 中增加默认关闭的
+`BSMPT_USE_THERMAL_FAST_POWERS`：只把低温 fermion/boson 展开中的整数及半整数
+`pow` 改为乘法和一次 `sqrt`，不改变展开阶数、分段阈值或状态逻辑。严格 binary
+SHA256 复核仍为 `b598cc5591bc11aeb378053d4f63e02e18130b3fb865680f008880a05468629e`。
+
+42 行矩阵候选首遍合计约 908.155 s，对应当前 raster500 的 940.724 s，再减少
+3.46%，对应 exact-fast 2173.759 s 总计减少约 58.22%。guard 接受面仍为 A 组三行
+和高 SNR 三行：A 接受行最大 SNR 分量误差 0.026%，高 SNR 最大 3.74%；其余 36
+行回退。完整 C 组 10/10 状态/history 一致、最大 SNR 偏差 0.310%，耗时
+234.463→220.950 s。NLO 有效五点相对同构建 control 快 3.30%，相对严格最大 SNR
+偏差 2.03%；外侧四点保持拒绝。A/B 只保留已知反例并由 A6 前置 exact。
+
+`multistepmode=0/1/2/auto` 均保持状态/history，最大 SNR 分量偏差 3.80%，相对
+raster500 分别快约 7.22%、7.68%、5.91%、5.93%。两次同负载 type-3 配对平均
+快 1.55%。端到端 safe 测试接受强信号候选并逐字段复现直接候选输出。因此默认
+guarded 首遍升级为 `run_calcgw_approx_c2_adaptive_r500_thermal_fast.sh`；严格回退
+仍使用原 exact-fast binary，实验 binary 环境只存在于首遍子进程。

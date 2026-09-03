@@ -71,6 +71,16 @@ ThermalCoefficientCalculator JInterpolatedHighCoefficientCalculator(
              gsl_sf_gamma(2.5 - l);
     },
     5);
+
+bool UseFastThermalPowers()
+{
+  static const bool enabled = []
+  {
+    const char *env = std::getenv("BSMPT_USE_THERMAL_FAST_POWERS");
+    return env != nullptr && env[0] == '1';
+  }();
+  return enabled;
+}
 } // namespace
 
 double JfermionInterpolatedLow(const double &x, const int &n, int diff)
@@ -164,6 +174,39 @@ double JfermionInterpolatedLow4Exact(const double &x, int diff)
   const double *coefficients =
       FermionInterpolatedLowCoefficientCalculator
           .GetPreCalculatedCoefficentsData();
+  if (UseFastThermalPowers())
+  {
+    const double x2 = x * x;
+    if (diff == 0)
+    {
+      const double ratio  = -x / (4 * M_PI * M_PI);
+      const double ratio2 = ratio * ratio;
+      const double ratio3 = ratio2 * ratio;
+      const double ratio4 = ratio3 * ratio;
+      res                 = -7 * pow(M_PI, 4) / 360.0;
+      res += M_PI * M_PI / 24 * x;
+      res += x2 * (log(x) - cf) / 32.0;
+      double sum = ratio2 * coefficients[2];
+      sum += ratio3 * coefficients[3];
+      sum += ratio4 * coefficients[4];
+      res += -M_PI * M_PI * x * sum;
+    }
+    else if (diff == 1)
+    {
+      const double ratio  = -x / 4.0;
+      const double ratio2 = ratio * ratio;
+      const double ratio3 = ratio2 * ratio;
+      const double ratio4 = ratio3 * ratio;
+      res                 = M_PI * M_PI / 24.0;
+      res += x * (-6 * cf + 3) / 96;
+      res += x * log(x) / 16;
+      double sum = -coefficients[2] * ratio2 * 3 / (M_PI * M_PI);
+      sum += -coefficients[3] * ratio3 * 4 / pow(M_PI, 4);
+      sum += -coefficients[4] * ratio4 * 5 / pow(M_PI, 6);
+      res += sum;
+    }
+    return res;
+  }
   if (diff == 0)
   {
     res = -7 * pow(M_PI, 4) / 360.0;
@@ -205,6 +248,41 @@ double JbosonInterpolatedLow(const double &x, const int &n, int diff)
   using std::sqrt;
   double cb  = 1.5 + 2 * std::log(4 * M_PI) - 2 * C_euler_gamma;
   double res = 0;
+  if (UseFastThermalPowers() && n == 3)
+  {
+    const double x2      = x * x;
+    const double sqrt_x  = sqrt(x);
+    const double ratio   = -x / (4 * M_PI * M_PI);
+    const double ratio2  = ratio * ratio;
+    const double ratio3  = ratio2 * ratio;
+    const double coeff2 =
+        BosonInterpolatedLowCoefficientCalculator.GetCoefficentAtOrder(2);
+    const double coeff3 =
+        BosonInterpolatedLowCoefficientCalculator.GetCoefficentAtOrder(3);
+    if (diff == 0)
+    {
+      res = -pow(M_PI, 4) / 45.0;
+      res += M_PI * M_PI * x / 12.0;
+      res += -M_PI * x * sqrt_x / 6;
+      res += -x2 * (log(x) - cb) / 32.0;
+      const double sum = ratio2 * coeff2 + ratio3 * coeff3;
+      res += M_PI * M_PI * x * sum;
+    }
+    else if (diff == 1)
+    {
+      const double derivative_ratio = -x / 4.0;
+      const double derivative_ratio2 = derivative_ratio * derivative_ratio;
+      const double derivative_ratio3 =
+          derivative_ratio2 * derivative_ratio;
+      res = M_PI * M_PI / 12.0;
+      res += x * (6 * cb - 3) / 96.0;
+      res += -x * log(x) / 16.0;
+      res += -M_PI * sqrt_x / 4.0;
+      res += coeff2 * derivative_ratio2 * 3 / (M_PI * M_PI);
+      res += coeff3 * derivative_ratio3 * 4 / pow(M_PI, 4);
+    }
+    return res;
+  }
   if (diff == 0)
   {
     res = -pow(M_PI, 4) / 45.0;
