@@ -558,3 +558,23 @@ have total SNR below `1e-20`, and the fourth reports a failed/non-finite GW.
 This boundary region has essentially no raw speed benefit and becomes slower
 after exact fallback; the guarded profile targets stable signal regions, not
 uniform acceleration of every point.
+
+The current default first pass additionally enables the 64-point adaptive
+exact-solution threshold search.  Across the same 42-row matrix it reduces raw
+runtime by 49.11% (2173.759 s to 1106.233 s), while the six guard-accepted rows
+have a maximum observed SNR-component error of 3.72%.  Four CalcGW multistep
+modes and the four-point false-positive perturbation cloud also pass the guard
+policy.  Analytic-only and central2-only wrappers remain available for
+ablation; none of these changes rebuilds or modifies the strict binary.
+
+The validated guarded default now also uses a 500-interval bounce raster.  On
+the 42-row matrix its raw first-pass runtime is 940.724 s versus 2173.759 s for
+exact-fast (56.72% lower), while the six accepted rows remain below 3.89%
+maximum observed SNR-component error.  NLO boundary, broad A/B/C, high-SNR
+Yukawa, and all four multistep modes were rerun for this configuration.
+
+Further raster reductions to 250 and 100 intervals were not promoted.  Their
+incremental gains over raster500 shrink to roughly 3--6% on the high-SNR and
+NLO probes, while the lower interpolation density expands untested numerical
+risk.  The committed wrappers remain experimental ablations; raster500 stays
+the guarded default.

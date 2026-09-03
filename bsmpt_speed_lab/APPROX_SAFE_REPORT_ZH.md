@@ -100,3 +100,62 @@ central2 wrapper 仍不安全，也不属于可接受结果入口。
 因此安全近似版并不承诺在边缘区加速；它以边缘区严格回退换取稳定强信号区约
 29% 的已测首遍收益。邻域输入和输出以
 `central2_false_positive_neighborhood_4*` 命名。
+
+## central2 + adaptive threshold
+
+在 central2 guarded 首遍上增加 64 点 adaptive exact-solution threshold 搜索。
+同一套 42 行矩阵中，原始首遍合计为 1106.233 s，对应 exact-fast 2173.759 s，
+减少 49.11%。默认 guard 仍接受相同 6 行、回退 36 行；接受点的最大 SNR 分量
+偏差为 3.72%，未超过 10%。
+
+- NLO 边界内侧 5/5 状态与历史不变，最大 SNR 偏差 1.95%，耗时
+  183.053→82.520 s；外侧 4/4 保持拒绝；
+- 广域 A 保留同一个已知风险翻转并被回退，耗时 387.929→196.043 s；三个接受点
+  最大 SNR 偏差 0.0591%；
+- 广域 B 保留同一个低 SNR 假阳性并被回退，耗时 825.687→466.412 s；
+- 广域 C 10/10 状态与历史不变，最大 SNR 偏差 0.328%，耗时
+  556.091→273.268 s；
+- 高 SNR Yukawa 2/3/4 三行状态与历史不变，最大 SNR 分量偏差 3.72%，耗时
+  220.162→87.213 s；
+- `multistepmode=0/1/2/auto` 均保持状态与历史，最大 SNR 偏差 3.68%；模式 0、1、
+  2、auto 分别为 27.163、27.254、89.256、27.487 s，对应 exact-fast
+  70.471、72.175、143.627、71.760 s。
+
+在四点假阳性扰动邻域中，adaptive 首遍仍产生三次低 SNR 假 success 和一次
+failure，但 4/4 全被 guard 回退；首遍合计 479.302 vs 689.692 s。基于上述门槛，
+`run_calcgw_approx_safe.sh` 的默认首遍升级为
+`run_calcgw_approx_central2_adaptive.sh`。analytic-only 和 central2-only wrapper
+继续保留用于消融；严格 wrapper、严格二进制和项目主程序不变。
+
+## adaptive + raster500
+
+将 bounce `dV/dl` raster 从 1000 降为 500 后，同一 42 行矩阵首遍为
+940.724 s，对应 exact-fast 2173.759 s，减少 56.72%；相比未缩减 raster 的
+adaptive 首遍 1106.233 s 再快 14.96%。guard 仍接受相同 6 行、回退 36 行，
+接受点最大 SNR 分量偏差为 3.89%。
+
+NLO 内侧五点最大 SNR 偏差 5.05%，耗时 82.520→67.933 s；外侧四点保持拒绝。
+A/B/C 分别为 163.125、400.762、234.463 s，对应 adaptive 的 196.043、
+466.412、273.268 s；A/B 仍只有已知且可捕获的状态翻转，C 组状态与历史不变。
+高 SNR 三型为 73.695 s，对应 exact-fast 220.162 s，最大 SNR 偏差 3.89%。
+
+`multistepmode=0/1/2/auto` 分别为 22.505、22.682、80.338、22.310 s，四种模式
+状态与历史均不变，最大 SNR 偏差 3.68%。因此 safe runner 默认首遍进一步升级为
+`run_calcgw_approx_c2_adaptive_raster500.sh`。更保守的 wrapper 均保留用于回退与
+消融，严格路径不变。
+
+### raster250 / raster100 下探
+
+raster250 在高 SNR 和危险边界上相对 raster500 只再快约 6%，NLO 内侧五点
+67.933→64.824 s（4.58%）；高 SNR 最大 SNR 偏差 3.87%，NLO 最大偏差 4.78%。
+raster100 相对 raster250 仅再快约 3%：高 SNR 22.842→22.028 s，NLO 五点
+64.824→62.845 s；最大 SNR 偏差分别 3.81% 和 5.10%。两者的边际收益不足以
+补偿更低插值密度带来的未覆盖风险，因此不升级默认，保留为实验 wrapper。
+
+### 当前近似热点
+
+在 raster500 高 SNR type-3 点开启计数和 VEff timing，约 200 万次 VEff 调用中，
+累计主要耗时为 quark masses 8.68 s、Higgs masses 6.57 s、fermion thermal
+1.98 s、CounterTerm 1.85 s、boson thermal 1.59 s、gauge masses 1.49 s；解析
+lepton 已降至 0.64 s。历史 quark 6x6、RK5 fixed/workspace、directional dV/dl
+候选均更慢或改变边界，解析 gauge 又被当前 paired gauge 路径旁路，故不重新加入。
