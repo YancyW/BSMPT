@@ -532,3 +532,13 @@ bit-for-bit identical outside `runtime`.  Their aggregate runtime is 358.033 s
 versus 702.271 s (49.02% lower); mode 2 exercises the heavier global-minimum
 tracing path.  Across the expanded boundary, broad, Yukawa, and mode matrices,
 at least 73 new row-level dense comparisons now pass the zero-tolerance gate.
+
+An experimental, non-strict profile is available through
+`run_calcgw_approx_safe.sh`.  It uses the analytic R2HDM lepton spectrum only
+for a first pass and automatically reruns a single risky point with the
+validated exact-fast profile.  Risk includes failed/non-finite/incomplete
+statuses, very small total SNR, and configurable margins around SNR cuts.  The
+current 42-row study found two counterexamples to unguarded approximation; both
+are caught by this policy.  Among the six rows accepted by the default guard,
+the maximum observed SNR-component error is 4.36%.  This is empirical evidence,
+not a whole-parameter-space guarantee; see `APPROX_SAFE_REPORT_ZH.md`.
