@@ -30,7 +30,7 @@
 | A8 | thermal fast powers | 接受并升级默认 | `7320d3db` | 已推送 |
 | A9 | high-temperature fast powers | 淘汰 | `c8edbcaa` | 已推送 |
 | A10 | boson coefficient data pointer | 淘汰 | `e016ebaa` | 已推送 |
-| A11 | low-temperature fermion/boson split | 保留消融 | 待提交 | 待推送 |
+| A11 | low-temperature fermion/boson split | 保留消融 | `dcd9e6b1` | 已推送 |
 
 当前研究分支：`special/approx-safe-research-20260903`。
 严格快照分支：`special/exact-fast-validated-20260903`。
@@ -215,7 +215,7 @@
 - 结论：fermion-only 保留为更保守消融，不替换完整矩阵已验证且收益更高的 A8；
   boson-only 不单独推广。
 - 产物文件：split source switches 与四个 type-3 TSV。
-- commit：待提交；GitHub：待推送。
+- commit：`dcd9e6b1`；GitHub：已推送。
 
 ## 后续轮次模板
 
