@@ -91,6 +91,16 @@ bool UseFastThermalHighPowers()
   }();
   return enabled;
 }
+
+bool UseThermalCoefficientData()
+{
+  static const bool enabled = []
+  {
+    const char *env = std::getenv("BSMPT_USE_THERMAL_COEFF_DATA");
+    return env != nullptr && env[0] == '1';
+  }();
+  return enabled;
+}
 } // namespace
 
 double JfermionInterpolatedLow(const double &x, const int &n, int diff)
@@ -265,10 +275,22 @@ double JbosonInterpolatedLow(const double &x, const int &n, int diff)
     const double ratio   = -x / (4 * M_PI * M_PI);
     const double ratio2  = ratio * ratio;
     const double ratio3  = ratio2 * ratio;
-    const double coeff2 =
-        BosonInterpolatedLowCoefficientCalculator.GetCoefficentAtOrder(2);
-    const double coeff3 =
-        BosonInterpolatedLowCoefficientCalculator.GetCoefficentAtOrder(3);
+    double coeff2, coeff3;
+    if (UseThermalCoefficientData())
+    {
+      const double *coefficients =
+          BosonInterpolatedLowCoefficientCalculator
+              .GetPreCalculatedCoefficentsData();
+      coeff2 = coefficients[2];
+      coeff3 = coefficients[3];
+    }
+    else
+    {
+      coeff2 =
+          BosonInterpolatedLowCoefficientCalculator.GetCoefficentAtOrder(2);
+      coeff3 =
+          BosonInterpolatedLowCoefficientCalculator.GetCoefficentAtOrder(3);
+    }
     if (diff == 0)
     {
       res = -pow(M_PI, 4) / 45.0;

@@ -29,6 +29,7 @@
 | A7 | 复用既有 PGO 构建审计 | 淘汰 | `d5f9afd0` | 已推送 |
 | A8 | thermal fast powers | 接受并升级默认 | `7320d3db` | 已推送 |
 | A9 | high-temperature fast powers | 淘汰 | `c8edbcaa` | 已推送 |
+| A10 | boson coefficient data pointer | 淘汰 | 待提交 | 待推送 |
 
 当前研究分支：`special/approx-safe-research-20260903`。
 严格快照分支：`special/exact-fast-validated-20260903`。
@@ -177,6 +178,23 @@
 - 结论：淘汰，不加入 A8 wrapper；实验开关默认关闭并保留反例供反查。
 - 产物文件：thermal high source switch、high/NLO/C control/candidate TSV。
 - commit：`c8edbcaa`；GitHub：已推送。
+
+## A10：boson coefficient data pointer
+
+- 日期：2026-09-03。
+- 思路/假设：A8 boson 低温快路径每次读取二、三阶系数，尝试一次取得连续 data
+  pointer，替代两次 `GetCoefficentAtOrder`。
+- 相对基线与唯一变量：A8 不变，仅增加默认关闭的
+  `BSMPT_USE_THERMAL_COEFF_DATA=1`。
+- 样本：高 SNR type-3 同负载配对。
+- 并发数与资源情况：增量构建 `-j2`；两个 CalcGW 并发。
+- 状态/history/SNR 检查：所有非 runtime 字段逐位一致。
+- exact / A8 / 候选耗时：A8 control 23.317 s，候选 23.646 s，慢 1.41%。
+- 新反例与 guard 是否捕获：无数值反例；纯性能失败。
+- 结论：淘汰，不加入 A8 wrapper；原 accessor 已内联，额外环境分支无收益。
+- 产物文件：source experiment、`thermal_coeff_control_high.tsv`、
+  `thermal_coeff_candidate_high.tsv`。
+- commit：待提交；GitHub：待推送。
 
 ## 后续轮次模板
 

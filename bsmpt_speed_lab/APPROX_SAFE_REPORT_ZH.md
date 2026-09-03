@@ -224,3 +224,9 @@ guarded 首遍升级为 `run_calcgw_approx_c2_adaptive_r500_thermal_fast.sh`；�
 相对 A8 快 3.44%、新增 SNR 偏差 0.208%；NLO 五点无速度收益。完整 C 组虽快
 5.14%，但第 9 行一个 SNR 分量相对严格偏差达到 43.44%。该点会被弱信号 guard
 回退，但大偏差证明高温简化对边缘舍入敏感，故不加入默认 wrapper，开关保持关闭。
+
+### coefficient data pointer 淘汰
+
+A8 boson 低温快路径改为一次取得连续系数指针的候选保持所有输出逐位一致，但
+type-3 同负载为 23.646 vs 23.317 s，慢 1.41%。现有 accessor 已内联，候选不加入
+默认 wrapper，实验开关保持关闭。
