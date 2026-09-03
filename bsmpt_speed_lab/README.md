@@ -596,3 +596,10 @@ For a chronological, commit-linked audit trail of every accepted and rejected
 research round, see `RESEARCH_JOURNAL_ZH.md`.  New experiments must update that
 journal with their hypothesis, sample scope, correctness/runtime result,
 decision, artifacts, and commit/push state.
+
+The safe runner also performs a conservative input prefilter using
+`approx_exact_direct_anchors.tsv`.  It sends only explicitly validated risk
+anchors/neighborhoods directly to exact-fast, avoiding an approximate pass
+that is already known to require fallback.  A non-match never bypasses the
+existing output guard.  New anchors must not be added without saved
+exact/approx neighborhood evidence.

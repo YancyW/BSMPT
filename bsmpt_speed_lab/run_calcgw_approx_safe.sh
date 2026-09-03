@@ -19,6 +19,15 @@ if [[ -z "$output" || $output_index -lt 0 ]]; then
   exit 2
 fi
 
+anchors="${BSMPT_APPROX_EXACT_ANCHORS:-${script_dir}/approx_exact_direct_anchors.tsv}"
+if [[ -f "$anchors" ]]; then
+  if reason="$(python3 "${script_dir}/approx_input_prefilter.py" \
+      --anchors "$anchors" -- "${args[@]}")"; then
+    echo "approx-safe: direct exact: ${reason}" >&2
+    exec "${script_dir}/run_calcgw_exact_fast.sh" "$@"
+  fi
+fi
+
 tmpdir="$(mktemp -d "${TMPDIR:-/tmp}/bsmpt-approx-safe.XXXXXX")"
 trap 'rm -rf -- "$tmpdir"' EXIT
 approx_output="${tmpdir}/approx.tsv"

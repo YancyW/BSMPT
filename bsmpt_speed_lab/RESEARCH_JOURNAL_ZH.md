@@ -25,6 +25,7 @@
 | A3 | adaptive64 + raster500 | 当前默认 | `e891594f` | 已推送 |
 | A4 | analytic-gradient、adaptive32 | 淘汰 | `77398635` | 已推送 |
 | A5 | raster400 中间值 | 淘汰 | `07fb4c7d` | 已推送 |
+| A6 | 已知危险邻域 exact 前置分流 | 接受 | 待提交 | 待推送 |
 
 当前研究分支：`special/approx-safe-research-20260903`。
 严格快照分支：`special/exact-fast-validated-20260903`。
@@ -92,6 +93,27 @@
   234.463 s。
 - 结论：收益不可重复，淘汰，不改默认。
 - 提交：`07fb4c7d`，已推送。
+
+## A6：已知危险邻域 exact 前置分流
+
+- 日期：2026-09-03。
+- 思路/假设：guard 已知必然回退的点不应先付出近似首遍成本；仅对有保存证据的
+  参数锚点/邻域直接运行 exact-fast，不扩大近似接受面。
+- 相对基线与唯一变量：保持默认 `central2 + adaptive64 + raster500` 和输出 guard
+  不变，只在其前增加 `approx_input_prefilter.py` 与风险锚点表。
+- 样本：42 点矩阵全部输入、B 假阳性四点 `-1e-5、-3e-6、+3e-6、+1e-5`
+  扰动云；真实集成运行 A 组输入第 10 行。
+- 并发数与资源情况：离线判定不运行 CalcGW；集成测试仅一个 CalcGW。
+- 状态/history/SNR 检查：42 点中只命中预期 A/B 两点；B 扰动云 4/4 命中；
+  A 集成输出除 runtime 外与 exact-fast 参考逐字段一致；高 SNR 安全点不命中。
+- exact / 当前默认 / 候选耗时：A 点候选直接 exact 实测 116.945 s；历史默认流程
+  会额外运行 41.337 s 近似首遍。B 锚点可避免历史 101.822 s 近似首遍。
+- 新反例与 guard 是否捕获：无新反例；原 A/B 风险改为在输出 guard 前直接严格算。
+- 结论：接受为 safe runner 的保守成本优化。注册表只允许加入已有 exact/approx
+  邻域证据的区域，不能外推为通用参数分类器。
+- 产物文件：`approx_input_prefilter.py`、`approx_exact_direct_anchors.tsv`、
+  `approx_prefilter_a_integration.tsv`、更新后的 safe runner 与报告。
+- commit：待提交；GitHub：待推送。
 
 ## 后续轮次模板
 
