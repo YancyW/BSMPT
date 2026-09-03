@@ -82,6 +82,26 @@ bool UseFastThermalPowers()
   return enabled;
 }
 
+bool UseFastFermionPowers()
+{
+  static const bool enabled = []
+  {
+    const char *env = std::getenv("BSMPT_USE_FERMION_FAST_POWERS");
+    return env != nullptr && env[0] == '1';
+  }();
+  return UseFastThermalPowers() || enabled;
+}
+
+bool UseFastBosonPowers()
+{
+  static const bool enabled = []
+  {
+    const char *env = std::getenv("BSMPT_USE_BOSON_FAST_POWERS");
+    return env != nullptr && env[0] == '1';
+  }();
+  return UseFastThermalPowers() || enabled;
+}
+
 bool UseFastThermalHighPowers()
 {
   static const bool enabled = []
@@ -194,7 +214,7 @@ double JfermionInterpolatedLow4Exact(const double &x, int diff)
   const double *coefficients =
       FermionInterpolatedLowCoefficientCalculator
           .GetPreCalculatedCoefficentsData();
-  if (UseFastThermalPowers())
+  if (UseFastFermionPowers())
   {
     const double x2 = x * x;
     if (diff == 0)
@@ -268,7 +288,7 @@ double JbosonInterpolatedLow(const double &x, const int &n, int diff)
   using std::sqrt;
   double cb  = 1.5 + 2 * std::log(4 * M_PI) - 2 * C_euler_gamma;
   double res = 0;
-  if (UseFastThermalPowers() && n == 3)
+  if (UseFastBosonPowers() && n == 3)
   {
     const double x2      = x * x;
     const double sqrt_x  = sqrt(x);

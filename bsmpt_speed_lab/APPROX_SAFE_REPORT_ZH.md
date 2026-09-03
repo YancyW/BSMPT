@@ -230,3 +230,10 @@ guarded 首遍升级为 `run_calcgw_approx_c2_adaptive_r500_thermal_fast.sh`；�
 A8 boson 低温快路径改为一次取得连续系数指针的候选保持所有输出逐位一致，但
 type-3 同负载为 23.646 vs 23.317 s，慢 1.41%。现有 accessor 已内联，候选不加入
 默认 wrapper，实验开关保持关闭。
+
+### fermion / boson 低温消融
+
+将 A8 拆分后，fermion-only 相对无 fast 的 type-3 输出逐字段一致，复测
+24.022→23.711 s（1.29%）；boson-only 会改变总 SNR 和 beta/H，说明 A8 的主要
+数值偏差来自 boson 部分。fermion-only 保留为更保守消融，但收益不足以替换已经
+完成全矩阵验证的 A8 默认；boson-only 不单独推广。

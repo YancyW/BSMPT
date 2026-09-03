@@ -30,6 +30,7 @@
 | A8 | thermal fast powers | 接受并升级默认 | `7320d3db` | 已推送 |
 | A9 | high-temperature fast powers | 淘汰 | `c8edbcaa` | 已推送 |
 | A10 | boson coefficient data pointer | 淘汰 | `e016ebaa` | 已推送 |
+| A11 | low-temperature fermion/boson split | 保留消融 | 待提交 | 待推送 |
 
 当前研究分支：`special/approx-safe-research-20260903`。
 严格快照分支：`special/exact-fast-validated-20260903`。
@@ -195,6 +196,26 @@
 - 产物文件：source experiment、`thermal_coeff_control_high.tsv`、
   `thermal_coeff_candidate_high.tsv`。
 - commit：`e016ebaa`；GitHub：已推送。
+
+## A11：low-temperature fermion/boson split
+
+- 日期：2026-09-03。
+- 思路/假设：拆分 A8 的 fermion 与 boson 快幂，定位速度和数值偏差来源，并寻找
+  更稳健的子集。
+- 相对基线与唯一变量：新增默认关闭的 `BSMPT_USE_FERMION_FAST_POWERS` 与
+  `BSMPT_USE_BOSON_FAST_POWERS`；原 A8 组合开关语义不变。
+- 样本：高 SNR type-3 初筛；fermion-only 与无 fast 再做同负载复测。
+- 并发数与资源情况：增量构建 `-j2`；两个 CalcGW 并发。
+- 状态/history/SNR 检查：fermion-only 相对无 fast 所有非 runtime 字段逐位一致；
+  boson-only 改变总 SNR 与 beta/H。A8 的主要数值偏差来自 boson 部分。
+- exact / control / 候选耗时：复测 control 24.022 s，fermion-only 23.711 s，快
+  1.29%；首轮 fermion/boson 分别 23.161/23.018 s，不跨轮直接比较。
+- 新反例与 guard 是否捕获：无新状态反例；boson-only 的数值变化说明不能将其当作
+  严格子优化。
+- 结论：fermion-only 保留为更保守消融，不替换完整矩阵已验证且收益更高的 A8；
+  boson-only 不单独推广。
+- 产物文件：split source switches 与四个 type-3 TSV。
+- commit：待提交；GitHub：待推送。
 
 ## 后续轮次模板
 
