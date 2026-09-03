@@ -585,3 +585,9 @@ set (13.19%) and was slower on the accepted high-SNR probe.  Reducing the
 adaptive grid from 64 to 32 produced identical non-runtime output on the
 high-SNR and NLO probes but was slower in both measurements.  Neither changes
 the guarded default.
+
+An intermediate 400-interval raster was also rejected.  It preserved all
+status/history fields on the NLO, high-SNR, and broad-C probes, but improved
+the three-row high-SNR runtime by only 0.45% and was slower than raster500 on
+the ten-row broad-C set.  Its known A/B boundary divergences remained caught
+by the guard.
