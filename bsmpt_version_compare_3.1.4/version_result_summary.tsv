@@ -1,0 +1,9 @@
+sample	v314_runtime_s	current_runtime_s	status_match	history_match	v314_gw_status	current_gw_status	Tstar_rel_pct	alpha_rel_pct	betaH_rel_pct	SNR_total_rel_pct
+broad_A	173.924	175.116	true	true	success	success	0.000000179	25.136572	-0.002317	161.777218
+broad_B	17.371	17.311	true	true	nan	nan	NA	NA	NA	NA
+broad_C	9.190	9.344	true	true	nan	nan	NA	NA	NA	NA
+NLO_valid	78.702	136.795	true	true	success	success	0.000000395	15.644062	-0.134342	89.580259
+NLO_invalid	0.336	0.312	true	true	nan	nan	NA	NA	NA	NA
+high_SNR_type3	240.667	238.323	true	true	success	success	0.055643	3.120128	-1.183904	5.823766
+Yukawa_type2	220.381	220.126	true	true	success	success	0.0000158	-25.845045	-0.025566	-57.459877
+Yukawa_type4	223.005	222.972	true	true	success	success	-0.0000010	-25.846912	0.019245	-57.925338
