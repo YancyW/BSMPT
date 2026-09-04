@@ -33,6 +33,7 @@
 | A11 | low-temperature fermion/boson split | 保留消融 | `dcd9e6b1` | 已推送 |
 | A12 | exact-key thermal last-value cache | 淘汰 | `a9a10e63` | 已推送 |
 | A13 | low-temperature static log constants | 淘汰 | `28cfdcc5` | 待状态提交 |
+| A14 | VEff/mass exact-key repeat audit | 淘汰 | 待本轮提交 | 待推送 |
 
 当前研究分支：`special/approx-safe-research-20260903`。
 严格快照分支：`special/exact-fast-validated-20260903`。
@@ -257,6 +258,29 @@
 - 结论：最低阶梯淘汰；编译器已完成该优化，不实施无效源码改写，也不消耗配对运行。
 - 产物文件：本日志与路线图状态；无新 TSV。
 - commit：`28cfdcc5`；GitHub：实现/结论提交待推送，状态回填提交随后推送。
+
+## A14：VEff/mass exact-key repeat audit
+
+- 日期：2026-09-04。
+- 思路/假设：由 Luna 只读审计后，为 VEff、HiggsMasses、QuarkMasses 增加默认
+  关闭的紧邻 exact-bit key observer；先测命中率，再决定是否实现 last-value cache。
+- 相对基线与唯一变量：A8 binary 数学路径不变；仅 profile 进程设置
+  `BSMPT_PROFILE_VEFF_REPEATS=1`。key 含 model 地址、全部场值原始位、温度、diff
+  和 order，三类分别维护 thread-local 上一条记录；禁止容差或量化。
+- 样本：高 SNR type-3 同负载 control/profile；命中率在最低运行阶梯已低于停止线，
+  因而按路线图不扩展 NLO/C 长批次。
+- 并发数与资源情况：增量构建 `-j2`；两个 CalcGW 并发，无其他 CalcGW。
+- 状态/history/SNR 检查：control/profile 一行除 runtime 外逐字段零容差一致。
+- 命中率：VEff `789/2,006,315`（0.039%），Higgs `1/53`（1.89%），Quark
+  `801/2,006,317`（0.040%），全部低于 3% 停止线。
+- 性能证据：control 27.315 s，profile 27.650 s；observer 慢 1.23%。此数值只用于
+  确认 instrumentation 成本，不将并发单次计时当成候选性能结论。
+- 新反例与 guard 是否捕获：无数值反例；本轮没有实现缓存。
+- 结论：淘汰 VEff/Higgs/Quark 紧邻 exact-key last-value cache；保留默认关闭的
+  observer 和 TSV 供反查，不扩展更复杂窗口缓存。
+- 产物文件：profiler/model instrumentation、`p3_high_snr_type3_input.tsv`、
+  `p3_repeat_control_high.tsv`、`p3_repeat_profile_high.tsv`。
+- commit：待本轮提交；GitHub：待推送。
 
 ## 后续轮次模板
 

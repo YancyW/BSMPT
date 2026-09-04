@@ -65,6 +65,9 @@
 
 ### P3：VEff/质量谱 exact-key 命中率审计
 
+状态：A14 已完成并淘汰。高 SNR type-3 的紧邻 exact-bit 命中率为 VEff 0.039%、
+Higgs 1.89%、Quark 0.040%，均低于 3% 停止线；不实现结果缓存。
+
 先统计同一 model instance 内场值、温度和 diff 逐位相同的重复调用，再决定是否为
 quark/Higgs 增加 last-value 小缓存。必须覆盖所有状态，生命周期不得跨参数点。
 quark/Higgs 热点约 8.68/6.57 s，潜在收益高；命中率低于 3% 或键无法证明即停止。

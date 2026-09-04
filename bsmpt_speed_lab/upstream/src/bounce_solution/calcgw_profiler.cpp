@@ -36,6 +36,8 @@ struct Counters
       timing_nanoseconds{};
   std::array<std::atomic<std::uint64_t>, 8> thermal_repeat_calls{};
   std::array<std::atomic<std::uint64_t>, 8> thermal_repeat_hits{};
+  std::array<std::atomic<std::uint64_t>, 3> exact_repeat_calls{};
+  std::array<std::atomic<std::uint64_t>, 3> exact_repeat_hits{};
 
   Counters() noexcept
   {
@@ -45,6 +47,10 @@ struct Counters
     for (auto &value : thermal_repeat_calls)
       value.store(0, std::memory_order_relaxed);
     for (auto &value : thermal_repeat_hits)
+      value.store(0, std::memory_order_relaxed);
+    for (auto &value : exact_repeat_calls)
+      value.store(0, std::memory_order_relaxed);
+    for (auto &value : exact_repeat_hits)
       value.store(0, std::memory_order_relaxed);
   }
 };
@@ -73,11 +79,17 @@ bool read_thermal_repeat_enabled() noexcept
   return value != nullptr && *value != '\0' && std::strcmp(value, "0") != 0;
 }
 
+bool read_exact_repeat_enabled() noexcept
+{
+  const char *value = std::getenv("BSMPT_PROFILE_VEFF_REPEATS");
+  return value != nullptr && *value != '\0' && std::strcmp(value, "0") != 0;
+}
+
 void ensure_report_registration() noexcept
 {
   static const bool registered = [] {
     if (read_enabled() || read_timing_enabled() ||
-        read_thermal_repeat_enabled())
+        read_thermal_repeat_enabled() || read_exact_repeat_enabled())
       std::atexit(&CalcGWProfiler::report);
     return true;
   }();
@@ -113,6 +125,29 @@ bool CalcGWProfiler::thermal_repeat_enabled() noexcept
     return on;
   }();
   return value;
+}
+
+bool CalcGWProfiler::exact_repeat_enabled() noexcept
+{
+  static const bool value = [] {
+    const bool on = read_exact_repeat_enabled();
+    if (on) ensure_report_registration();
+    return on;
+  }();
+  return value;
+}
+
+void CalcGWProfiler::exact_repeat_call(ExactRepeatMetric metric,
+                                       bool hit) noexcept
+{
+  if (!exact_repeat_enabled()) return;
+  const auto index = static_cast<std::size_t>(metric);
+  if (index >= static_cast<std::size_t>(ExactRepeatMetric::Count)) return;
+  counters().exact_repeat_calls[index].fetch_add(1,
+                                                 std::memory_order_relaxed);
+  if (hit)
+    counters().exact_repeat_hits[index].fetch_add(1,
+                                                  std::memory_order_relaxed);
 }
 
 void CalcGWProfiler::thermal_repeat_call(bool fermion,
@@ -227,7 +262,9 @@ void CalcGWProfiler::active_hessian_dimensions(
 
 void CalcGWProfiler::report() noexcept
 {
-  if (!enabled() && !timing_enabled() && !thermal_repeat_enabled()) return;
+  if (!enabled() && !timing_enabled() && !thermal_repeat_enabled() &&
+      !exact_repeat_enabled())
+    return;
   const auto &c = counters();
   std::cerr << "BSMPT_CALCGW_PROFILE"
             << " rasterized_calls=" << c.rasterized_calls.load()
@@ -278,6 +315,17 @@ void CalcGWProfiler::report() noexcept
       if (i != 0) std::cerr << ',';
       std::cerr << labels[i] << ':' << c.thermal_repeat_hits[i].load() << '/'
                 << c.thermal_repeat_calls[i].load();
+    }
+  }
+  if (exact_repeat_enabled())
+  {
+    static constexpr const char *labels[] = {"veff", "higgs", "quark"};
+    std::cerr << " exact_repeat=";
+    for (std::size_t i = 0; i < 3; ++i)
+    {
+      if (i != 0) std::cerr << ',';
+      std::cerr << labels[i] << ':' << c.exact_repeat_hits[i].load() << '/'
+                << c.exact_repeat_calls[i].load();
     }
   }
   std::cerr << '\n';
