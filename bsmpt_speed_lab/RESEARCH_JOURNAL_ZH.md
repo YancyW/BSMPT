@@ -32,6 +32,7 @@
 | A10 | boson coefficient data pointer | 淘汰 | `e016ebaa` | 已推送 |
 | A11 | low-temperature fermion/boson split | 保留消融 | `dcd9e6b1` | 已推送 |
 | A12 | exact-key thermal last-value cache | 淘汰 | `a9a10e63` | 已推送 |
+| A13 | low-temperature static log constants | 淘汰 | 待本轮提交 | 待推送 |
 
 当前研究分支：`special/approx-safe-research-20260903`。
 严格快照分支：`special/exact-fast-validated-20260903`。
@@ -238,6 +239,24 @@
 - 结论：淘汰，不扩展完整矩阵；observer 与默认关闭的实验开关保留供反查。
 - 产物文件：profiler/thermal instrumentation、profile/control/candidate TSV。
 - commit：`a9a10e63`；GitHub：已推送。
+
+## A13：low-temperature static log constants
+
+- 日期：2026-09-04。
+- 思路/假设：由 Luna 只读审计提出，将 fermion/boson 低温展开中只依赖常量的
+  `cf/cb` 改成函数内 `static const`，期望避免重复常数 `log`。
+- 相对基线与唯一变量：只做当前 A8 `build-approx-thermal` 目标文件的反汇编审计；
+  没有修改任何源码、wrapper、binary 或默认路径。
+- 样本：不进入 CalcGW 数值阶梯；最低阶梯已能判定候选不存在实际工作量。
+- 并发数与资源情况：未运行 CalcGW，未构建；严格 binary SHA256 保持不变。
+- 状态/history/SNR 检查：无代码或 binary 变化，因此不产生新的数值结果。
+- 性能证据：当前编译参数含 `-O3`；目标文件中 `cf/cb` 已由 `.LC` 只读常量载入，
+  `JfermionInterpolatedLow4Exact`/`JbosonInterpolatedLow` 热路径的 `log` relocation
+  只对应运行时变量 `x`。手工静态化不会消除一次现存的常数 `log`。
+- 新反例与 guard 是否捕获：不适用。
+- 结论：最低阶梯淘汰；编译器已完成该优化，不实施无效源码改写，也不消耗配对运行。
+- 产物文件：本日志与路线图状态；无新 TSV。
+- commit：待本轮提交；GitHub：待推送。
 
 ## 后续轮次模板
 
