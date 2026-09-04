@@ -19,9 +19,10 @@
 7. 区分绝对误差、相对误差、弱信号放大、状态翻转和运行时间。
 8. 将理论、代码、实测结果、局限和复现方法写入 `VERSION_COMPARISON_ZH.md`。
 
-当前完整结论见 `VERSION_COMPARISON_ZH.md`，逐点数值见
-`version_result_summary.tsv`。已完成 8 个 A/B/C/NLO/Yukawa 分层点；状态/history
-翻转 0/8，高 SNR type-3 总 SNR 的当前相对 v3.1.4 偏差为 +5.824%。
+当前完整结论见 `VERSION_COMPARISON_ZH.md`。原8点数值见
+`version_result_summary.tsv`，新增13点见 `expanded_result_summary.tsv`；合并比较现为
+21点，状态/history 翻转仍为 0/21。`summarize_expanded.py` 按表头解析宽表，避免
+固定列号误读。
 
 ## 构建注意
 
