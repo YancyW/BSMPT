@@ -35,7 +35,7 @@
 | A13 | low-temperature static log constants | 淘汰 | `28cfdcc5` | 已推送（状态 `ca15237d`） |
 | A14 | VEff/mass exact-key repeat audit | 淘汰 | `396d2bac` | 已推送（状态 `7e68d3f9`） |
 | A15 | quark dynamic product noalias | 淘汰 | `e922c704` | 已推送（状态 `bfe13f43`） |
-| A16 | dynamic raster safety indicator audit | 停止 | 待本轮提交 | 待推送 |
+| A16 | dynamic raster safety indicator audit | 停止 | `edc40dbe` | 待状态提交 |
 
 当前研究分支：`special/approx-safe-research-20260903`。
 严格快照分支：`special/exact-fast-validated-20260903`。
@@ -329,7 +329,7 @@
 - 结论：P5 停止，不实施动态 raster；保留固定 raster500 + 输出 guard + exact
   fallback 的现状。
 - 产物文件：本日志与路线图状态；无新 TSV。
-- commit：待本轮提交；GitHub：待推送。
+- commit：`edc40dbe`；GitHub：实现/结论提交待推送，状态回填提交随后推送。
 
 ## 后续轮次模板
 
