@@ -35,7 +35,8 @@
 | A13 | low-temperature static log constants | 淘汰 | `28cfdcc5` | 已推送（状态 `ca15237d`） |
 | A14 | VEff/mass exact-key repeat audit | 淘汰 | `396d2bac` | 已推送（状态 `7e68d3f9`） |
 | A15 | quark dynamic product noalias | 淘汰 | `e922c704` | 已推送（状态 `bfe13f43`） |
-| A16 | dynamic raster safety indicator audit | 停止 | `edc40dbe` | 待状态提交 |
+| A16 | dynamic raster safety indicator audit | 停止 | `edc40dbe` | 已推送（状态 `07ba756b`） |
+| A17 | current-source mixed-workload PGO | 淘汰 | 待本轮提交 | 待推送 |
 
 当前研究分支：`special/approx-safe-research-20260903`。
 严格快照分支：`special/exact-fast-validated-20260903`。
@@ -329,7 +330,33 @@
 - 结论：P5 停止，不实施动态 raster；保留固定 raster500 + 输出 guard + exact
   fallback 的现状。
 - 产物文件：本日志与路线图状态；无新 TSV。
-- commit：`edc40dbe`；GitHub：实现/结论提交待推送，状态回填提交随后推送。
+- commit：`edc40dbe`；GitHub：已推送（状态回填 `07ba756b`）。
+
+## A17：current-source mixed-workload PGO
+
+- 日期：2026-09-04。
+- 思路/假设：旧 PGO 画像与当前源码/flags 不匹配，故从当前 overlay 新建隔离
+  control/generate 树，用 A/B/C、NLO 内外和高 SNR 混合训练后再构建 profile-use。
+- 相对基线与唯一变量：control 与 generate 使用当前 A8 build 的 `/usr/bin/gcc/g++`
+  14.3.1、Release、相同 `-march=nocona -mtune=haswell -O2/-O3` 等 flags；generate
+  只增加定向 `-fprofile-generate`。严格树与严格 binary 均未重建。
+- 样本：`pgo_current_training_mixed_6.tsv` 六行，覆盖 broad A/B/C、NLO valid/
+  invalid 和高 SNR type-3；单个插桩 CalcGW 串行训练，输出 6/6 行。
+- 并发数与资源情况：control/generate 构建各 `-j1` 同时运行，总编译并发 2；训练
+  仅一个 CalcGW；profile-use 构建 `-j2`，首个失配警告后立即终止。
+- 画像结果：训练前 `.gcda=0`，训练后生成 35 个当前路径画像。旧 Conda GCC 14.3.0
+  配置因当前 glibc 版本符号无法链接而弃用，未复用旧 35 个画像。
+- 资格失败：在同一 generate 目录切换 `-fprofile-use -fprofile-correction` 后，首轮
+  构建报告 `ClassPotentialOrigin_deprecated.cpp.gcda profile count data file not found`。
+  按路线图“任一缺失/checksum/profile mismatch 即停止”的规则，不生成或测试部分
+  profile-use binary。
+- 状态/history/SNR 检查：训练输出仅用于画像；profile-use 未通过构建资格，故不进入
+  数值/性能验收，也不改变 guarded 默认。
+- 新反例与 guard 是否捕获：无数值反例；构建画像覆盖失败。
+- 结论：淘汰本轮 PGO，不绕过 missing-profile 警告，不复用旧画像。
+- 产物文件：`pgo_current_training_mixed_6.tsv`、训练输出；build 与 `.gcda` 由
+  `.gitignore` 排除。
+- commit：待本轮提交；GitHub：待推送。
 
 ## 后续轮次模板
 

@@ -1,5 +1,6 @@
 # Rebuildable local artifacts; never publish them in the validated snapshot.
 /build-*/
+/pgo-data/
 /__pycache__/
 /upstream/**
 /upstream-nostack-exact/

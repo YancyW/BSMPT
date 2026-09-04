@@ -90,6 +90,10 @@ quark/Higgs 热点约 8.68/6.57 s，潜在收益高；命中率低于 3% 或键�
 
 ### P6：全新 PGO（最后）
 
+状态：A17 已完成资格阶梯并淘汰。全新 6 行混合训练产生 35 个 `.gcda`，但
+profile-use 首轮构建即出现 `profile count data file not found`；按固定规则停止，
+不使用部分画像 binary。
+
 旧画像失配。算法候选耗尽后，才从当前源码重新 generate，用 A/B/C/NLO/高 SNR
 混合训练并在隔离目录 profile-use。画像警告、flags 不匹配或收益低于 2%即停止。
 
