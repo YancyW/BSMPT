@@ -4,6 +4,9 @@
 > [`OPTIMIZATION_REPORT_ZH.md`](OPTIMIZATION_REPORT_ZH.md) 为准。本文后续内容
 > 保留了开发过程记录，其中部分早期 benchmark 已被更新结果取代。
 
+> A17之后的固定研究路线与停止条件见
+> [`POST_A17_EXECUTION_PLAN_ZH.md`](POST_A17_EXECUTION_PLAN_ZH.md)。
+
 This directory is isolated from the existing BSMPT installation. Nothing here
 is installed, linked, or copied over `install/bin/CalcGW`.
 

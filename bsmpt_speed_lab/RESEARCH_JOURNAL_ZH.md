@@ -36,7 +36,7 @@
 | A14 | VEff/mass exact-key repeat audit | 淘汰 | `396d2bac` | 已推送（状态 `7e68d3f9`） |
 | A15 | quark dynamic product noalias | 淘汰 | `e922c704` | 已推送（状态 `bfe13f43`） |
 | A16 | dynamic raster safety indicator audit | 停止 | `edc40dbe` | 已推送（状态 `07ba756b`） |
-| A17 | current-source mixed-workload PGO | 淘汰 | `af784a96` | 待状态提交 |
+| A17 | current-source mixed-workload PGO | 淘汰 | `af784a96` | 已推送（状态回填待提交） |
 
 当前研究分支：`special/approx-safe-research-20260903`。
 严格快照分支：`special/exact-fast-validated-20260903`。
@@ -356,7 +356,33 @@
 - 结论：淘汰本轮 PGO，不绕过 missing-profile 警告，不复用旧画像。
 - 产物文件：`pgo_current_training_mixed_6.tsv`、训练输出；build 与 `.gcda` 由
   `.gitignore` 排除。
-- commit：`af784a96`；GitHub：实现/结论提交待推送，状态回填提交随后推送。
+- commit：`af784a96`；GitHub：已推送，状态回填提交随后推送。
+
+## A18：选择性热点翻译单元 PGO（进行中）
+
+- 日期：2026-09-04。
+- 思路/假设：A17 的全程序 profile-use 因未执行翻译单元缺少 `.gcda` 而失败；只对
+  已被混合 R2HDM 训练实际覆盖、且属于 CalcGW 热路径的翻译单元施加 generate/use，
+  其余对象保持与 A8 control 相同 flags，可避免部分画像 binary 和 missing-profile。
+- 相对基线与唯一变量：保持 A8 数学路径、central2、adaptive64、raster500、编译器
+  和依赖不变，只研究逐源文件 PGO flags；严格 binary 不重建。
+- 固定资格条件：先核对35个 `.gcda` 与目标对象映射；任何已选择热点对象缺失、
+  checksum mismatch 或 profile warning 即淘汰。通过后才进入高 SNR 配对测试。
+- 并发限制：构建最多 `-j2`，CalcGW 最多两个。
+- commit：待提交；GitHub：待推送。
+
+### A18 Luna 并行审计结论
+
+- 三个只读任务分别审计 PGO机制、热点集合及 A19/A20 后备路线；均未编辑、构建或
+  运行 CalcGW。
+- 35个 current-system `.gcda` 来自 GCC 14.3.1。deprecated Origin函数当前无调用，
+  因而没有画像；四个最小化器源文件又被多个 target 重复编译，不能全局启用PGO。
+- M0固定为8个有画像、无重复对象歧义的热点翻译单元，约覆盖累计热点排序的88%；
+  预期收益1%–4%，仍执行2%硬门槛。
+- 实现应使用按源文件、`-o`对象路径和target三重匹配的实验室 compiler-launcher；
+  新建单一 generate/use 构建树，并把 missing-profile、coverage-mismatch 升为错误。
+- A19后备优先级为 lld safe ICF、干净 non-PIE，再考虑单文件编译选项；A20优先批量
+  guarded runner，保持逐行 guard 与 exact fallback，预期在大量廉价点时收益最大。
 
 ## 路线图完成后的残余审计
 
