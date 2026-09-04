@@ -34,7 +34,8 @@
 | A12 | exact-key thermal last-value cache | 淘汰 | `a9a10e63` | 已推送 |
 | A13 | low-temperature static log constants | 淘汰 | `28cfdcc5` | 已推送（状态 `ca15237d`） |
 | A14 | VEff/mass exact-key repeat audit | 淘汰 | `396d2bac` | 已推送（状态 `7e68d3f9`） |
-| A15 | quark dynamic product noalias | 淘汰 | `e922c704` | 待状态提交 |
+| A15 | quark dynamic product noalias | 淘汰 | `e922c704` | 已推送（状态 `bfe13f43`） |
+| A16 | dynamic raster safety indicator audit | 停止 | 待本轮提交 | 待推送 |
 
 当前研究分支：`special/approx-safe-research-20260903`。
 严格快照分支：`special/exact-fast-validated-20260903`。
@@ -307,7 +308,28 @@
   matrix、pair reserve 等均已失败或不适用，P4 矩阵临时/容量路线判定耗尽。
 - 产物文件：`p4_noalias_control_high.tsv`、`p4_noalias_candidate_high.tsv`；实验源码
   只留在本轮工作历史，不进入默认 binary。
-- commit：`e922c704`；GitHub：实现/结论提交待推送，状态回填提交随后推送。
+- commit：`e922c704`；GitHub：已推送（状态回填 `bfe13f43`）。
+
+## A16：dynamic raster safety indicator audit
+
+- 日期：2026-09-04。
+- 思路/假设：由 Luna 只读审计 raster500/1000 路径，寻找能在首遍运行时识别必须
+  升级 raster1000 的内部指标，同时要求对 A/B/C/NLO 边缘零漏检且不扩大接受面。
+- 相对基线与唯一变量：仅审计 `action_calculation.cpp` 中 rasterized dV/dl、精确
+  `Calc_dVdl` 和 RK5 消费路径；没有修改源码、wrapper 或 binary。
+- 样本：复核既有 raster 降阶结论和验证要求；因不存在可证明安全的指标，不启动
+  新 CalcGW 批次。
+- 并发数与资源情况：零个 CalcGW，未构建；严格 binary 不变。
+- 状态/history/SNR 检查：没有运行路径变化，不产生新数值结果。
+- 审计结果：可诊断的候选是在部分 RK5/转折/端点位置比较 raster500 插值与精确
+  dV/dl 的归一化残差；但有限采样会漏掉未采样窄峰、零点移动、RK5 未经过区间及
+  后续 SNR 放大。阈值取零才可能零漏检，却等价于所有点回到 raster1000。
+- 新反例与 guard 是否捕获：现有有限 paired 数据只能校准已知点，不能证明高维参数
+  空间无漏检；把诊断阈值用于接受会扩大未经证明的接受面。
+- 结论：P5 停止，不实施动态 raster；保留固定 raster500 + 输出 guard + exact
+  fallback 的现状。
+- 产物文件：本日志与路线图状态；无新 TSV。
+- commit：待本轮提交；GitHub：待推送。
 
 ## 后续轮次模板
 
