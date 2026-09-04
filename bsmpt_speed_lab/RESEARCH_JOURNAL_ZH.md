@@ -33,8 +33,8 @@
 | A11 | low-temperature fermion/boson split | 保留消融 | `dcd9e6b1` | 已推送 |
 | A12 | exact-key thermal last-value cache | 淘汰 | `a9a10e63` | 已推送 |
 | A13 | low-temperature static log constants | 淘汰 | `28cfdcc5` | 已推送（状态 `ca15237d`） |
-| A14 | VEff/mass exact-key repeat audit | 淘汰 | `396d2bac` | 待状态提交 |
-| A15 | quark dynamic product noalias | 淘汰 | 待本轮提交 | 待推送 |
+| A14 | VEff/mass exact-key repeat audit | 淘汰 | `396d2bac` | 已推送（状态 `7e68d3f9`） |
+| A15 | quark dynamic product noalias | 淘汰 | `e922c704` | 待状态提交 |
 
 当前研究分支：`special/approx-safe-research-20260903`。
 严格快照分支：`special/exact-fast-validated-20260903`。
@@ -285,7 +285,8 @@
 - 产物文件：提交历史中的临时 profiler/model instrumentation、
   `p3_high_snr_type3_input.tsv`、
   `p3_repeat_control_high.tsv`、`p3_repeat_profile_high.tsv`。
-- commit：`396d2bac`；GitHub：实现/结论提交待推送，状态回填提交随后推送。
+- commit：`396d2bac`；GitHub：已推送（状态回填 `7e68d3f9`；observer 清理
+  `e922c704`）。
 
 ## A15：quark dynamic product noalias
 
@@ -306,7 +307,7 @@
   matrix、pair reserve 等均已失败或不适用，P4 矩阵临时/容量路线判定耗尽。
 - 产物文件：`p4_noalias_control_high.tsv`、`p4_noalias_candidate_high.tsv`；实验源码
   只留在本轮工作历史，不进入默认 binary。
-- commit：待本轮提交；GitHub：待推送。
+- commit：`e922c704`；GitHub：实现/结论提交待推送，状态回填提交随后推送。
 
 ## 后续轮次模板
 
