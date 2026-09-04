@@ -34,6 +34,7 @@
 | A12 | exact-key thermal last-value cache | 淘汰 | `a9a10e63` | 已推送 |
 | A13 | low-temperature static log constants | 淘汰 | `28cfdcc5` | 已推送（状态 `ca15237d`） |
 | A14 | VEff/mass exact-key repeat audit | 淘汰 | `396d2bac` | 待状态提交 |
+| A15 | quark dynamic product noalias | 淘汰 | 待本轮提交 | 待推送 |
 
 当前研究分支：`special/approx-safe-research-20260903`。
 严格快照分支：`special/exact-fast-validated-20260903`。
@@ -275,12 +276,37 @@
   `801/2,006,317`（0.040%），全部低于 3% 停止线。
 - 性能证据：control 27.315 s，profile 27.650 s；observer 慢 1.23%。此数值只用于
   确认 instrumentation 成本，不将并发单次计时当成候选性能结论。
+- 清理复核：移除 observer 并重建后的同一点为 26.561 s，和 profile 前 control
+  除 runtime 外逐字段一致；单次绝对耗时仍受同机负载影响，不跨轮宣称 0.754 s 收益。
 - 新反例与 guard 是否捕获：无数值反例；本轮没有实现缓存。
-- 结论：淘汰 VEff/Higgs/Quark 紧邻 exact-key last-value cache；保留默认关闭的
-  observer 和 TSV 供反查，不扩展更复杂窗口缓存。
-- 产物文件：profiler/model instrumentation、`p3_high_snr_type3_input.tsv`、
+- 结论：淘汰 VEff/Higgs/Quark 紧邻 exact-key last-value cache；TSV 与命中率结论
+  供反查，不扩展更复杂窗口缓存。observer 在测量后从默认构建源码移除，避免每次
+  VEff/质量调用的关闭判断污染正式首遍性能。
+- 产物文件：提交历史中的临时 profiler/model instrumentation、
+  `p3_high_snr_type3_input.tsv`、
   `p3_repeat_control_high.tsv`、`p3_repeat_profile_high.tsv`。
 - commit：`396d2bac`；GitHub：实现/结论提交待推送，状态回填提交随后推送。
+
+## A15：quark dynamic product noalias
+
+- 日期：2026-09-04。
+- 思路/假设：由 Luna 审计 P4 后，对 quark 动态路径的
+  `MassMatrix = MIJ.conjugate() * MIJ` 单独测试 Eigen `noalias()` 赋值，尝试减少
+  临时对象或别名检查，不改变矩阵维度、乘法表达式、solver 或本征值处理。
+- 相对基线与唯一变量：A8 及所有既有开关不变；候选仅设置默认关闭的临时
+  `BSMPT_USE_QUARK_MASS_PRODUCT_NOALIAS=1`。fixed12 的 diff<=0 路径不受影响，
+  动态导数路径可覆盖该候选。
+- 样本：高 SNR type-3 同负载 control/candidate；最低性能阶梯失败后停止。
+- 并发数与资源情况：增量构建 `-j2`；两个 CalcGW 并发。
+- 状态/history/SNR 检查：一行除 runtime 外逐字段零容差一致。
+- exact / control / 候选耗时：control 28.256 s，candidate 28.846 s，候选慢
+  2.09%；未达到 1% 收益门槛。
+- 新反例与 guard 是否捕获：无数值反例；纯性能失败。
+- 结论：淘汰并从当前源码删除实验开关；历史 6x6、fixed eigensolver、stack
+  matrix、pair reserve 等均已失败或不适用，P4 矩阵临时/容量路线判定耗尽。
+- 产物文件：`p4_noalias_control_high.tsv`、`p4_noalias_candidate_high.tsv`；实验源码
+  只留在本轮工作历史，不进入默认 binary。
+- commit：待本轮提交；GitHub：待推送。
 
 ## 后续轮次模板
 

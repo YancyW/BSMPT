@@ -44,15 +44,6 @@ public:
   static bool thermal_repeat_enabled() noexcept;
   static void thermal_repeat_call(bool fermion, int diff, bool hit) noexcept;
 
-  enum class ExactRepeatMetric : std::uint8_t
-  {
-    VEff,
-    HiggsMasses,
-    QuarkMasses,
-    Count
-  };
-  static bool exact_repeat_enabled() noexcept;
-  static void exact_repeat_call(ExactRepeatMetric metric, bool hit) noexcept;
 
   static void record_timing(TimingMetric metric,
                             std::uint64_t nanoseconds) noexcept;

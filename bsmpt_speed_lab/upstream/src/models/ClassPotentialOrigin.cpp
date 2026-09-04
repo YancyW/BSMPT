@@ -39,50 +39,6 @@ uint64_t ExactDoubleBits(double value) noexcept
   return bits;
 }
 
-void ProfileExactModelRepeat(CalcGWProfiler::ExactRepeatMetric metric,
-                             const void *model,
-                             const std::vector<double> &v,
-                             double temperature,
-                             int diff,
-                             int order)
-{
-  if (!CalcGWProfiler::exact_repeat_enabled()) return;
-  struct LastKey
-  {
-    const void *model = nullptr;
-    std::vector<std::uint64_t> fields;
-    std::uint64_t temperature = 0;
-    int diff                 = 0;
-    int order                = 0;
-    bool valid               = false;
-  };
-  thread_local std::array<LastKey, 3> last;
-  const auto index = static_cast<std::size_t>(metric);
-  auto &key        = last.at(index);
-  bool hit = key.valid && key.model == model && key.diff == diff &&
-             key.order == order &&
-             key.temperature == ExactDoubleBits(temperature) &&
-             key.fields.size() == v.size();
-  if (hit)
-  {
-    for (std::size_t i = 0; i < v.size(); ++i)
-      if (key.fields[i] != ExactDoubleBits(v[i]))
-      {
-        hit = false;
-        break;
-      }
-  }
-  key.model       = model;
-  key.temperature = ExactDoubleBits(temperature);
-  key.diff        = diff;
-  key.order       = order;
-  key.valid       = true;
-  key.fields.resize(v.size());
-  for (std::size_t i = 0; i < v.size(); ++i)
-    key.fields[i] = ExactDoubleBits(v[i]);
-  CalcGWProfiler::exact_repeat_call(metric, hit);
-}
-
 struct BosonContributionCacheKey
 {
   uint64_t massSquared = 0;
@@ -2837,8 +2793,6 @@ Class_Potential_Origin::HiggsMassesSquared(const std::vector<double> &v,
                                            const double &Temp,
                                            const int &diff) const
 {
-  ProfileExactModelRepeat(CalcGWProfiler::ExactRepeatMetric::HiggsMasses,
-                          this, v, Temp, diff, 0);
   std::vector<double> res;
   res.reserve((diff > 0 || diff == -1) ? 2 * NHiggs : NHiggs);
 
@@ -3204,8 +3158,6 @@ void Class_Potential_Origin::QuarkMassesSquared(
     const int &diff,
     std::vector<double> &res) const
 {
-  ProfileExactModelRepeat(CalcGWProfiler::ExactRepeatMetric::QuarkMasses,
-                          this, v, 0.0, diff, 0);
   res.clear();
   res.reserve(diff > 0 ? 2 * NQuarks : NQuarks);
   double ZeroMass = std::pow(10, -10);
@@ -4226,8 +4178,6 @@ double Class_Potential_Origin::VEff(const std::vector<double> &v,
                                     int diff,
                                     const Order &order) const
 {
-  ProfileExactModelRepeat(CalcGWProfiler::ExactRepeatMetric::VEff, this, v,
-                          Temp, diff, static_cast<int>(order));
   if (v.size() != nVEV and v.size() != NHiggs)
   {
     std::string ErrorString =
