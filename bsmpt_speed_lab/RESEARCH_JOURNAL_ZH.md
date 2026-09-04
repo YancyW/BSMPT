@@ -32,7 +32,7 @@
 | A10 | boson coefficient data pointer | 淘汰 | `e016ebaa` | 已推送 |
 | A11 | low-temperature fermion/boson split | 保留消融 | `dcd9e6b1` | 已推送 |
 | A12 | exact-key thermal last-value cache | 淘汰 | `a9a10e63` | 已推送 |
-| A13 | low-temperature static log constants | 淘汰 | 待本轮提交 | 待推送 |
+| A13 | low-temperature static log constants | 淘汰 | `28cfdcc5` | 待状态提交 |
 
 当前研究分支：`special/approx-safe-research-20260903`。
 严格快照分支：`special/exact-fast-validated-20260903`。
@@ -256,7 +256,7 @@
 - 新反例与 guard 是否捕获：不适用。
 - 结论：最低阶梯淘汰；编译器已完成该优化，不实施无效源码改写，也不消耗配对运行。
 - 产物文件：本日志与路线图状态；无新 TSV。
-- commit：待本轮提交；GitHub：待推送。
+- commit：`28cfdcc5`；GitHub：实现/结论提交待推送，状态回填提交随后推送。
 
 ## 后续轮次模板
 
