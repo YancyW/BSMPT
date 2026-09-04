@@ -103,6 +103,13 @@ raster400/250/100 固定下调、adaptive32、analytic-gradient、high-temperatu
 powers、boson coefficient pointer、quark 12x12→6x6、directional dV/dl、RK5
 fixed/workspace、旧 PGO 复用、容差键缓存、未经验证扩大 A6 风险半径，均不再测试。
 
+## 当前终点
+
+截至 A17，P1–P6 均已按停止条件完成。独立残余审计未发现预期总收益至少 2% 且
+不削弱边缘安全的新局部候选；guarded 默认保持 A6 + A8，不引入任何本轮失败开关。
+只有获得覆盖全部链接对象且无 missing/mismatch 的新 PGO 画像，或新的编译器/Eigen
+实现与等价性证明时，才重开后续路线。
+
 ## Luna 分工与用量控制
 
 1. 同时只运行一个 Luna；每次只审计一个候选。

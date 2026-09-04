@@ -36,7 +36,7 @@
 | A14 | VEff/mass exact-key repeat audit | 淘汰 | `396d2bac` | 已推送（状态 `7e68d3f9`） |
 | A15 | quark dynamic product noalias | 淘汰 | `e922c704` | 已推送（状态 `bfe13f43`） |
 | A16 | dynamic raster safety indicator audit | 停止 | `edc40dbe` | 已推送（状态 `07ba756b`） |
-| A17 | current-source mixed-workload PGO | 淘汰 | 待本轮提交 | 待推送 |
+| A17 | current-source mixed-workload PGO | 淘汰 | `af784a96` | 待状态提交 |
 
 当前研究分支：`special/approx-safe-research-20260903`。
 严格快照分支：`special/exact-fast-validated-20260903`。
@@ -356,7 +356,17 @@
 - 结论：淘汰本轮 PGO，不绕过 missing-profile 警告，不复用旧画像。
 - 产物文件：`pgo_current_training_mixed_6.tsv`、训练输出；build 与 `.gcda` 由
   `.gitignore` 排除。
-- commit：待本轮提交；GitHub：待推送。
+- commit：`af784a96`；GitHub：实现/结论提交待推送，状态回填提交随后推送。
+
+## 路线图完成后的残余审计
+
+- 日期：2026-09-04；由 Luna 对 A1–A17、失败路线与当前 overlay 做只读复核。
+- 结论：当前局部优化空间耗尽，未发现仍满足“单变量、预期总收益至少 2%、边缘
+  安全”的新候选。thermal/VEff cache、常量折叠、矩阵临时、动态 raster、旧 PGO、
+  LTO、固定降 raster、analytic gradient 等均已有直接失败证据或违反安全前提。
+- 只有两类新信息值得重开：一是能覆盖全部链接对象、零 missing/mismatch 警告的
+  当前源码 PGO 画像；二是新编译器/Eigen 实现并附算法等价证明。二者仍须从固定
+  A/B/C/NLO/高 SNR 阶梯重新验收，不能沿用旧结论。
 
 ## 后续轮次模板
 
