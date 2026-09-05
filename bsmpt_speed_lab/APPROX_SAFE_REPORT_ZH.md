@@ -1,5 +1,9 @@
 # CalcGW 非严格安全回退版研究记录
 
+> **文档状态：历史事实。** 本文件用于查询A1--A17的样本、数值和反例，不再决定
+> 当前路线或下一步。后续AI先读`AGENTS.md`，当前计划以`PROJECT_MASTER_PLAN_ZH.md`
+> 和`NON_STRICT_OPTIMIZATION_PLAN_ZH.md`为准，按问题查`RESEARCH_INDEX_ZH.md`。
+
 ## 目标与边界
 
 该模式用于加速参数扫描，不替代严格版的最终发表结果。候选只增加

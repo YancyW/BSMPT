@@ -1,5 +1,8 @@
 # Exact-fast validated snapshot
 
+> **文档状态：冻结参照。** 仅用于确认严格基线、分支、标签和哈希，不是待修改方案。
+> 当前任务路由见`AGENTS.md`，当前主目标见`PROJECT_MASTER_PLAN_ZH.md`。
+
 This directory is an isolated optimization laboratory for BSMPT v3.1.8.  The
 repository root remains the unmodified upstream implementation.  The validated
 implementation is stored as a small source overlay under `upstream/`, together

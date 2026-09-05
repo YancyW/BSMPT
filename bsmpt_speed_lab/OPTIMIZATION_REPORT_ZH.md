@@ -1,5 +1,9 @@
 # BSMPT CalcGW 代码级优化完整报告
 
+> **文档状态：严格优化历史事实。** 本文件保留已接受实现、性能和失败实验，不再定义
+> 项目主目标或当前下一步。后续AI先读`AGENTS.md`和`PROJECT_MASTER_PLAN_ZH.md`；
+> 非严格主目标按`NON_STRICT_OPTIMIZATION_PLAN_ZH.md`执行。
+
 最后更新：2026-09-01
 
 ## 1. 目标、范围和结论

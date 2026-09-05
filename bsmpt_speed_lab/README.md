@@ -5,12 +5,16 @@
 
 ## 权威文档
 
-1. `PROJECT_MASTER_PLAN_ZH.md`：唯一项目总纲，定义目标、优先级、边界和证据等级。
-2. `NON_STRICT_OPTIMIZATION_PLAN_ZH.md`：主目标的概念架构、具体实现、样本和验收顺序。
-3. `RESEARCH_JOURNAL_ZH.md`：逐轮事实、失败路线、产物和Git提交状态。
-4. `OPTIMIZATION_REPORT_ZH.md`：已完成严格代码优化的历史技术报告。
-5. `APPROX_SAFE_REPORT_ZH.md`：截至A17的非严格实验历史，不再充当当前路线图。
-6. `SNAPSHOT.md`：冻结exact-fast版本信息。
+AI/agent必须先读`AGENTS.md`，其中按任务给出强制阅读顺序和当前唯一下一步。
+
+1. `AGENTS.md`：后续AI强制规则和任务路由。
+2. `PROJECT_MASTER_PLAN_ZH.md`：唯一项目总纲，定义目标、优先级、边界和证据等级。
+3. `NON_STRICT_OPTIMIZATION_PLAN_ZH.md`：主目标的概念架构、具体实现、样本和验收顺序。
+4. `RESEARCH_INDEX_ZH.md`：按问题查找已有研究、反例、失败路线、样本和工具。
+5. `RESEARCH_JOURNAL_ZH.md`：逐轮事实、失败路线、产物和Git提交状态。
+6. `OPTIMIZATION_REPORT_ZH.md`：已完成严格代码优化的历史技术报告。
+7. `APPROX_SAFE_REPORT_ZH.md`：截至A17的非严格实验历史，不再充当当前路线图。
+8. `SNAPSHOT.md`：冻结exact-fast版本信息。
 
 其它TSV、JSON、patch和脚本是上述日志引用的实验产物，不应脱离对应轮次解释。
 

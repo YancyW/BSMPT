@@ -3,6 +3,9 @@
 更新日期：2026-09-05。本文件是项目目标、优先级、证据规则和执行顺序的唯一权威
 入口。若其他文档与本文件冲突，以本文件为准。
 
+后续AI先读`AGENTS.md`取得任务路由；开始新候选前查`RESEARCH_INDEX_ZH.md`避免
+重复已有实验；具体非严格实施只按`NON_STRICT_OPTIMIZATION_PLAN_ZH.md`。
+
 ## 1. 项目边界
 
 - 原版 BSMPT、冻结严格版本及主程序不得修改；实现、构建、数据和文档只放在
@@ -48,6 +51,7 @@
 ### 4.2 可复现与审计
 
 - `RESEARCH_JOURNAL_ZH.md` 保存每轮事实和提交状态；
+- `RESEARCH_INDEX_ZH.md` 按研究问题索引轮次、反例、样本和工具；
 - `OPTIMIZATION_REPORT_ZH.md` 保存严格优化历史；
 - `APPROX_SAFE_REPORT_ZH.md` 保存此前非严格实验事实；
 - `SNAPSHOT.md` 保存冻结严格快照；

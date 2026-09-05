@@ -3,6 +3,9 @@
 更新日期：2026-09-05。本文件只描述项目主目标。概念、实现、验证和停止条件均在此
 维护；不得再建立平行的“当前非严格路线图”。
 
+实施任一候选前必须查`RESEARCH_INDEX_ZH.md`的危险证据和禁止重复表，并在
+`RESEARCH_JOURNAL_ZH.md`登记新轮次；后续AI的工作纪律见`AGENTS.md`。
+
 ## 1. 当前问题
 
 现有首遍 central2 + adaptive64 + raster500 + thermal-fast 在旧42行矩阵中由
