@@ -398,7 +398,7 @@
   机会是SpectrumJet、profile continuation、误差驱动adaptive采样。
 - 产物：`ALGORITHM_OPTIMIZATION_ROADMAP_ZH.md`。
 - 下一实验：S1 `LocateMinimum` 同点重复gradient消除；待实现和验证。
-- commit：待提交；GitHub：待推送。
+- commit：`fc9904ca`；GitHub：已推送。
 
 ## 路线图完成后的残余审计
 
@@ -429,7 +429,7 @@
 - 产物：`CLASSIFIED_SAFE_REGION_PLAN_ZH.md`、`sample_classified_safe_candidates.py`、
   `evaluate_classified_approx_pairs.py`、`classified_safe_pilot_24_*`、
   `classified_safe_candidates_240_lf_*`。
-- commit：待提交；GitHub：待推送。
+- commit：`d30145f1`；GitHub：已推送。
 
 ## A23：纯BSMPT规约与有偏数据口径纠正
 
@@ -449,7 +449,7 @@
   明确定义目标分布上的漏放率及端到端收益。
 - 产物：`BSMPT_OPTIMIZATION_AND_BIASED_DATA_PROTOCOL_ZH.md`、修正后的抽样器、
   `classified_biased_e1_candidates_240_*`。
-- commit：待提交；GitHub：待推送。
+- commit：`f1172400`；GitHub：已推送，状态回填提交随后推送。
 
 ## 后续轮次模板
 
