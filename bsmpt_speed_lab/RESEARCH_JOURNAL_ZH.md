@@ -37,6 +37,11 @@
 | A15 | quark dynamic product noalias | 淘汰 | `e922c704` | 已推送（状态 `bfe13f43`） |
 | A16 | dynamic raster safety indicator audit | 停止 | `edc40dbe` | 已推送（状态 `07ba756b`） |
 | A17 | current-source mixed-workload PGO | 淘汰 | `af784a96` | 已推送（状态回填待提交） |
+| A18 | 选择性PGO只读审计 | 被算法路线取代 | 未实施 | 无独立提交 |
+| A21 | 算法级路线重审 | 形成新候选 | `fc9904ca` | 已推送 |
+| A22 | classified 24点先导 | 口径部分作废，反例有效 | `d30145f1` | 已推送 |
+| A23 | 有偏数据口径纠正 | 接受 | `f1172400` | 已推送 |
+| A24 | 文档体系重构 | 当前权威结构 | 待提交 | 待推送 |
 
 当前研究分支：`special/approx-safe-research-20260903`。
 严格快照分支：`special/exact-fast-validated-20260903`。
@@ -358,7 +363,7 @@
   `.gitignore` 排除。
 - commit：`af784a96`；GitHub：已推送，状态回填提交随后推送。
 
-## A18：选择性热点翻译单元 PGO（进行中）
+## A18：选择性热点翻译单元 PGO（未实施，已被取代）
 
 - 日期：2026-09-04。
 - 思路/假设：A17 的全程序 profile-use 因未执行翻译单元缺少 `.gcda` 而失败；只对
@@ -369,7 +374,8 @@
 - 固定资格条件：先核对35个 `.gcda` 与目标对象映射；任何已选择热点对象缺失、
   checksum mismatch 或 profile warning 即淘汰。通过后才进入高 SNR 配对测试。
 - 并发限制：构建最多 `-j2`，CalcGW 最多两个。
-- commit：待提交；GitHub：待推送。
+- 结论：只读审计后未实施；项目重点已经转向非严格多保真数值证书，不再列入当前队列。
+- commit：无独立实现提交。
 
 ### A18 Luna 并行审计结论
 
@@ -396,7 +402,8 @@
 - 新结论：路径几何warm start已经存在；真正未复用的是径向profile、射击括区间和
   最佳l0。最大严格机会是重复求值消除、threshold/raster固定索引并行；最大guarded
   机会是SpectrumJet、profile continuation、误差驱动adaptive采样。
-- 产物：`ALGORITHM_OPTIMIZATION_ROADMAP_ZH.md`。
+- 产物：原路线图内容已整理进 `PROJECT_MASTER_PLAN_ZH.md` 和
+  `NON_STRICT_OPTIMIZATION_PLAN_ZH.md`；旧文件可从Git历史恢复。
 - 下一实验：S1 `LocateMinimum` 同点重复gradient消除；待实现和验证。
 - commit：`fc9904ca`；GitHub：已推送。
 
@@ -426,7 +433,7 @@
   确认是近似反例而非版本漂移。
 - 结论：现阶段只能确定候选域，不能上线区域路由；light边界、弱信号、多步/异常、
   Yukawa II--IV保持严格。下一步扩大配对并按source/机器留出验证。
-- 产物：`CLASSIFIED_SAFE_REGION_PLAN_ZH.md`、`sample_classified_safe_candidates.py`、
+- 产物：旧计划已删除、事实保留于本轮日志；`sample_classified_safe_candidates.py`、
   `evaluate_classified_approx_pairs.py`、`classified_safe_pilot_24_*`、
   `classified_safe_candidates_240_lf_*`。
 - commit：`d30145f1`；GitHub：已推送。
@@ -447,9 +454,26 @@
   bounce后验证书，再做continuation、safeguarded射击和adaptive节点。
 - 统计：E1只能淘汰和找反例；E2决定候选局部边界；只有预先冻结、无筛选的E3可报告
   明确定义目标分布上的漏放率及端到端收益。
-- 产物：`BSMPT_OPTIMIZATION_AND_BIASED_DATA_PROTOCOL_ZH.md`、修正后的抽样器、
+- 产物：规约已整理进 `PROJECT_MASTER_PLAN_ZH.md` 和
+  `NON_STRICT_OPTIMIZATION_PLAN_ZH.md`、修正后的抽样器、
   `classified_biased_e1_candidates_240_*`。
 - commit：`f1172400`；GitHub：已推送，状态回填提交随后推送。
+
+## A24：文档体系重构
+
+- 日期：2026-09-05。
+- 原因：README、三个路线图、A17后续计划、综合规约及错误classified计划职责重叠，
+  导致主目标和当前执行顺序不清楚。
+- 新结构：`PROJECT_MASTER_PLAN_ZH.md`为唯一总纲；
+  `NON_STRICT_OPTIMIZATION_PLAN_ZH.md`为主目标唯一执行方案；README仅导航。
+- 主/次目标：非严格端到端加速为主，重点降低安全识别成本和过度回退；严格S1--S3
+  为次要目标，不占用主目标长批次资源。
+- 保留：逐轮日志、严格优化报告、非严格实验报告、严格快照，确保事实可反查。
+- 删除：已被吸收的多个路线图、后续计划、错误口径计划，以及已经完成/淘汰的孤立
+  设计提案。内容仍可从Git历史恢复，相关实验事实仍在报告和日志中。
+- 下一执行：N1只读内部诊断，不改变近似数值路径；先验证54.95%等已知反例能否被
+  低成本识别，再决定N2双分辨率证书。
+- commit：待提交；GitHub：待推送。
 
 ## 后续轮次模板
 
