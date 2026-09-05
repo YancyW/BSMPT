@@ -431,6 +431,26 @@
   `classified_safe_candidates_240_lf_*`。
 - commit：待提交；GitHub：待推送。
 
+## A23：纯BSMPT规约与有偏数据口径纠正
+
+- 日期：2026-09-05。
+- 思路/假设：classified仅作为经过上游选择的E1辅助历史集；优化、router和证书只能
+  使用BSMPT输入及本次BSMPT诊断，安全边界必须由无thdmTools的E2/E3确认。
+- 纠错：A22中以`th_passed=true`筛选及把历史密集分支解释为候选安全域的口径作废；
+  24点数值配对和已由当前exact复核的54.95%反例仍是有效E1证据。
+- 工具：`sample_classified_safe_candidates.py`现只凭完整BSMPT输入、runtime/核心状态和
+  source认证CalcGW实际执行；默认扫描both/gw_only/thdmtool_only，neither因体量巨大
+  仅显式请求时扫描，且类别只用于文件定位，不能作为特征。
+- 新E1清单：240点，90个source，office/qiushi/yuanyuan为83/80/77；resolved signal
+  35、SNR边界75、数值边界75、严格弱/无信号55。该分布不得用于总体比例推断。
+- 优化设计：严格优先S1重复gradient、S2/S3固定索引并行；guarded优先G1 coarse/fine
+  bounce后验证书，再做continuation、safeguarded射击和adaptive节点。
+- 统计：E1只能淘汰和找反例；E2决定候选局部边界；只有预先冻结、无筛选的E3可报告
+  明确定义目标分布上的漏放率及端到端收益。
+- 产物：`BSMPT_OPTIMIZATION_AND_BIASED_DATA_PROTOCOL_ZH.md`、修正后的抽样器、
+  `classified_biased_e1_candidates_240_*`。
+- commit：待提交；GitHub：待推送。
+
 ## 后续轮次模板
 
 复制以下字段，不得只记录成功项：

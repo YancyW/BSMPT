@@ -624,12 +624,20 @@ Remaining work is planned before execution in
 validation and stop conditions, the two-CalcGW memory limit, and a one-at-a-
 time read-only Luna audit workflow to control compute and model usage.
 
-The classified-data safety study is documented in
-`CLASSIFIED_SAFE_REGION_PLAN_ZH.md`.  Its sampler conditions on thdmTools
-passing and never labels the large `neither` population as a CalcGW failure.
+The authoritative evidence and optimization protocol is
+`BSMPT_OPTIMIZATION_AND_BIASED_DATA_PROTOCOL_ZH.md`.  Classified data are a
+selection-biased E1 archive: they may supply stored strict CalcGW references
+and counterexamples, but cannot define full-space safety, production routing,
+or overall error rates.  No `th_*` value is permitted as an optimization or
+router feature.  The corrected sampler selects rows only from evidence that
+CalcGW actually ran and labels its output as auxiliary-only.
+
+The earlier classified pilot is documented in
+`CLASSIFIED_SAFE_REGION_PLAN_ZH.md`; its original thdmTools-conditioned region
+interpretation is explicitly superseded.
 The first LF-correct 24-point pilot preserved the paired contract on 23 rows;
 one light-branch physical-boundary point had a 54.95% SNR-component error.
 Current exact-fast reproduced that point's historical strict SNR to 0.029%,
 confirming that the failure belongs to the approximation rather than archive
 or build drift.  This evidence is not yet sufficient to activate a region
-router; weak/no-signal rows and Yukawa types II--IV remain exact by default.
+router; weak/no-signal rows and untested strata remain exact by default.

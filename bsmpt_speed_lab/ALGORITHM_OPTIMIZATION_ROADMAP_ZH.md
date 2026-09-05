@@ -3,6 +3,11 @@
 更新日期：2026-09-05。本文取代“继续依靠PGO/链接参数获得主要收益”的思路。
 所有实现仍只能位于 `bsmpt_speed_lab/`；主项目、冻结严格分支和严格二进制不修改。
 
+历史 classified 数据的证据等级、选择偏差和禁止用途由
+`BSMPT_OPTIMIZATION_AND_BIASED_DATA_PROTOCOL_ZH.md` 约束。该数据只能作为E1辅助
+回归，不能定义完整参数空间、安全路由或总体错误率；任何安全区域必须经不经过
+thdmTools的纯BSMPT E2/E3样本确认。
+
 ## 1. 已确认的复杂度账本
 
 代表性严格点约35秒中，phase tracing约8.3秒，bounce约26.9秒；其中24次

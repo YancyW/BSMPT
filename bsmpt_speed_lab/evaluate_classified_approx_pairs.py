@@ -98,7 +98,8 @@ def main():
     overall = Counter(r["reasons"] for r in results)
     grouped = defaultdict(Counter)
     for r in results:
-        key = "|".join((r["validation_stratum"], r["branch"], r["machine"]))
+        region = r.get("parameter_cell") or r.get("branch") or "unknown"
+        key = "|".join((r["validation_stratum"], region, r["machine"]))
         grouped[key]["n"] += 1
         grouped[key]["pair_exact_enough"] += r["pair_exact_enough"] == "true"
         grouped[key]["safe_for_routing"] += r["safe_for_routing"] == "true"

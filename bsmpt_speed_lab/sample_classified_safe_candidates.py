@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """Stream classified CSVs and build a deterministic approximation-validation set.
 
-The source trees are read only.  Crucially, thdmTools-rejected rows are not
-treated as CalcGW failures: the candidate population is conditioned on
-``th_passed == true`` and on a complete CalcGW input record.
+The source trees are read only.  Selection uses evidence that CalcGW actually
+ran, never thdmTools outcomes.  The resulting archive sample is biased and is
+only E1 auxiliary evidence, not a representation of the full BSMPT space.
 """
 
 import argparse
@@ -33,28 +33,32 @@ def finite(value):
     return number if math.isfinite(number) else None
 
 
-def truth(value):
-    return str(value).strip().lower() in {"true", "1", "yes"}
-
-
 def traceable_source(value):
     value = (value or "").strip()
     return bool(value) and value.endswith(".md")
 
 
-def branch(row):
+def parameter_cell(row):
     mh, sba = finite(row.get("mH")), finite(row.get("sba"))
     if mh is None or sba is None:
-        return "outside"
-    if 62 <= mh < 125 and 0.06 <= sba <= 0.21:
-        return "light"
-    if 125 <= mh <= 500 and 0.99 <= sba <= 0.999:
-        return "heavy"
-    return "outside"
+        return "unknown"
+    mass_edges = (-math.inf, 62, 125, 220, 500, math.inf)
+    sba_edges = (-math.inf, 0.06, 0.21, 0.9, 0.99, 0.999, math.inf)
+    mi = next(i for i in range(len(mass_edges) - 1) if mass_edges[i] <= mh < mass_edges[i + 1])
+    si = next(i for i in range(len(sba_edges) - 1) if sba_edges[i] <= sba < sba_edges[i + 1])
+    return f"m{mi}_s{si}"
 
 
 def complete_input(row):
     return all(finite(row.get(k)) is not None for k in INPUT_FIELDS)
+
+
+def calcgw_actually_ran(row):
+    """Use only BSMPT execution evidence; never inspect th_* fields."""
+    runtime = finite(row.get("runtime"))
+    nlo = (row.get("status_nlo_stability") or "").strip()
+    tracing = (row.get("status_tracing") or "").strip()
+    return runtime is not None and runtime >= 0 and bool(nlo or tracing)
 
 
 def total_snr(row):
@@ -80,31 +84,16 @@ def active_transition_is_risky(row):
     return any((row.get(f"status_gw_{i}") or "") not in {"success", "nan", "not_set"} for i in active)
 
 
-def edge_score(row, br):
-    mh, ma, mhc, sba = (finite(row.get(k)) for k in ("mH", "mA", "mHc", "sba"))
-    if None in (mh, ma, mhc, sba):
-        return 1.0
-    if br == "light":
-        distances = ((mh - 62) / 63, (125 - mh) / 63, (sba - 0.06) / 0.15, (0.21 - sba) / 0.15)
-    elif br == "heavy":
-        distances = ((mh - 125) / 375, (500 - mh) / 375, (sba - 0.99) / 0.009, (0.999 - sba) / 0.009)
-    else:
-        return 1.0
-    branch_edge = max(0.0, 1.0 - 8.0 * min(distances))
-    splitting_edge = min(1.0, abs(ma - mhc) / 60.0)
-    return max(branch_edge, splitting_edge)
-
-
-def classify(row, category, br):
+def classify(row):
     multi = (row.get("multistep_status") or "").strip()
     snr = total_snr(row)
-    if category == "thdmtool_only":
-        return "strict_negative"
     if multi not in {"single_step", ""} or active_transition_is_risky(row):
         return "numeric_boundary"
-    if snr is None or snr <= 1.0 or edge_score(row, br) >= 0.65:
-        return "physical_boundary"
-    return "interior"
+    if snr is None or abs(snr) < 1e-20:
+        return "strict_no_signal"
+    if snr <= 1.0 or any(abs(snr - cut) <= 0.2 * cut for cut in (10.0, 100.0)):
+        return "snr_boundary"
+    return "resolved_signal"
 
 
 def stable_rank(machine, source, row):
@@ -124,46 +113,45 @@ def add_reservoir(reservoirs, group, cap, rank, payload):
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--root", action="append", default=[])
+    parser.add_argument("--category", action="append", choices=("both", "gw_only", "thdmtool_only", "neither"), default=[])
     parser.add_argument("--output-prefix", default="bsmpt_speed_lab/classified_safe_candidates_240")
     parser.add_argument("--per-stratum", type=int, default=12)
     parser.add_argument("--limit", type=int, default=240)
     args = parser.parse_args()
 
     roots = [Path(p) for p in (args.root or DEFAULT_ROOTS)]
+    categories = args.category or ["both", "gw_only", "thdmtool_only"]
     reservoirs = defaultdict(list)
     counts, exclusions = Counter(), Counter()
     seen_keys = set()
 
     for root in roots:
         machine = root.name.removeprefix("data_")
-        for category in ("both", "thdmtool_only"):
+        for category in categories:
             paths = sorted((root / "classified").glob(f"{category}*.csv"))
             for path in paths:
                 with path.open(newline="") as handle:
                     for line_number, row in enumerate(csv.DictReader(handle), 2):
                         counts[f"read:{machine}:{category}"] += 1
-                        if not truth(row.get("th_passed")):
-                            exclusions["thdm_not_passed"] += 1
-                            continue
                         if not complete_input(row):
                             exclusions["incomplete_calcgw_input"] += 1
+                            continue
+                        if not calcgw_actually_ran(row):
+                            exclusions["calcgw_not_run_or_unverifiable"] += 1
                             continue
                         source = (row.get("source") or "").strip()
                         if not traceable_source(source):
                             exclusions["untraceable_source"] += 1
                             continue
-                        br = branch(row)
-                        if br == "outside":
-                            exclusions["outside_known_thdm_branch"] += 1
-                            continue
+                        cell = parameter_cell(row)
                         key = tuple(round(float(row[k]), 6) for k in KEY_FIELDS)
                         if key in seen_keys:
                             exclusions["duplicate_round6"] += 1
                             continue
                         seen_keys.add(key)
-                        mode = classify(row, category, br)
+                        mode = classify(row)
                         yuk = str(int(float(row["yuktype"])))
-                        group = (mode, br, yuk, machine)
+                        group = (mode, cell, yuk, machine)
                         rank = stable_rank(machine, source, row)
                         payload = {
                             "machine": machine,
@@ -171,23 +159,21 @@ def main():
                             "file": str(path),
                             "line": line_number,
                             "source": source,
-                            "branch": br,
+                            "parameter_cell": cell,
                             "validation_stratum": mode,
-                            "edge_score": edge_score(row, br),
                             "strict_snr": total_snr(row),
                             "row": row,
                         }
                         add_reservoir(reservoirs, group, args.per_stratum, rank, payload)
-                        counts[f"eligible:{mode}:{br}:{yuk}:{machine}"] += 1
+                        counts[f"eligible:{mode}:{cell}:{yuk}:{machine}"] += 1
 
+    queues = {group: [payload for _, payload in sorted(heap, reverse=True)] for group, heap in reservoirs.items()}
     candidates = []
-    for group in sorted(reservoirs):
-        candidates.extend(payload for _, payload in sorted(reservoirs[group], reverse=True))
-    candidates.sort(key=lambda p: (p["validation_stratum"], p["branch"], p["machine"], p["source"], p["line"]))
-    if len(candidates) > args.limit:
-        # A second stable ranking keeps the final cap unbiased across populated strata.
-        candidates = sorted(candidates, key=lambda p: stable_rank(p["machine"], p["source"], p["row"]))[: args.limit]
-        candidates.sort(key=lambda p: (p["validation_stratum"], p["branch"], p["machine"], p["line"]))
+    while len(candidates) < args.limit and any(queues.values()):
+        for group in sorted(queues):
+            if queues[group] and len(candidates) < args.limit:
+                candidates.append(queues[group].pop(0))
+    candidates.sort(key=lambda p: (p["validation_stratum"], p["parameter_cell"], p["machine"], p["source"], p["line"]))
 
     prefix = Path(args.output_prefix)
     prefix.parent.mkdir(parents=True, exist_ok=True)
@@ -203,12 +189,13 @@ def main():
             r = p["row"]
             writer.writerow((r["yuktype"], r["L1"], r["L2"], r["L3"], r["L4"], r["L5"], r["m12sq_calgw"], r["tbeta"]))
 
-    meta_fields = ("sample_id", "machine", "category", "branch", "validation_stratum", "edge_score", "strict_snr", "source", "file", "line") + KEY_FIELDS
+    meta_fields = ("sample_id", "machine", "archive_category", "parameter_cell", "validation_stratum", "strict_snr", "source", "file", "line") + KEY_FIELDS
     with metadata_path.open("w", newline="") as handle:
         writer = csv.DictWriter(handle, fieldnames=meta_fields, delimiter="\t", lineterminator="\n")
         writer.writeheader()
         for i, p in enumerate(candidates, 1):
             record = {k: p[k] for k in meta_fields if k in p}
+            record["archive_category"] = p["category"]
             record.update({k: p["row"].get(k, "") for k in KEY_FIELDS})
             record["sample_id"] = i
             writer.writerow(record)
@@ -219,9 +206,12 @@ def main():
         writer.writeheader()
         writer.writerows(p["row"] for p in candidates)
 
-    selected = Counter((p["validation_stratum"], p["branch"], p["machine"], str(int(float(p["row"]["yuktype"])))) for p in candidates)
+    selected = Counter((p["validation_stratum"], p["parameter_cell"], p["machine"], str(int(float(p["row"]["yuktype"])))) for p in candidates)
     summary = {
-        "selection_semantics": "conditioned_on_thdmTools_pass; neither/gw_only excluded",
+        "evidence_level": "E1_biased_archive_auxiliary_only",
+        "selection_semantics": "CalcGW execution evidence and complete BSMPT input; th_* fields ignored",
+        "categories_scanned_for_file_location_only": categories,
+        "coverage_warning": "biased archive; must not define full-space safety or production error rates",
         "selected_rows": len(candidates),
         "selected_by_stratum_branch_machine_yuk": {"|".join(k): v for k, v in sorted(selected.items())},
         "stream_counts": dict(sorted(counts.items())),
