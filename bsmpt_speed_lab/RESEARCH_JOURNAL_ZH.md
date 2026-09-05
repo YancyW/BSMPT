@@ -384,6 +384,22 @@
 - A19后备优先级为 lld safe ICF、干净 non-PIE，再考虑单文件编译选项；A20优先批量
   guarded runner，保持逐行 guard 与 exact fallback，预期在大量廉价点时收益最大。
 
+## A21：算法级路线重审
+
+- 日期：2026-09-05。
+- 思路：停止把个位数编译优化作为主路线，从真实调用次数、数据依赖和残差证书重新
+  设计严格与guarded算法。
+- 分工：三个Luna只读审计分别覆盖bounce温度/profile continuation、R2HDM谱与导数、
+  确定性并行与phase tracing；主代理核对现有源码和历史，统一排序。
+- 核心账本：严格代表点bounce约26.9秒，其中24次Solve1DBounce约21.5秒；每action
+  的1001点raster约16016次VEff，dense threshold约41041次VEff。
+- 新结论：路径几何warm start已经存在；真正未复用的是径向profile、射击括区间和
+  最佳l0。最大严格机会是重复求值消除、threshold/raster固定索引并行；最大guarded
+  机会是SpectrumJet、profile continuation、误差驱动adaptive采样。
+- 产物：`ALGORITHM_OPTIMIZATION_ROADMAP_ZH.md`。
+- 下一实验：S1 `LocateMinimum` 同点重复gradient消除；待实现和验证。
+- commit：待提交；GitHub：待推送。
+
 ## 路线图完成后的残余审计
 
 - 日期：2026-09-04；由 Luna 对 A1–A17、失败路线与当前 overlay 做只读复核。

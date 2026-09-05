@@ -6,6 +6,8 @@
 
 > A17之后的固定研究路线与停止条件见
 > [`POST_A17_EXECUTION_PLAN_ZH.md`](POST_A17_EXECUTION_PLAN_ZH.md)。
+> 进入算法级改造后的复杂度账本、严格并行和guarded大改路线见
+> [`ALGORITHM_OPTIMIZATION_ROADMAP_ZH.md`](ALGORITHM_OPTIMIZATION_ROADMAP_ZH.md)。
 
 This directory is isolated from the existing BSMPT installation. Nothing here
 is installed, linked, or copied over `install/bin/CalcGW`.
