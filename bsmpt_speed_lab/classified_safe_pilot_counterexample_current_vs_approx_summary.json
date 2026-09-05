@@ -1,0 +1,17 @@
+{
+  "groups": {
+    "physical_boundary|light|qiushi": {
+      "n": 1,
+      "pair_exact_enough": 0,
+      "safe_for_routing": 0
+    }
+  },
+  "pair_exact_enough": 0,
+  "reason_combinations": {
+    "snr_error_gt_limit": 1
+  },
+  "rows": 1,
+  "safe_for_routing": 0,
+  "snr_floor": 1e-20,
+  "snr_limit": 0.1
+}

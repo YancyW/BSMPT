@@ -1,0 +1,59 @@
+{
+  "groups": {
+    "physical_boundary|heavy|office": {
+      "n": 3,
+      "pair_exact_enough": 3,
+      "safe_for_routing": 0
+    },
+    "physical_boundary|heavy|yuanyuan": {
+      "n": 2,
+      "pair_exact_enough": 2,
+      "safe_for_routing": 1
+    },
+    "physical_boundary|light|qiushi": {
+      "n": 1,
+      "pair_exact_enough": 0,
+      "safe_for_routing": 0
+    },
+    "physical_boundary|light|yuanyuan": {
+      "n": 3,
+      "pair_exact_enough": 3,
+      "safe_for_routing": 3
+    },
+    "strict_negative|heavy|office": {
+      "n": 3,
+      "pair_exact_enough": 3,
+      "safe_for_routing": 0
+    },
+    "strict_negative|heavy|qiushi": {
+      "n": 1,
+      "pair_exact_enough": 1,
+      "safe_for_routing": 0
+    },
+    "strict_negative|light|office": {
+      "n": 1,
+      "pair_exact_enough": 1,
+      "safe_for_routing": 0
+    },
+    "strict_negative|light|qiushi": {
+      "n": 6,
+      "pair_exact_enough": 6,
+      "safe_for_routing": 0
+    },
+    "strict_negative|light|yuanyuan": {
+      "n": 4,
+      "pair_exact_enough": 4,
+      "safe_for_routing": 0
+    }
+  },
+  "pair_exact_enough": 23,
+  "reason_combinations": {
+    "ok": 4,
+    "snr_error_gt_limit": 1,
+    "weak_or_no_strict_snr": 19
+  },
+  "rows": 24,
+  "safe_for_routing": 4,
+  "snr_floor": 1e-20,
+  "snr_limit": 0.1
+}

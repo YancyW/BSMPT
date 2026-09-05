@@ -623,3 +623,13 @@ Remaining work is planned before execution in
 `REMAINING_OPTIMIZATION_ROADMAP_ZH.md`.  It fixes candidate priority, staged
 validation and stop conditions, the two-CalcGW memory limit, and a one-at-a-
 time read-only Luna audit workflow to control compute and model usage.
+
+The classified-data safety study is documented in
+`CLASSIFIED_SAFE_REGION_PLAN_ZH.md`.  Its sampler conditions on thdmTools
+passing and never labels the large `neither` population as a CalcGW failure.
+The first LF-correct 24-point pilot preserved the paired contract on 23 rows;
+one light-branch physical-boundary point had a 54.95% SNR-component error.
+Current exact-fast reproduced that point's historical strict SNR to 0.029%,
+confirming that the failure belongs to the approximation rather than archive
+or build drift.  This evidence is not yet sufficient to activate a region
+router; weak/no-signal rows and Yukawa types II--IV remain exact by default.

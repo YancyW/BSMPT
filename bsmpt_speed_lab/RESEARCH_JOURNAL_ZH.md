@@ -410,6 +410,27 @@
   当前源码 PGO 画像；二是新编译器/Eigen 实现并附算法等价证明。二者仍须从固定
   A/B/C/NLO/高 SNR 阶梯重新验收，不能沿用旧结论。
 
+## A22：classified 条件安全区域与 24 点先导
+
+- 日期：2026-09-05。
+- 思路/假设：只在 thdmTools 已通过的条件样本中学习近似安全性；`neither` 不作
+  CalcGW 负例，使用历史严格输出降低验证成本。
+- 样本：三台机器 `both`/`thdmtool_only` 只读流式筛选；生成 240 点、100 source
+  的候选清单，并以其中24点作接口和配对先导。
+- 并发数与资源情况：始终一个 CalcGW；未扫描绝大多数 `neither`，未写 MultiNest。
+- 接口纠错：首遍 CRLF 破坏 CalcGW 拼接输出，已强制 LF 并同样本重跑；错误输出
+  不进入统计。
+- 状态/history/SNR 检查：LF 先导23/24满足配对条件；19个弱/零信号只可严格路由；
+  4个有信息量接受点最大误差分别约0.015%、0.45%、5.29%、0.043%。
+- 新反例：light物理边界一点偏差54.95%。当前 exact-fast 与历史严格仅差0.0281%，
+  确认是近似反例而非版本漂移。
+- 结论：现阶段只能确定候选域，不能上线区域路由；light边界、弱信号、多步/异常、
+  Yukawa II--IV保持严格。下一步扩大配对并按source/机器留出验证。
+- 产物：`CLASSIFIED_SAFE_REGION_PLAN_ZH.md`、`sample_classified_safe_candidates.py`、
+  `evaluate_classified_approx_pairs.py`、`classified_safe_pilot_24_*`、
+  `classified_safe_candidates_240_lf_*`。
+- commit：待提交；GitHub：待推送。
+
 ## 后续轮次模板
 
 复制以下字段，不得只记录成功项：

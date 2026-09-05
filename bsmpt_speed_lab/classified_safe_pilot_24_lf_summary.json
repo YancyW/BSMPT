@@ -1,0 +1,58 @@
+{
+  "exclusions": {
+    "incomplete_calcgw_input": 5161,
+    "outside_known_thdm_branch": 82352,
+    "thdm_not_passed": 44123,
+    "untraceable_source": 107309
+  },
+  "roots": [
+    "/home/yancy/Software/Bin/MathRelated/MultiNest/data_office",
+    "/home/yancy/Software/Bin/MathRelated/MultiNest/data_qiushi",
+    "/home/yancy/Software/Bin/MathRelated/MultiNest/data_yuanyuan"
+  ],
+  "selected_by_stratum_branch_machine_yuk": {
+    "physical_boundary|heavy|office|1": 3,
+    "physical_boundary|heavy|yuanyuan|1": 2,
+    "physical_boundary|light|qiushi|1": 1,
+    "physical_boundary|light|yuanyuan|1": 3,
+    "strict_negative|heavy|office|1": 3,
+    "strict_negative|heavy|qiushi|1": 1,
+    "strict_negative|light|office|1": 1,
+    "strict_negative|light|qiushi|1": 6,
+    "strict_negative|light|yuanyuan|1": 4
+  },
+  "selected_rows": 24,
+  "selection_semantics": "conditioned_on_thdmTools_pass; neither/gw_only excluded",
+  "stream_counts": {
+    "eligible:interior:heavy:1:office": 112,
+    "eligible:interior:heavy:1:qiushi": 2,
+    "eligible:interior:heavy:1:yuanyuan": 1,
+    "eligible:interior:light:1:office": 18,
+    "eligible:interior:light:1:qiushi": 30,
+    "eligible:interior:light:1:yuanyuan": 51,
+    "eligible:numeric_boundary:heavy:1:office": 2313,
+    "eligible:numeric_boundary:heavy:1:qiushi": 241,
+    "eligible:numeric_boundary:heavy:1:yuanyuan": 547,
+    "eligible:numeric_boundary:light:1:office": 555,
+    "eligible:numeric_boundary:light:1:qiushi": 2888,
+    "eligible:numeric_boundary:light:1:yuanyuan": 4154,
+    "eligible:physical_boundary:heavy:1:office": 50901,
+    "eligible:physical_boundary:heavy:1:qiushi": 9140,
+    "eligible:physical_boundary:heavy:1:yuanyuan": 8256,
+    "eligible:physical_boundary:light:1:office": 14365,
+    "eligible:physical_boundary:light:1:qiushi": 9169,
+    "eligible:physical_boundary:light:1:yuanyuan": 14270,
+    "eligible:strict_negative:heavy:1:office": 26553,
+    "eligible:strict_negative:heavy:1:qiushi": 3965,
+    "eligible:strict_negative:heavy:1:yuanyuan": 4857,
+    "eligible:strict_negative:light:1:office": 30244,
+    "eligible:strict_negative:light:1:qiushi": 27815,
+    "eligible:strict_negative:light:1:yuanyuan": 44003,
+    "read:office:both": 198648,
+    "read:office:thdmtool_only": 127289,
+    "read:qiushi:both": 28509,
+    "read:qiushi:thdmtool_only": 40725,
+    "read:yuanyuan:both": 35727,
+    "read:yuanyuan:thdmtool_only": 62497
+  }
+}
