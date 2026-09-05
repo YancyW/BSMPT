@@ -10,9 +10,9 @@
 | 严格基准是什么 | exact-fast冻结，73+严格A/B行 | `SNAPSHOT.md`、日志S0、`run_calcgw_exact_fast.sh` |
 | 当前近似首遍 | central2 + adaptive64 + raster500 + thermal-fast | 日志A2/A3/A8、`run_calcgw_approx_c2_adaptive_r500_thermal_fast.sh` |
 | 安全wrapper | 输入风险锚点 + 输出guard + exact fallback | 日志A6、`run_calcgw_approx_safe.sh` |
-| 42行性能 | exact 2173.759s，首遍约908.155s，接受6/回退36 | `APPROX_SAFE_REPORT_ZH.md`、日志A8 |
+| 42行性能 | exact 2173.759s，首遍约908.155s，接受6/回退36；回退率不可接受 | `APPROX_SAFE_REPORT_ZH.md`、日志A8 |
 | 新的主要缺口 | 状态正常仍可能SNR偏差54.95% | 日志A22、`classified_safe_pilot_counterexample_*` |
-| 当前下一步 | N1a只记录内部诊断 | 非严格专项第3、10节；`AGENTS.md`第4节 |
+| 当前下一步 | N1a定性混淆矩阵与失败阶段账本 | 非严格专项第2、11节；`AGENTS.md`第4节 |
 
 ## 2. 已接受并仍在当前路径中的研究
 
@@ -37,7 +37,8 @@
 | classified E1新反例 | light样本SNR分量偏差54.95% | 日志A22、`classified_safe_pilot_counterexample_*` |
 | 历史构建漂移排除 | 当前exact与历史strict仅差0.0281% | `classified_safe_pilot_counterexample_history_vs_current_*` |
 
-N1/N2证书必须先捕获上述全部风险，漏掉任意一个即不得扩大接受面。
+N1/N2必须先使上述定性假阳性/假阴性为零；54.95%幅值反例作为双方positive后的次级
+数值风险。漏掉任一定性翻转即淘汰候选，不得以最终exact回退掩盖裸近似错误。
 
 ## 4. 已淘汰或禁止重复的路线
 
@@ -112,10 +113,10 @@ N1/N2证书必须先捕获上述全部风险，漏掉任意一个即不得扩大
 
 ## 8. 研究问题到下一动作
 
-- “为什么回退率高？”：先按guard原因重算42行分类账，不修改算法。
-- “如何减少回退？”：执行N1诊断和N2双分辨率证书，不能先放宽SNR地板。
-- “如何判断安全点？”：R0覆盖只能来自E2/E3，C1/C2来自本次内部误差；两者都通过。
+- “为什么回退率高？”：先按guard原因和严格定性类别重建42行账本，不修改算法。
+- “如何减少回退？”：可靠positive和可靠fail都应能接受；执行N1/N2，不能只放宽地板。
+- “如何判断安全点？”：首先保证正/失败结论一致，再看R0覆盖和C1/C2；幅值为次级。
 - “还能否进一步降首遍时间？”：先完成证书；随后按N3顺序逐个做continuation、
   safeguarded shooting、adaptive、SpectrumJet。
 - “结果是否可推广？”：只有E3对预先定义的目标分布可推广；E1/E2均不可。
-- “下一轮具体做什么？”：读取`AGENTS.md`第4节和非严格专项第10节。
+- “下一轮具体做什么？”：读取`AGENTS.md`第4节和非严格专项第11节。
