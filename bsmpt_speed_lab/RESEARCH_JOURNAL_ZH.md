@@ -758,5 +758,6 @@
 - 新经验半径：E14 `5.6e-4`、E15 `6.9e-4`、E16 `5e-4`、E17 `1.5e-4`。
 - 累计去重严格配对192点：TP=68、TN=124、FP=FN=0。样本仍非独立同分布，尤其
   A4局部占比较高，不能把192点零错误外推成全空间保证。
-- 方案报告：`REGION_V4_RELEASE_REPORT_ZH.md`。commit：本轮region-v4提交；GitHub：
-  推送后以远端分支记录为准。
+- 方案报告：`REGION_V4_RELEASE_REPORT_ZH.md`。实现与证据提交：`67431024`；已推送至
+  GitHub分支`special/approx-safe-research-20260903`（远端由`cf268a12`前进至
+  `67431024`）。
