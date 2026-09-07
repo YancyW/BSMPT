@@ -776,3 +776,10 @@
 - region-v5仅扩展Yukawa type-2/type-4正点表，保留v4其余guard。累计220点为
   TP=80、TN=140、FP=FN=0；失败阶段变为bounce 22、coexistence 102、NLO 14、
   nucleation 2。下一步为规则冻结后的独立E3确认。
+
+### A43. region-v5独立E3预注册（2026-09-07）
+
+- 在查看本批结果前冻结`E3_V5_CONFIRMATION_PROTOCOL_ZH.md`：4个认证域各4点，加两个
+  域外晚期失败控制各2点，共20点；种子、来源、半径和验收阈值均预先固定。
+- 本批不允许调整v5锚点或半径；认证域FP/FN将导致撤销，认证点回退不计为通过。
+- 运行顺序固定为先strict全批，再v5全批；外层最多2个CalcGW。
