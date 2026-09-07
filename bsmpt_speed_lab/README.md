@@ -44,15 +44,15 @@ bsmpt_speed_lab/run_calcgw_exact_fast.sh R2HDM input.tsv output.tsv 2 2
 bsmpt_speed_lab/run_calcgw_approx_safe.sh R2HDM input.tsv output.tsv 2 2
 ```
 
-当前最保守的显式认证域候选是region-v5：
+当前type-I优先的保守入口是region-v6：
 
 ```bash
-bsmpt_speed_lab/run_calcgw_approx_region_v5_certified.sh \
+bsmpt_speed_lab/run_calcgw_approx_region_v6_type1_safe.sh \
   --model=r2hdm --input=input.tsv --output=output.tsv \
   --firstline=2 --lastline=2
 ```
 
-v5只在严格配对过的局部认证域接受三温shadow或无共存相结论；域外严格回退。
+v6保留v5认证，并将发现相变历史不一致的type-I C3局部域前置严格；域外严格回退。
 判断规则和证据边界见`REGION_V4_CERTIFIED_ROUTER_ZH.md`。它仍是研究候选，不能
 解释为全参数空间证明。
 
@@ -76,8 +76,8 @@ BSMPT_APPROX_SNR_CUTS=10,100 \
 - E1辅助先导已确认一个54.95% SNR反例；当前严格复算与历史严格只差0.0281%。
 - N1a重新按定性标准统计旧42点裸近似：TP=20、TN=21、FP=1、FN=0；41/42定性
   一致说明旧guard存在严重过度回退，但该比例不能外推到完整参数空间。
-- region-v5累计严格配对证据为240点：TP=88、TN=152、FP=FN=0；其中冻结后的独立
-  E3面板20点FP=FN=0、总降时32.94%。域外覆盖保守，不能外推未知点。
+- 累计严格配对证据为258点：TP=96、TN=162、FP=FN=0；最新18点全部为type-I，
+  v5测试总降时46.47%。v6撤销其中transition schema不一致的C3近似域。
 
 ## 当前执行顺序
 

@@ -1,0 +1,3 @@
+row	strict_class	raw_approx_class	raw_error_kind	strict_failure_stage	raw_approx_failure_stage	raw_qualitative_match	secondary_max_snr_relative_error	secondary_max_snr_field	secondary_snr_fields_compared
+1	fail_or_nonpositive	fail_or_nonpositive	none	coexistence:no_coex_pair	coexistence:no_coex_pair	true	0.0		0
+2	fail_or_nonpositive	fail_or_nonpositive	none	coexistence:no_coex_pair	coexistence:no_coex_pair	true	0.0		0

@@ -1,0 +1,22 @@
+{
+  "qualitative_error_kinds": {
+    "none": 18
+  },
+  "raw_approx_confusion": {
+    "false_negative": 0,
+    "false_positive": 0,
+    "true_negative": 10,
+    "true_positive": 8
+  },
+  "raw_approx_failure_stages": {
+    "bounce_0:failure": 4,
+    "coexistence:no_coex_pair": 6
+  },
+  "raw_qualitative_accuracy": 1.0,
+  "rows": 18,
+  "strict_failure_stages": {
+    "bounce_0:failure": 4,
+    "coexistence:no_coex_pair": 6
+  },
+  "warning": "sample-specific; do not generalize to full BSMPT parameter space"
+}

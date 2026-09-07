@@ -1,0 +1,19 @@
+group	row	strict_class	raw_approx_class	raw_error_kind	strict_failure_stage	raw_approx_failure_stage	raw_qualitative_match	secondary_max_snr_relative_error	secondary_max_snr_field	secondary_snr_fields_compared
+e3t1_t1_pos_a1_2_region_v5_eval	1	positive	positive	none	positive	positive	true	0.0005744522167463996	SNR(LISA-3yrs)_sw_0	3
+e3t1_t1_pos_a1_2_region_v5_eval	2	positive	positive	none	positive	positive	true	0.0010390548622754218	SNR(LISA-3yrs)_sw_0	3
+e3t1_t2_pos_a2_2_region_v5_eval	1	positive	positive	none	positive	positive	true	4.9510528137198266e-05	SNR(LISA-3yrs)_turb_0	3
+e3t1_t2_pos_a2_2_region_v5_eval	2	positive	positive	none	positive	positive	true	0.00023272313896168623	SNR(LISA-3yrs)_sw_0	3
+e3t1_t3_pos_c3_2_region_v5_eval	1	positive	positive	none	positive	positive	true	0.0	incompatible_transition_history	0
+e3t1_t3_pos_c3_2_region_v5_eval	2	positive	positive	none	positive	positive	true	0.0	incompatible_transition_history	0
+e3t1_t4_pos_c5_2_region_v5_eval	1	positive	positive	none	positive	positive	true	0.0025514834298985783	SNR(LISA-3yrs)_sw_0	3
+e3t1_t4_pos_c5_2_region_v5_eval	2	positive	positive	none	positive	positive	true	0.0038398380455250624	SNR(LISA-3yrs)_sw_0	3
+e3t1_t5_coex_a4_2_region_v5_eval	1	fail_or_nonpositive	fail_or_nonpositive	none	coexistence:no_coex_pair	coexistence:no_coex_pair	true	0.0		0
+e3t1_t5_coex_a4_2_region_v5_eval	2	fail_or_nonpositive	fail_or_nonpositive	none	coexistence:no_coex_pair	coexistence:no_coex_pair	true	0.0		0
+e3t1_t6_coex_b1_2_region_v5_eval	1	fail_or_nonpositive	fail_or_nonpositive	none	coexistence:no_coex_pair	coexistence:no_coex_pair	true	0.0		0
+e3t1_t6_coex_b1_2_region_v5_eval	2	fail_or_nonpositive	fail_or_nonpositive	none	coexistence:no_coex_pair	coexistence:no_coex_pair	true	0.0		0
+e3t1_t7_coex_c1_2_region_v5_eval	1	fail_or_nonpositive	fail_or_nonpositive	none	coexistence:no_coex_pair	coexistence:no_coex_pair	true	0.0		0
+e3t1_t7_coex_c1_2_region_v5_eval	2	fail_or_nonpositive	fail_or_nonpositive	none	coexistence:no_coex_pair	coexistence:no_coex_pair	true	0.0		0
+e3t1_t8_bounce_b10_2_region_v5_eval	1	fail_or_nonpositive	fail_or_nonpositive	none	bounce_0:failure	bounce_0:failure	true	0.0		0
+e3t1_t8_bounce_b10_2_region_v5_eval	2	fail_or_nonpositive	fail_or_nonpositive	none	bounce_0:failure	bounce_0:failure	true	0.0		0
+e3t1_t9_late_a9_2_region_v5_eval	1	fail_or_nonpositive	fail_or_nonpositive	none	bounce_0:failure	bounce_0:failure	true	0.0		0
+e3t1_t9_late_a9_2_region_v5_eval	2	fail_or_nonpositive	fail_or_nonpositive	none	bounce_0:failure	bounce_0:failure	true	0.0		0

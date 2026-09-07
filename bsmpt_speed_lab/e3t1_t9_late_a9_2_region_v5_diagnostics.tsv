@@ -1,0 +1,5 @@
+input_row	diagnostic
+1	region-v2: exact_nlo_success:runtime=0.40100000000000002:continue_region_v1
+1	region-v1: exact fallback: fallback_late_failure:bounce_0:failure
+2	region-v2: exact_nlo_success:runtime=0.43099999999999999:continue_region_v1
+2	region-v1: exact fallback: fallback_late_failure:bounce_0:failure

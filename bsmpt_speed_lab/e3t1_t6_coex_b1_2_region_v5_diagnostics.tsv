@@ -1,0 +1,5 @@
+input_row	diagnostic
+1	region-v2: exact_nlo_success:runtime=0.372:continue_region_v1
+1	region-v1: accepted_early_failure:coexistence:no_coex_pair
+2	region-v2: exact_nlo_success:runtime=0.34499999999999997:continue_region_v1
+2	region-v1: accepted_early_failure:coexistence:no_coex_pair

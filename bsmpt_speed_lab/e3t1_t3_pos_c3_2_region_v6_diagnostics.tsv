@@ -1,0 +1,5 @@
+input_row	diagnostic
+1	region-v2: exact_nlo_success:runtime=0.17199999999999999:continue_region_v1
+1	region-v1: direct exact: known_exact_region:type1_c3_transition_schema_mismatch_strict
+2	region-v2: exact_nlo_success:runtime=0.152:continue_region_v1
+2	region-v1: direct exact: known_exact_region:type1_c3_transition_schema_mismatch_strict

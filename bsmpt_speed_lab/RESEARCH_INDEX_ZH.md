@@ -9,11 +9,11 @@
 |---|---|---|
 | 严格基准是什么 | exact-fast冻结，73+严格A/B行 | `SNAPSHOT.md`、日志S0、`run_calcgw_exact_fast.sh` |
 | 当前近似首遍 | central2 + adaptive64 + raster500 + thermal-fast | 日志A2/A3/A8、`run_calcgw_approx_c2_adaptive_r500_thermal_fast.sh` |
-| 当前认证域wrapper | v5：严格NLO前缀 + 显式正点/coexistence认证域 + exact fallback | 日志A42、`REGION_V5_RELEASE_REPORT_ZH.md`、`run_calcgw_approx_region_v5_certified.sh` |
+| 当前type-I入口 | v6：v5认证 + C3 schema风险域前置严格 | 日志A46、`REGION_V6_TYPE1_SAFETY_REPORT_ZH.md`、`run_calcgw_approx_region_v6_type1_safe.sh` |
 | 42行v3/v4已覆盖路由 | TP=20、TN=22、FP=FN=0；完整严格4/42；已测路由约降低45% | `region_v3_validation_summary.json`、日志A34/A38 |
 | 新的主要缺口 | 状态正常仍可能SNR偏差54.95% | 日志A22、`classified_safe_pilot_counterexample_*` |
 | N1a定性账本 | 42点TP=20、TN=21、FP=1、FN=0 | `n1a_42_combined_*`、日志A27 |
-| 当前下一步 | 扩大独立E3分层；另研究比三温shadow更便宜的晚期失败证书 | `E3_V5_CONFIRMATION_PROTOCOL_ZH.md`、日志A44 |
+| 当前下一步 | 只扩大type-I独立E3；研究更便宜的type-I晚期失败证书 | `E3_V5_TYPE1_FOCUS_PROTOCOL_ZH.md`、日志A46 |
 
 ## 2. 已接受并仍在当前路径中的研究
 
