@@ -761,3 +761,18 @@
 - 方案报告：`REGION_V4_RELEASE_REPORT_ZH.md`。实现与证据提交：`67431024`；已推送至
   GitHub分支`special/approx-safe-research-20260903`（远端由`cf268a12`前进至
   `67431024`）。
+
+### A42. E20-E23失败阶段补齐与region-v5（2026-09-07）
+
+- 为改善192点中coexistence失败过度集中的问题，新增28个严格配对点：Yukawa
+  type-2/type-4正点各6点、broad-B row10 bounce邻域8点、broad-A row9晚期失败邻域8点。
+- E22严格为8个bounce failure；E23严格为7个bounce failure和1个
+  nucleation-not-met。裸v3均为8 TN且FP=FN=0，但含NLO前缀后分别比严格慢4.81%和
+  3.97%，故不进入生产认证。E23近似首遍失败阶段为5 bounce + 3 nucleation，证明
+  二分类稳定不代表失败阶段稳定。
+- E20/E21严格与裸v3均为6 TP、FP=FN=0；正式v5均6/6通过三温shadow并被认证接受，
+  含NLO前缀后分别降时56.74%和57.68%。type-2首次因距离归一化差异仅5/6命中，按
+  实际最大相对偏移`3.0122e-4`冻结半径`3.1e-4`后重新完整复验6/6。
+- region-v5仅扩展Yukawa type-2/type-4正点表，保留v4其余guard。累计220点为
+  TP=80、TN=140、FP=FN=0；失败阶段变为bounce 22、coexistence 102、NLO 14、
+  nucleation 2。下一步为规则冻结后的独立E3确认。
