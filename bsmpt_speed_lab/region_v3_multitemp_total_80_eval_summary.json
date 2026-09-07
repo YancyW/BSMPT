@@ -1,0 +1,26 @@
+{
+  "qualitative_error_kinds": {
+    "none": 80
+  },
+  "raw_approx_confusion": {
+    "false_negative": 0,
+    "false_positive": 0,
+    "true_negative": 28,
+    "true_positive": 52
+  },
+  "raw_approx_failure_stages": {
+    "bounce_0:failure": 2,
+    "coexistence:no_coex_pair": 11,
+    "nlo:no_nlo_stability": 14,
+    "nucleation_approx_0:not_met": 1
+  },
+  "raw_qualitative_accuracy": 1.0,
+  "rows": 80,
+  "strict_failure_stages": {
+    "bounce_0:failure": 2,
+    "coexistence:no_coex_pair": 11,
+    "nlo:no_nlo_stability": 14,
+    "nucleation_approx_0:not_met": 1
+  },
+  "warning": "sample-specific; do not generalize to full BSMPT parameter space"
+}

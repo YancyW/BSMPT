@@ -1,0 +1,7 @@
+sample	strict_class	approx_class	shadow_success	shadow_seconds	router_implication
+broad_b_row8	fail_or_nonpositive	positive	false	1.31330	exact_disagreement
+broad_a_row3	positive	positive	true	0.888691	candidate_accept
+neighbor_1	fail_or_nonpositive	positive	false	1.53955	exact_disagreement
+neighbor_2	fail_or_nonpositive	positive	false	1.36623	exact_disagreement
+neighbor_3	fail_or_nonpositive	fail_or_nonpositive	false	1.39139	candidate_fail_not_yet_certified
+neighbor_4	positive	fail_or_nonpositive	false	1.24541	false_negative_not_detected

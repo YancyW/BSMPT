@@ -10,8 +10,10 @@
 - 所有修改、wrapper、构建和输出只能位于 `bsmpt_speed_lab/`。
 - 项目主程序、严格分支/标签和严格二进制不得修改或重建。
 - 同时最多运行两个 CalcGW，避免超过 WSL 24 GB 内存限制。
-- guarded 接受结果必须保持全部 status 与 `transition_history`，所有 SNR 分量相对
-  偏差不超过 10%；失败、非有限值、极弱信号和 cut 安全边缘自动 exact-fast 回退。
+- 首要契约是双向定性一致：严格有限`SNR>0`当且仅当候选有限`SNR>0`；每个认证域
+  单独要求FP=FN=0。SNR幅值10%只是次要诊断，不能取代首要契约。
+- 域外、诊断缺失/分歧和未经认证的晚期失败自动exact-fast回退；认证结果必须记录
+  transition schema，schema不兼容时禁止直接比较同编号SNR幅值。
 - 被淘汰候选也保存 wrapper、原始 TSV 与结论，避免重复试验。
 - 每轮完成后更新本日志；形成可复用结论时提交并推送特殊研究分支。
 
@@ -43,7 +45,8 @@
 | A23 | 有偏数据口径纠正 | 接受 | `f1172400` | 已推送 |
 | A24 | 文档体系重构 | 当前权威结构 | `ee7869cb` | 已推送 |
 | A25 | agent任务路由与研究索引 | 当前导航 | `ad00fb6c` | 已推送 |
-| A26 | 非严格定性判据与低回退目标 | 当前强制标准 | 待提交 | 待推送 |
+| A26 | 非严格定性判据与低回退目标 | 当前强制标准 | `cf268a12` | 已推送 |
+| A27 | N1a定性混淆矩阵 | 41/42同类，发现1个FP | 待提交 | 待推送 |
 
 当前研究分支：`special/approx-safe-research-20260903`。
 严格快照分支：`special/exact-fast-validated-20260903`。
@@ -504,6 +507,104 @@
   假阳性=0、假阴性=0、端到端至少快20%。
 - 下一步：N1a先扩展比较器，建立严格/裸近似/guard最终的二类混淆矩阵、最早失败
   阶段和回退原因账本；随后才添加只读内部诊断。
+- commit：`cf268a12`；GitHub：已推送，状态回填提交随后推送。
+
+## A27：N1a严格/裸近似定性混淆矩阵
+
+- 日期：2026-09-05。
+- 唯一变量：不改变CalcGW，只新增输出分类/聚合工具，按A26定义比较历史严格与当前
+  thermal-fast裸近似。
+- 样本：旧42点压力矩阵=NLO有效5、NLO无效4、A/B/C各10、高SNR Yukawa 3点；
+  另用central2四点翻转邻域和54.95%幅值反例验证分类语义。
+- 42点结果：TP=20、TN=21、FP=1、FN=0，定性一致41/42=97.62%。唯一FP是broad B
+  第8行：严格`bounce_0=failure`，裸近似positive。
+- 失败账本：严格负类22点主要为NLO失败8、no_coex_pair 11、bounce failure 2、
+  nucleation approximation not_met 1。裸近似把最后一个危险bounce点变成positive。
+- 独立语义验证：四点邻域精确得到3 FP + 1 FN；54.95%点为TP且触发次级幅值告警，
+  说明工具正确区分定性错误和幅值偏差。
+- 结论：旧guard 6/42接受不能代表裸近似正确率，存在严重过度回退；但97.62%仅属于
+  该压力样本，不能外推。下一步N1b寻找零漏掉FP/FN且可接受稳定TP/TN的只读诊断。
+- 产物：`compare_qualitative_outcomes.py`、`aggregate_qualitative_details.py`、
+  `n1a_42_*`、`n1a_central2_false_positive_neighborhood_4_*`、
+  `n1a_classified_amplitude_counterexample_1_*`。
+- 并发/资源：未运行CalcGW，只解析已有TSV。
+- commit：待提交；GitHub：待推送。
+
+## A28：N1b bounce路径收敛证书首轮
+
+- 日期：2026-09-05。
+- 思路：不能由最终SNR、`Tc-Tn`、alpha或beta/H推测bounce是否真实存在；改为记录
+  bounce求解器本身的路径形变收敛质量。诊断由环境变量
+  `BSMPT_EMIT_BOUNCE_CERTIFICATE=1`开启，默认完全关闭。
+- 修改范围：只修改`bsmpt_speed_lab/upstream`实验副本；原项目零修改。新增结构化
+  `BSMPT_BOUNCE_CERT`行和`summarize_bounce_certificate.py`，不改变任何判定或数值路径。
+- 样本：broad B第8行已知FP；broad A第3行是SNR同量级的严格TP对照。
+- 并发/资源：两点并发，峰值同时2个CalcGW；另先各跑一次详细严格/近似诊断。
+- 复现：严格FP点150.528 s且bounce failure；非严格103.839 s且误报positive。
+  新诊断构建后非严格FP点96.599 s；TP对照20.760 s，输出类别与旧记录一致。
+- 关键观察：FP点在决定核化区间的多个温度连续5--7轮路径形变仍停留约
+  `0.88--0.99`，反复达到内部21次停滞门槛；TP对照在关键温度大量进入求解器原生
+  `<0.05`门槛。单个温度偶然收敛不能认证，必须要求关键相邻温度连续稳定。
+- 交叉消融：旧gradient/analytic-only在broad B第8行与严格版同为failure，central2、
+  adaptive和thermal-fast均为positive；因此优先测试“central2快路径 + legacy-gradient
+  单/双温度shadow”。完整legacy运行约117.8 s，不能逐点使用。
+- 限制：当前只有1 FP + 1 TP结构化诊断，尚未证明阈值零漏放；central2四点邻域中
+  已知两个近似配置可能共同出错，双近似一致不能单独构成证书。
+- 下一步：N1c先覆盖四点翻转邻域和更多TP/TN，冻结“相邻温度连续收敛”候选；随后
+  实现只计算关键温度的legacy-gradient shadow并计入端到端成本。
+- commit：待提交；GitHub：待推送。
+
+## A29：N1c四点翻转邻域结构化证书
+
+- 日期：2026-09-05。
+- 样本：`central2_false_positive_neighborhood_4.tsv`四行，每行独立运行当前
+  thermal-fast并单独保存证书，避免相近温度混合。
+- 并发/资源：两轮、每轮并发2个CalcGW，无其它CalcGW。
+- 定性结果：相对严格为2 FP + 1 TN + 1 FN。第三行当前thermal-fast已恢复为TN，
+  因而不同于旧central2路径的3 FP + 1 FN；仍有三个不可接受的定性翻转。
+- 证书结果：四行分别有148/155/83/149次path deformation，其中达到21次停滞门槛
+  142/151/80/145次。四行均没有一个温度满足“该温度所有形变均收敛”。
+- 结论：内部路径收敛证书能将整个危险邻域识别为unknown并升级严格计算，但FP、TN、
+  FN的停滞率重叠，不能用它直接预测类别。它适合作为低成本C1风险门，不是最终C2。
+- 下一步：实现独立legacy-gradient关键温度shadow；只计算bounce存在性，不完整计算GW。
+  shadow分歧必须exact，shadow一致仍需在42点和新E2邻域验证。
+- 产物：`n1c_bounce_certificate_neighborhood_4_summary.tsv`。
+- commit：待提交；GitHub：待推送。
+
+## A30：C2单温度legacy-gradient shadow原型
+
+- 日期：2026-09-05。
+- 实现：实验`BounceSolution`复用L1相、最近路径和最接近`S3/T=140`的节点，以显式
+  四点梯度做最多2次路径积分；默认关闭，不重复GW后处理。
+- 首测：B8 FP shadow 1.313 s/failure，TP对照0.889 s/success，成功区分。
+- 四点邻域：两个FP均shadow failure（1.540/1.366 s）；TN为failure（1.391 s）；
+  FN也为failure（1.245 s），因此单温度shadow不能认证L1的bounce后失败。
+- 结论：对L1 positive，shadow分歧是有效exact触发器；对L1 fail不能反向使用，否则
+  会漏掉现有FN。NLO/coexistence等bounce前失败与bounce后失败必须分路处理。
+- 42点理论路由估算：19个早期失败可候选接受，20个TP可经shadow候选接受，已知FP
+  与2个bounce/后续失败进入exact，约3/42回退；这只是待逐点验证的上界估算。
+- 产物：`c2_legacy_shadow_pilot.tsv`；代码仅在实验副本。
+- 下一步：42点逐点shadow/失败阶段离线模拟，验证零FP/FN及实际回退率，再决定双温度。
+- commit：待提交；GitHub：待推送。
+
+## A31：region-v1可调用路由与阶段验收
+
+- 日期：2026-09-05。
+- 实现：`run_calcgw_approx_region_v1.sh`统一R0 exact-direct、thermal-fast L1、单温度
+  legacy-gradient shadow、早期失败接受和exact fallback；所有开关与代码仅在实验副本。
+- 路由：NLO/coexistence明确失败可接受；positive仅在shadow success时接受；bounce后
+  failure、shadow缺失/分歧均exact；已知不安全锚点在L1前direct exact。
+- 42点完整集成：TP=20、TN=22、FP=0、FN=0；positive接受17、早期失败接受19、
+  direct exact 4、L1后fallback 2。接受36/42=85.7%，exact 6/42=14.3%。
+- 性能：strict-fast合计2173.759 s；最终输出runtime合计1485.935 s；加回两个fallback
+  被覆盖的L1成本42.153 s，真实端到端1528.088 s，降低29.70%。
+- 独立局部E2：高SNR锚点`1e-4`邻域22点，含14轴向和8固定种子随机扰动；严格和
+  非严格均22 positive，22个shadow全success，FP=FN=0。strict 1652.007 s，重复
+  非严格+shadow 673.378 s，降低59.24%；shadow均值1.050 s，为严格均值1.40%。
+- 限制：只证明42点压力集和一个局部E2区域，不能外推全部参数空间；classified仍仅
+  用于反例发现。下一阶段应扩大多个独立安全域，而非放宽本规则。
+- 产物：`region_v1_*`、`region_v1_validation_summary.json`、
+  `e2_high_anchor_delta1e4_20_*`及统一runner/decision脚本。
 - commit：待提交；GitHub：待推送。
 
 ## 后续轮次模板
@@ -524,3 +625,138 @@
 - 产物文件：
 - commit：待提交 / `<hash>`；GitHub：待推送 / 已推送。
 ```
+### A32. region-v1 R0 路由去除已知必回退开销（2026-09-05）
+
+- 在 `approx_exact_direct_anchors.tsv` 增加两个 `rel_radius=0` 精确点：
+  broad-B row10（近似后晚期失败）和 NLO-valid row4（legacy shadow 假拒绝真阳性）。
+- 两点此前都会先耗费近似计算再回退严格；输入级直接严格不会改变输出类别、
+  不扩大近似认证区域，也不会改变 42 点集合的严格调用比例（仍为 6/42）。
+- 两点实际路由复验均打印 `region-v1: direct exact` 并正常完成。
+- 按同一批次已测账本，删除的无效近似开销为 `29.020+13.133=42.153 s`；
+  端到端时间由 1528.088 s 降为约 1485.935 s，相对严格 2173.759 s 的
+  加速由 29.70% 提升到约 31.64%。该数值是同批账本重算，待扩大样本后的
+  独立总墙钟复核。
+- 全部修改仍只位于 `bsmpt_speed_lab`，未修改项目原版。
+
+### A33. 三个新区域与 NLO 边界反例（2026-09-06）
+
+- 新增 E3 broad-A 邻域10点、E4 broad-C邻域10点、E5 NLO边界线段10点；
+  均有严格配对结果。classified数据仍只是THDMTools筛选后的有偏辅助数据，
+  本轮局部点不能外推全空间。
+- region-v1在E5出现稳定FP：严格NLO失败、近似NLO成功且shadow成功；严格重复3次
+  都失败，故不能把该点视为随机噪声，也不能认证该边界。
+- 新增默认关闭的 `BSMPT_NLO_ONLY` 严格前缀和独立region-v2 wrapper。E5修正为
+  TP=4、TN=6、FP=FN=0；E3/E4各10 TP且FP=FN=0。
+- v2回归原42点仍为TP=20、TN=22、FP=FN=0；累计72点为TP=44、TN=28、
+  FP=FN=0。42点本轮输出runtime为1590.065 s，比历史严格2173.759 s低26.85%；
+  受broad-B严格回退本轮波动影响，不用31.64%的账本估算替代该实测。
+
+### A34. region-v3 三温度正点证书（2026-09-06）
+
+- broad-B两个单温shadow假拒绝TP呈现相同模式：rank0失败、rank1/2成功；已知B8 FP
+  与central2危险4点的原始三温诊断均为三温全失败。
+- 独立v3只接受“三温全成功”或“rank0失败且rank1/2均成功”；shadow缺失、其他模式、
+  晚期失败仍严格回退。危险邻域精确锚点继续保留，未放宽。
+- 原42点：TP=20、TN=22、FP=FN=0；完整严格路由4/42=9.52%，低于20%验收线。
+  最终输出runtime合计1182.278 s，相对严格2173.759 s降低45.61%；补回正点被覆盖的
+  NLO-only前缀（约0.25 s/点）后仍约降低45%。
+- 新增三个区域也分别FP=FN=0，累计72点TP=44、TN=28、FP=FN=0。
+- E4幅值审计纠正：v2/v3除runtime外逐字段一致；旧v2摘要与后来被迟到严格批次
+  覆盖的reference失配。当前严格与候选transition schema不同，不能比较同编号SNR；
+  因此旧“9/10超10%”不是v3引入的退化，且该区域幅值准确性仍未证明。
+- 产物：`run_calcgw_approx_region_v3_multitemp.sh`、
+  `region_v3_multitemp_decision.py`、`region_v3_validation_summary.json`及所有
+  `region_v3_*`/`e[345]_*_region_v3*`配对结果。commit/GitHub：待提交。
+
+### A35. 产物身份保护与v3认证域收紧（2026-09-06）
+
+- `parallel_calcgw.py`对每个输出增加排他锁，并通过同目录临时文件+`os.replace`
+  原子落盘，避免并发或迟到批次静默覆盖同名reference。
+- 比较器新增逐行输入参数一致性门禁、strict/candidate SHA-256；transition id/history
+  不兼容时不再计算次要SNR幅值误差。
+- v3的“两邻温成功”不再全空间启用，只允许
+  `approx_two_neighbor_safe_anchors_v3.tsv`列出的已认证点。域外出现同样模式仍严格回退。
+- B3/B4/B8三点重新smoke：B3/B4分别以两邻温证书接受，B8继续由危险锚点直接严格；
+  NLO-only实测前缀分别0.408、0.323、0.208 s。
+
+### A36. 对抗插值8点与无效批次纠正（2026-09-06）
+
+- 从既有正点与bounce/NLO/coexistence失败端点构造8个域外插值/外推点；输入只用于
+  BSMPT，classified来源仅辅助发现端点，不作为运行特征。
+- 首次错误地把8行整批交给单点wrapper，触发`unsupported_row_count`并整批严格回退；
+  该结果明确标记为无效，不能计入v3验证。
+- 使用`parallel_calcgw.py --jobs 1`逐点重跑后，严格8点意外全部为positive，说明
+  “正/负端点之间插值”不保证中点仍处于失败边界。
+- 正确配对结果：8 TP、FP=FN=0；全部由三温全成功证书接受。严格runtime合计
+  627.689 s，v3输出223.440 s，加回NLO-only前缀2.021 s后约225.461 s，降低64.07%。
+- 累计可追溯严格配对为80点：TP=52、TN=28、FP=FN=0。该8点扩展了域外正点覆盖，
+  但没有增加预期的负边界样本，下一轮仍需定向采集bounce失败邻域。
+
+### A37. E6 broad-B bounce混合边界与精确域扩张（2026-09-06）
+
+- 围绕已知B8 bounce失败点做`5e-5`尺度的8个轴向/随机扰动，样本超出旧
+  `1.1e-5`精确保护半径；严格计算较慢但完整落盘。
+- 严格与v3均为3 TP、5 TN，FP=FN=0；三温证书没有误接受，8点全部回退严格。
+- 严格输出runtime 1856.655 s，v3最终输出1602.050 s；由于回退覆盖了首遍近似
+  runtime，后者不能解释为加速，真实端到端还应加8次近似成本。因此该区域结论是
+  “不可安全近似且应提前精确分流”。
+- 将B8精确保护半径扩大到`2.5e-4`，覆盖本轮8点的最大分量相对偏移
+  `2.3644e-4`；输入预检复核8/8命中，后续可跳过无效近似首遍。
+- 累计88个严格配对点：TP=55、TN=33、FP=FN=0。该统计仍是样本内证据，
+  不是全部参数空间证明。
+
+### A38. region-v4 显式认证域路由（2026-09-07）
+
+- 风险纠正：v3的“三温全成功”和“近似无共存相”虽在样本内无FP/FN，但不足以
+  全空间开放。v4要求所有近似终止结论要么来自严格NLO-only前缀，要么命中显式
+  认证表；域外即使三温全成功也严格回退。
+- `approx_all_three_safe_anchors_v4.tsv`包含核心已验证点以及E2/E3/E4局部认证盒：
+  E2半径`4e-4`覆盖22/22、E3半径`4e-4`覆盖10/10、E4半径`1.1e-4`覆盖10/10。
+- `approx_coex_safe_anchors_v4.tsv`当前只收录11个严格配对过的无共存失败点，
+  半径均为0；尚未通过邻域扩展前不外推。
+- 离线资格审计：原42点的17个三温全成功、11个无共存失败全部命中认证表；
+  两邻温B3/B4仍只命中其专用认证点，完整严格路由仍为4/42。
+- 四路径实际smoke通过：A1认证三温正点被接受；A4认证无共存失败被接受；B3认证
+  两邻温点被接受；域外对抗正点虽三温全成功仍打印
+  `fallback_all_three_outside_certified_region`并严格回退。
+- v4是当前更符合“何时安全使用近似”定义的候选；其代价是域外覆盖率降低，后续
+  提速必须通过新增严格配对邻域扩大认证表，而不是放宽全局启发式。
+
+### A39. E7 coexistence失败局部认证域（2026-09-07）
+
+- 围绕broad-A row4无共存失败点生成8个`1e-4`尺度轴向/随机扰动。
+- 严格与v3均为8 TN，FP=FN=0；全部严格NLO前缀成功，随后严格和近似均判定
+  `no_coex_pair`。严格runtime合计42.348 s，v3输出30.561 s；补回NLO前缀
+  1.485 s后约32.046 s，降低24.33%。
+- 最大逐分量相对偏移为`3.4862e-4`，将该coexistence锚点经验认证半径扩为
+  `3.6e-4`。这只是已采样方向支持的经验局部盒，不是对盒内连续空间的数学证明；
+  后续需增加角点及朝正例方向的对抗扰动。
+- 累计严格配对96点：TP=55、TN=41、FP=FN=0。
+
+### A40. E8-E13 A4 coexistence盒边界与首次分叉（2026-09-07）
+
+- 新增多参数联合角点和朝邻近严格正点方向的挑战；每个半径12点。依次测试
+  `3.5e-4`、`1e-3`、`1e-2`、`5e-2`、`1e-1`，并在`4e-2`做最终认证边界复验。
+- 前四个半径及`4e-2`均为严格/候选12 TN、FP=FN=0；在`1e-1`首次出现
+  1 TP + 11 TN，候选仍完全一致，FP=FN=0。
+- 生产经验半径采用`4.01e-2`：小于仍全失败的`5e-2`外圈，并为浮点边界匹配保留
+  `1e-4`绝对半径余量。E13离线预检12/12命中，角点实际smoke打印
+  `accepted_early_failure:coexistence:no_coex_pair`。
+- 注意：有限的8个Walsh式联合角点不是全部`2^7=128`角点，故该半径仍是经验认证；
+  后续可补全最危险符号组合，而不应声称连续盒内已形式化证明。
+- 累计去重严格配对168点：TP=56、TN=112、FP=FN=0。新增72点高度集中在同一
+  A4局部结构，因此提升的是该域证据密度，不等价于扩大了全局参数覆盖。
+
+### A41. E14-E17 四个分离区域与v4提交候选（2026-09-07）
+
+- 为降低样本集中偏差，新增四个相距较远的局部区域，每区6点：broad-B row1和
+  broad-C row1的coexistence失败邻域、broad-A row1和broad-C row5的正点邻域。
+- strict/v3探索分别得到6 TN、6 TN、6 TP、6 TP，四区各自FP=FN=0；随后按最大
+  逐分量相对偏移加浮点余量写入v4认证表，离线命中均6/6。
+- 正式v4实际回归仍分别为6 TN、6 TN、6 TP、6 TP，FP=FN=0。补回严格NLO前缀后
+  的降时依次为14.00%、19.18%、60.22%、61.42%。
+- 新经验半径：E14 `5.6e-4`、E15 `6.9e-4`、E16 `5e-4`、E17 `1.5e-4`。
+- 累计去重严格配对192点：TP=68、TN=124、FP=FN=0。样本仍非独立同分布，尤其
+  A4局部占比较高，不能把192点零错误外推成全空间保证。
+- 方案报告：`REGION_V4_RELEASE_REPORT_ZH.md`。commit：本轮region-v4提交；GitHub：
+  推送后以远端分支记录为准。

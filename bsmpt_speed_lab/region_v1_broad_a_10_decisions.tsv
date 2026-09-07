@@ -1,0 +1,11 @@
+input_row	diagnostic
+1	region-v1: accepted_positive_shadow
+2	region-v1: accepted_positive_shadow
+3	region-v1: accepted_positive_shadow
+4	region-v1: accepted_early_failure:coexistence:no_coex_pair
+5	region-v1: accepted_positive_shadow
+6	region-v1: accepted_positive_shadow
+7	region-v1: accepted_early_failure:nlo:no_nlo_stability
+8	region-v1: accepted_early_failure:coexistence:no_coex_pair
+9	region-v1: direct exact: known_exact_region:broad_a_known_bounce_flip
+10	region-v1: accepted_early_failure:coexistence:no_coex_pair

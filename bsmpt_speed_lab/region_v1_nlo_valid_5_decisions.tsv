@@ -1,0 +1,6 @@
+input_row	diagnostic
+1	region-v1: accepted_positive_shadow
+2	region-v1: accepted_positive_shadow
+3	region-v1: accepted_positive_shadow
+4	region-v1: exact fallback: fallback_shadow_disagreement
+5	region-v1: accepted_positive_shadow

@@ -1,0 +1,38 @@
+{
+  "acceptance": {
+    "accepted_early_failure": 19,
+    "accepted_positive_shadow": 17,
+    "accepted_total": 36,
+    "accepted_fraction": 0.8571428571428571,
+    "direct_exact": 4,
+    "post_l1_exact_fallback": 2,
+    "exact_total": 6,
+    "exact_fraction": 0.14285714285714285
+  },
+  "qualitative": {
+    "true_positive": 20,
+    "true_negative": 22,
+    "false_positive": 0,
+    "false_negative": 0
+  },
+  "performance_seconds": {
+    "strict_fast_total": 2173.759,
+    "region_v1_final_output_runtime_sum": 1485.935,
+    "overwritten_l1_cost_before_fallback": 42.153,
+    "region_v1_endpoint_total": 1528.088,
+    "endpoint_reduction_fraction": 0.297037
+  },
+  "independent_local_e2": {
+    "rows": 22,
+    "true_positive": 22,
+    "false_positive": 0,
+    "false_negative": 0,
+    "shadow_success": 22,
+    "strict_fast_total_seconds": 1652.007,
+    "approx_shadow_repeat_total_seconds": 673.378,
+    "reduction_fraction": 0.592384,
+    "shadow_mean_seconds": 1.049566,
+    "shadow_over_strict_mean_fraction": 0.013977
+  },
+  "scope_warning": "42-point stress matrix plus one local E2 region; not a full-space guarantee"
+}

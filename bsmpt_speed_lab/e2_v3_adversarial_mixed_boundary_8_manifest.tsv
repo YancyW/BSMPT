@@ -1,0 +1,9 @@
+row	label	construction	auxiliary_seed_or_boundary	anchor_distance_note
+1	bounce_mix_15_27_f35	linear interpolation t=0.35 between E1 row15 positive and row27 bounce-failure	classified_safe_candidates_240_input rows 15,27	new point; not an anchor
+2	bounce_mix_15_27_f65	linear interpolation t=0.65 between E1 row15 positive and row27 bounce-failure	classified_safe_candidates_240_input rows 15,27	new point; not an anchor
+3	bounce_mix_21_31_f40	linear interpolation t=0.40 between E1 row21 positive and row31 bounce-failure	classified_safe_candidates_240_input rows 21,31	new point; not an anchor
+4	bounce_mix_23_55_f55	linear interpolation t=0.55 between E1 row23 positive and row55 bounce-failure	classified_safe_candidates_240_input rows 23,55	new point; not an anchor
+5	nlo_edge_lo	E5 boundary endpoint offset L1=-0.018,m12sq=-30,tbeta=+0.08	e5_nlo_boundary_segment_10 row1	outside prior E5 points and anchors
+6	nlo_edge_hi	E5 boundary endpoint offset L1=+0.018,m12sq=+30,tbeta=-0.08	e5_nlo_boundary_segment_10 row10	outside prior E5 points and anchors
+7	coex_mix_15_173_f50	linear interpolation t=0.50 between E1 row15 positive and row173 no-coexistence	classified_safe_candidates_240_input rows 15,173	new point; not an anchor
+8	coex_mix_21_179_f50	linear interpolation t=0.50 between E1 row21 positive and row179 no-coexistence	classified_safe_candidates_240_input rows 21,179	new point; not an anchor

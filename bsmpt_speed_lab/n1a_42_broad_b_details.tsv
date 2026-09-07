@@ -1,0 +1,11 @@
+row	strict_class	raw_approx_class	raw_error_kind	strict_failure_stage	raw_approx_failure_stage	raw_qualitative_match	secondary_max_snr_relative_error	secondary_max_snr_field	secondary_snr_fields_compared
+1	fail_or_nonpositive	fail_or_nonpositive	none	coexistence:no_coex_pair	coexistence:no_coex_pair	true	0.0		0
+2	fail_or_nonpositive	fail_or_nonpositive	none	nlo:no_nlo_stability	nlo:no_nlo_stability	true	0.0		0
+3	positive	positive	none	positive	positive	true	0.0022165691619077756	SNR(LISA-3yrs)_turb_0	3
+4	positive	positive	none	positive	positive	true	0.061451825819839656	SNR(LISA-3yrs)_sw_0	3
+5	fail_or_nonpositive	fail_or_nonpositive	none	coexistence:no_coex_pair	coexistence:no_coex_pair	true	0.0		0
+6	fail_or_nonpositive	fail_or_nonpositive	none	coexistence:no_coex_pair	coexistence:no_coex_pair	true	0.0		0
+7	fail_or_nonpositive	fail_or_nonpositive	none	nlo:no_nlo_stability	nlo:no_nlo_stability	true	0.0		0
+8	fail_or_nonpositive	positive	false_positive	bounce_0:failure	positive	false	0.0		0
+9	fail_or_nonpositive	fail_or_nonpositive	none	coexistence:no_coex_pair	coexistence:no_coex_pair	true	0.0		0
+10	fail_or_nonpositive	fail_or_nonpositive	none	bounce_0:failure	bounce_0:failure	true	0.0		0

@@ -94,6 +94,16 @@ bool UseActiveCombinedHessianEnv() noexcept
   return enabled;
 }
 
+bool EmitBounceCertificate() noexcept
+{
+  static const bool enabled = []
+  {
+    const char *value = std::getenv("BSMPT_EMIT_BOUNCE_CERTIFICATE");
+    return value != nullptr && value[0] == '1';
+  }();
+  return enabled;
+}
+
 struct PathGeometryJet
 {
   std::vector<double> phi;
@@ -1667,6 +1677,20 @@ bool BounceActionInt::PathDeformationCheck(std::vector<double> &l,
 
   double reductor = ReductorCalculator(MaximumGradient);
 
+  if (EmitBounceCertificate())
+  {
+    std::cerr << "BSMPT_BOUNCE_CERT\tpath_check"
+              << "\tT=" << T
+              << "\tmax_relative_error=" << MaximumRelativeError
+              << "\tmax_force=" << MaximumForce
+              << "\tmax_gradient=" << MaximumGradient
+              << "\tmax_perpendicular_gradient=" << PerpendicularGradient
+              << "\tmax_dldrho=" << Maximum_dldrho
+              << "\tspline_length=" << Spline.L
+              << "\tconverged=" << (MaximumRelativeError < 0.05 ? 1 : 0)
+              << '\n';
+  }
+
   ss << "\nMaximmum dl/drho\t" << Maximum_dldrho << "\n";
   ss << "Maximmum gradient\t" << MaximumGradient << "\n";
   ss << "Maximmum perpendicular gradient\t" << PerpendicularGradient << "\n";
@@ -2048,6 +2072,17 @@ void BounceActionInt::PathDeformation(std::vector<double> &l,
         BSMPT::LoggingLevel::BounceDetailed,
         "Maximum iterations reached without error increasing. Integrate "
         "again!\n");
+  }
+
+  if (EmitBounceCertificate())
+  {
+    std::cerr << "BSMPT_BOUNCE_CERT\tpath_deformation"
+              << "\tT=" << T
+              << "\tbest_relative_error=" << MaximumRelativeError
+              << "\titerations=" << NoBestPathCounter
+              << "\tconverged_without_1d="
+              << (PathDeformationConvergedWithout1D ? 1 : 0)
+              << '\n';
   }
 
   for (int it_path = 0; it_path <= NumberPathKnots; it_path++)

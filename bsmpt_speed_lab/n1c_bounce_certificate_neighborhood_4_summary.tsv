@@ -1,0 +1,5 @@
+row	strict_bounce	strict_gw	approx_bounce	approx_gw	approx_runtime_s	temperatures	temperatures_any_converged	stalled_deformations	deformations	qualitative_result
+1	failure	not_set	success	success	98.423	17	6	142	148	false_positive
+2	failure	not_set	success	success	103.507	18	4	151	155	false_positive
+3	failure	not_set	failure	not_set	59.962	12	3	80	83	true_negative
+4	success	success	success	failure	98.256	13	3	145	149	false_negative

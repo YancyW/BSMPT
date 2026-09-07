@@ -1,0 +1,67 @@
+{
+  "date": "2026-09-06",
+  "scope_warning": "Sample-specific only; classified data remain THDMTools-filtered biased auxiliary data and are not a full-space proof.",
+  "primary_contract": "strict finite SNR > 0 iff candidate finite SNR > 0",
+  "base_42": {
+    "rows": 42,
+    "true_positive": 20,
+    "true_negative": 22,
+    "false_positive": 0,
+    "false_negative": 0,
+    "full_exact_routes": 4,
+    "full_exact_fraction": 0.0952380952,
+    "strict_runtime_sum_seconds": 2173.759,
+    "v3_final_output_runtime_sum_seconds": 1182.278,
+    "output_runtime_reduction_fraction": 0.4561,
+    "note": "Positive-point NLO-only prefix runtimes are overwritten in final TSV; future diagnostics now record them. At about 0.25 s each, corrected reduction remains about 45%."
+  },
+  "expanded_regions": {
+    "e3_broad_a": {"rows": 10, "tp": 10, "tn": 0, "fp": 0, "fn": 0},
+    "e4_broad_c": {"rows": 10, "tp": 10, "tn": 0, "fp": 0, "fn": 0},
+    "e5_nlo_boundary": {"rows": 10, "tp": 4, "tn": 6, "fp": 0, "fn": 0}
+  },
+  "all_72": {
+    "rows": 72,
+    "true_positive": 44,
+    "true_negative": 28,
+    "false_positive": 0,
+    "false_negative": 0
+  },
+  "adversarial_interpolation_8": {
+    "rows": 8,
+    "true_positive": 8,
+    "true_negative": 0,
+    "false_positive": 0,
+    "false_negative": 0,
+    "strict_runtime_sum_seconds": 627.689,
+    "v3_output_runtime_sum_seconds": 223.440,
+    "nlo_prefix_seconds": 2.021,
+    "corrected_runtime_reduction_fraction": 0.6407,
+    "warning": "All interpolated points became strict positives, so this set expands positive-domain coverage but did not create the intended new negative boundary cases."
+  },
+  "all_80": {
+    "rows": 80,
+    "true_positive": 52,
+    "true_negative": 28,
+    "false_positive": 0,
+    "false_negative": 0
+  },
+  "e6_mixed_bounce_neighborhood": {
+    "rows": 8,
+    "true_positive": 3,
+    "true_negative": 5,
+    "false_positive": 0,
+    "false_negative": 0,
+    "strict_runtime_sum_seconds": 1856.655,
+    "v3_final_output_runtime_sum_seconds": 1602.050,
+    "routing_conclusion": "All eight required exact fallback; final-output timing excludes the wasted approximate first pass and must not be claimed as speedup. The exact-direct protection radius was enlarged to 2.5e-4 to cover this validated mixed neighborhood."
+  },
+  "all_88": {
+    "rows": 88,
+    "true_positive": 55,
+    "true_negative": 33,
+    "false_positive": 0,
+    "false_negative": 0
+  },
+  "secondary_observation": "The current E4 strict reference and v2/v3 outputs have incompatible transition schemas, so their same-index SNR amplitudes must not be compared. The earlier 9/10 figure was a stale-reference artifact; amplitude accuracy remains unproven there."
+}

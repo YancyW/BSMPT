@@ -1,0 +1,11 @@
+row	strict_class	raw_approx_class	raw_error_kind	strict_failure_stage	raw_approx_failure_stage	raw_qualitative_match	secondary_max_snr_relative_error	secondary_max_snr_field	secondary_snr_fields_compared
+1	positive	positive	none	positive	positive	true	0.0021315002478615465	SNR(LISA-3yrs)_sw_0	3
+2	positive	positive	none	positive	positive	true	0.002321200827469581	SNR(LISA-3yrs)_sw_0	3
+3	positive	positive	none	positive	positive	true	0.0024799030254195006	SNR(LISA-3yrs)_sw_0	3
+4	fail_or_nonpositive	fail_or_nonpositive	none	nlo:no_nlo_stability	nlo:no_nlo_stability	true	0.0		0
+5	fail_or_nonpositive	fail_or_nonpositive	none	nlo:no_nlo_stability	nlo:no_nlo_stability	true	0.0		0
+6	positive	positive	none	positive	positive	true	0.005000741808749196	SNR(LISA-3yrs)_sw_0	3
+7	fail_or_nonpositive	fail_or_nonpositive	none	nlo:no_nlo_stability	nlo:no_nlo_stability	true	0.0		0
+8	fail_or_nonpositive	fail_or_nonpositive	none	nlo:no_nlo_stability	nlo:no_nlo_stability	true	0.0		0
+9	fail_or_nonpositive	fail_or_nonpositive	none	nlo:no_nlo_stability	nlo:no_nlo_stability	true	0.0		0
+10	fail_or_nonpositive	fail_or_nonpositive	none	nlo:no_nlo_stability	nlo:no_nlo_stability	true	0.0		0

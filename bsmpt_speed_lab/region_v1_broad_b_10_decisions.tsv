@@ -1,0 +1,11 @@
+input_row	diagnostic
+1	region-v1: accepted_early_failure:coexistence:no_coex_pair
+2	region-v1: accepted_early_failure:nlo:no_nlo_stability
+3	region-v1: direct exact: known_exact_region:broad_b_legacy_shadow_rejects_true_positive
+4	region-v1: direct exact: known_exact_region:broad_b_legacy_shadow_rejects_true_positive
+5	region-v1: accepted_early_failure:coexistence:no_coex_pair
+6	region-v1: accepted_early_failure:coexistence:no_coex_pair
+7	region-v1: accepted_early_failure:nlo:no_nlo_stability
+8	region-v1: direct exact: known_exact_region:broad_b_validated_false_positive_neighborhood
+9	region-v1: accepted_early_failure:coexistence:no_coex_pair
+10	region-v1: exact fallback: fallback_late_failure:bounce_0:failure

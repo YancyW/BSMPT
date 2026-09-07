@@ -9,10 +9,11 @@
 |---|---|---|
 | 严格基准是什么 | exact-fast冻结，73+严格A/B行 | `SNAPSHOT.md`、日志S0、`run_calcgw_exact_fast.sh` |
 | 当前近似首遍 | central2 + adaptive64 + raster500 + thermal-fast | 日志A2/A3/A8、`run_calcgw_approx_c2_adaptive_r500_thermal_fast.sh` |
-| 安全wrapper | 输入风险锚点 + 输出guard + exact fallback | 日志A6、`run_calcgw_approx_safe.sh` |
-| 42行性能 | exact 2173.759s，首遍约908.155s，接受6/回退36；回退率不可接受 | `APPROX_SAFE_REPORT_ZH.md`、日志A8 |
+| 当前认证域wrapper | 严格NLO前缀 + 显式正点/coexistence认证域 + exact fallback | 日志A38、`REGION_V4_CERTIFIED_ROUTER_ZH.md`、`run_calcgw_approx_region_v4_certified.sh` |
+| 42行v3/v4已覆盖路由 | TP=20、TN=22、FP=FN=0；完整严格4/42；已测路由约降低45% | `region_v3_validation_summary.json`、日志A34/A38 |
 | 新的主要缺口 | 状态正常仍可能SNR偏差54.95% | 日志A22、`classified_safe_pilot_counterexample_*` |
-| 当前下一步 | N1a定性混淆矩阵与失败阶段账本 | 非严格专项第2、11节；`AGENTS.md`第4节 |
+| N1a定性账本 | 42点TP=20、TN=21、FP=1、FN=0 | `n1a_42_combined_*`、日志A27 |
+| 当前下一步 | 用严格邻域配对扩张v4认证盒，优先coexistence和域外正点 | `REGION_V4_CERTIFIED_ROUTER_ZH.md`、日志A38 |
 
 ## 2. 已接受并仍在当前路径中的研究
 
@@ -90,6 +91,7 @@ N1/N2必须先使上述定性假阳性/假阴性为零；54.95%幅值反例作�
 | 高SNR与Yukawa | `approx_high_snr_*`、`stratified_high_snr_*` |
 | multistep模式 | `multistepmode*` |
 | central2假阳性邻域 | `central2_false_positive_neighborhood_4*` |
+| N1c结构化bounce证书 | `n1c_bounce_certificate_neighborhood_4_summary.tsv` |
 | classified E1先导 | `classified_safe_pilot_24_lf_*` |
 | 54.95%反例复核 | `classified_safe_pilot_counterexample_*` |
 | 新E1辅助池 | `classified_biased_e1_candidates_240_*` |
@@ -106,6 +108,9 @@ N1/N2必须先使上述定性假阳性/假阴性为零；54.95%幅值反例作�
 | 裸近似消融 | `run_calcgw_approx_*`，只能用于配对研究 |
 | 同schema逐字段比较 | `compare_outputs.py`、`compare_approx_outputs.py` |
 | classified历史配对 | `evaluate_classified_approx_pairs.py` |
+| 定性二类比较 | `compare_qualitative_outcomes.py` |
+| 合并多组定性账本 | `aggregate_qualitative_details.py` |
+| bounce结构化证书汇总 | `summarize_bounce_certificate.py`；运行时设置`BSMPT_EMIT_BOUNCE_CERTIFICATE=1` |
 | 受控批量执行 | `parallel_calcgw.py`，并发上限2 |
 | 单行/少量TSV抽取 | `extract_tsv_rows.py` |
 | 判断输出是否应回退 | `approx_needs_fallback.py` |
@@ -113,10 +118,11 @@ N1/N2必须先使上述定性假阳性/假阴性为零；54.95%幅值反例作�
 
 ## 8. 研究问题到下一动作
 
-- “为什么回退率高？”：先按guard原因和严格定性类别重建42行账本，不修改算法。
+- “为什么回退率高？”：N1a已证明42点裸近似41点定性正确；查询`n1a_42_combined_*`。
 - “如何减少回退？”：可靠positive和可靠fail都应能接受；执行N1/N2，不能只放宽地板。
 - “如何判断安全点？”：首先保证正/失败结论一致，再看R0覆盖和C1/C2；幅值为次级。
 - “还能否进一步降首遍时间？”：先完成证书；随后按N3顺序逐个做continuation、
   safeguarded shooting、adaptive、SpectrumJet。
 - “结果是否可推广？”：只有E3对预先定义的目标分布可推广；E1/E2均不可。
-- “下一轮具体做什么？”：读取`AGENTS.md`第4节和非严格专项第11节。
+- “下一轮具体做什么？”：N1c扩展结构化bounce证书到四点翻转邻域及TP/TN对照，
+  并实现关键温度legacy-gradient shadow；读取日志A28和专项第12节。

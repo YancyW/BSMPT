@@ -1,0 +1,10 @@
+input_row	diagnostic
+1	BSMPT_BOUNCE_SHADOW	rank=0	count=3	T=201.642	action=-1	success=0	max_path_integrations=2	seconds=1.48055
+1	BSMPT_BOUNCE_SHADOW	rank=1	count=3	T=201.648	action=36864.3	success=1	max_path_integrations=2	seconds=1.07295
+1	BSMPT_BOUNCE_SHADOW	rank=2	count=3	T=201.632	action=16569.1	success=1	max_path_integrations=2	seconds=1.20253
+2	BSMPT_BOUNCE_SHADOW	rank=0	count=3	T=178.466	action=-1	success=0	max_path_integrations=2	seconds=1.39652
+2	BSMPT_BOUNCE_SHADOW	rank=1	count=3	T=178.466	action=1713.01	success=1	max_path_integrations=2	seconds=1.05478
+2	BSMPT_BOUNCE_SHADOW	rank=2	count=3	T=178.465	action=1701.19	success=1	max_path_integrations=2	seconds=1.04628
+3	BSMPT_BOUNCE_SHADOW	rank=0	count=3	T=172.955	action=-1	success=0	max_path_integrations=2	seconds=1.33323
+3	BSMPT_BOUNCE_SHADOW	rank=1	count=3	T=172.955	action=-1	success=0	max_path_integrations=2	seconds=1.23977
+3	BSMPT_BOUNCE_SHADOW	rank=2	count=3	T=172.957	action=-1	success=0	max_path_integrations=2	seconds=1.21488

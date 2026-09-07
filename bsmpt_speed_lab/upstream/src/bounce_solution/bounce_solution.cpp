@@ -68,6 +68,52 @@ BounceSolution::BounceSolution(
   {
     CalculateOptimalDiscreteSymmetry();
     BounceSolution::GWInitialScan();
+    if (std::getenv("BSMPT_RUN_LEGACY_GRADIENT_SHADOW") != nullptr &&
+        !SolutionList.empty())
+    {
+      std::vector<const BounceActionInt *> selected;
+      selected.reserve(SolutionList.size());
+      for (const auto &solution : SolutionList) selected.push_back(&solution);
+      std::sort(selected.begin(),
+                selected.end(),
+                [](const BounceActionInt *a, const BounceActionInt *b)
+                { return std::abs(a->Action / a->T - 140.) <
+                         std::abs(b->Action / b->T - 140.); });
+      int shadow_temperatures = 1;
+      if (const char *value =
+              std::getenv("BSMPT_LEGACY_SHADOW_TEMPERATURES"))
+      {
+        const int requested = std::atoi(value);
+        if (requested >= 1)
+          shadow_temperatures =
+              std::min(requested, static_cast<int>(selected.size()));
+      }
+      int shadow_max_path = 2;
+      if (const char *value =
+              std::getenv("BSMPT_LEGACY_SHADOW_MAX_PATH_INTEGRATIONS"))
+      {
+        const int requested = std::atoi(value);
+        if (requested >= 1 && requested <= MaxPathIntegrations)
+          shadow_max_path = requested;
+      }
+      for (int rank = 0; rank < shadow_temperatures; ++rank)
+      {
+        const auto shadow_start = std::chrono::steady_clock::now();
+        const double shadow_action = CalculateLegacyGradientShadowAt(
+            selected.at(rank)->T, shadow_max_path);
+        std::cerr << "BSMPT_BOUNCE_SHADOW\trank=" << rank
+                  << "\tcount=" << shadow_temperatures
+                  << "\tT=" << selected.at(rank)->T
+                  << "\taction=" << shadow_action
+                  << "\tsuccess=" << (shadow_action > 0 ? 1 : 0)
+                  << "\tmax_path_integrations=" << shadow_max_path
+                  << "\tseconds="
+                  << std::chrono::duration<double>(
+                         std::chrono::steady_clock::now() - shadow_start)
+                         .count()
+                  << '\n';
+      }
+    }
   }
 }
 
@@ -413,6 +459,68 @@ void BounceSolution::CalculateActionAt(double T, bool smart)
       SolutionList.push_back(bc);
     }
   }
+}
+
+double BounceSolution::CalculateLegacyGradientShadowAt(
+    double T,
+    int max_path_integrations)
+{
+  if (T < Tm || T > Tc) return -1;
+  std::vector<double> true_vacuum = TransformIntoOptimalDiscreteSymmetry(
+      phase_pair.true_phase.Get(T).point);
+  std::vector<double> false_vacuum = phase_pair.false_phase.Get(T).point;
+  if (phase_pair.true_phase.Get(T).potential >=
+      phase_pair.false_phase.Get(T).potential)
+    return -1;
+
+  std::vector<std::vector<double>> path = {true_vacuum, false_vacuum};
+  if (!SolutionList.empty())
+  {
+    const auto nearest = std::min_element(
+        SolutionList.begin(),
+        SolutionList.end(),
+        [T](const BounceActionInt &a, const BounceActionInt &b)
+        { return std::abs(T - a.T) < std::abs(T - b.T); });
+    path = MinTracer->WarpPath(nearest->Path,
+                               nearest->TrueVacuum,
+                               nearest->FalseVacuum,
+                               true_vacuum,
+                               false_vacuum);
+  }
+
+  std::function<double(std::vector<double>)> potential =
+      [&](std::vector<double> vev)
+  { return modelPointer->VEff(modelPointer->MinimizeOrderVEV(vev), T); };
+  std::function<std::vector<double>(std::vector<double>)> legacy_gradient =
+      [&](std::vector<double> phi)
+  {
+    constexpr double eps = 0.01;
+    std::vector<double> result(phi.size());
+    auto shifted = phi;
+    for (std::size_t i = 0; i < phi.size(); ++i)
+    {
+      shifted[i] = phi[i] + 2 * eps;
+      const double fp2 = potential(shifted);
+      shifted[i] = phi[i] + eps;
+      const double fp1 = potential(shifted);
+      shifted[i] = phi[i] - eps;
+      const double fm1 = potential(shifted);
+      shifted[i] = phi[i] - 2 * eps;
+      const double fm2 = potential(shifted);
+      shifted[i] = phi[i];
+      result[i] = (-fp2 + 8 * fp1 - 8 * fm1 + fm2) / (12 * eps);
+    }
+    return result;
+  };
+  BounceActionInt shadow(path,
+                         true_vacuum,
+                         false_vacuum,
+                         potential,
+                         legacy_gradient,
+                         T,
+                         max_path_integrations);
+  shadow.CalculateAction();
+  return shadow.Action > 0 ? shadow.Action : -1;
 }
 
 void BounceSolution::GWSecondaryScan()

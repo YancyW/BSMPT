@@ -1,0 +1,169 @@
+group	row	strict_class	raw_approx_class	raw_error_kind	strict_failure_stage	raw_approx_failure_stage	raw_qualitative_match	secondary_max_snr_relative_error	secondary_max_snr_field	secondary_snr_fields_compared
+region_v3_multitemp_a_eval	1	positive	positive	none	positive	positive	true	0.00021981994712616526	SNR(LISA-3yrs)_sw_0	3
+region_v3_multitemp_a_eval	2	positive	positive	none	positive	positive	true	0.00012689243613974862	SNR(LISA-3yrs)_turb_0	3
+region_v3_multitemp_a_eval	3	positive	positive	none	positive	positive	true	0.01291586084320463	SNR(LISA-3yrs)_sw_0	3
+region_v3_multitemp_a_eval	4	fail_or_nonpositive	fail_or_nonpositive	none	coexistence:no_coex_pair	coexistence:no_coex_pair	true	0.0		0
+region_v3_multitemp_a_eval	5	positive	positive	none	positive	positive	true	0.00025997816820372255	SNR(LISA-3yrs)_sw_0	3
+region_v3_multitemp_a_eval	6	positive	positive	none	positive	positive	true	0.009508926105908986	SNR(LISA-3yrs)_sw_0	3
+region_v3_multitemp_a_eval	7	fail_or_nonpositive	fail_or_nonpositive	none	nlo:no_nlo_stability	nlo:no_nlo_stability	true	0.0		0
+region_v3_multitemp_a_eval	8	fail_or_nonpositive	fail_or_nonpositive	none	coexistence:no_coex_pair	coexistence:no_coex_pair	true	0.0		0
+region_v3_multitemp_a_eval	9	fail_or_nonpositive	fail_or_nonpositive	none	nucleation_approx_0:not_met	nucleation_approx_0:not_met	true	0.0		0
+region_v3_multitemp_a_eval	10	fail_or_nonpositive	fail_or_nonpositive	none	coexistence:no_coex_pair	coexistence:no_coex_pair	true	0.0		0
+region_v3_multitemp_b_eval	1	fail_or_nonpositive	fail_or_nonpositive	none	coexistence:no_coex_pair	coexistence:no_coex_pair	true	0.0		0
+region_v3_multitemp_b_eval	2	fail_or_nonpositive	fail_or_nonpositive	none	nlo:no_nlo_stability	nlo:no_nlo_stability	true	0.0		0
+region_v3_multitemp_b_eval	3	positive	positive	none	positive	positive	true	0.0022165691619077756	SNR(LISA-3yrs)_turb_0	3
+region_v3_multitemp_b_eval	4	positive	positive	none	positive	positive	true	0.061451825819839656	SNR(LISA-3yrs)_sw_0	3
+region_v3_multitemp_b_eval	5	fail_or_nonpositive	fail_or_nonpositive	none	coexistence:no_coex_pair	coexistence:no_coex_pair	true	0.0		0
+region_v3_multitemp_b_eval	6	fail_or_nonpositive	fail_or_nonpositive	none	coexistence:no_coex_pair	coexistence:no_coex_pair	true	0.0		0
+region_v3_multitemp_b_eval	7	fail_or_nonpositive	fail_or_nonpositive	none	nlo:no_nlo_stability	nlo:no_nlo_stability	true	0.0		0
+region_v3_multitemp_b_eval	8	fail_or_nonpositive	fail_or_nonpositive	none	bounce_0:failure	bounce_0:failure	true	0.0		0
+region_v3_multitemp_b_eval	9	fail_or_nonpositive	fail_or_nonpositive	none	coexistence:no_coex_pair	coexistence:no_coex_pair	true	0.0		0
+region_v3_multitemp_b_eval	10	fail_or_nonpositive	fail_or_nonpositive	none	bounce_0:failure	bounce_0:failure	true	0.0		0
+region_v3_multitemp_c_eval	1	fail_or_nonpositive	fail_or_nonpositive	none	coexistence:no_coex_pair	coexistence:no_coex_pair	true	0.0		0
+region_v3_multitemp_c_eval	2	fail_or_nonpositive	fail_or_nonpositive	none	nlo:no_nlo_stability	nlo:no_nlo_stability	true	0.0		0
+region_v3_multitemp_c_eval	3	positive	positive	none	positive	positive	true	0.001933176500906772	SNR(LISA-3yrs)_sw_0	3
+region_v3_multitemp_c_eval	4	fail_or_nonpositive	fail_or_nonpositive	none	coexistence:no_coex_pair	coexistence:no_coex_pair	true	0.0		0
+region_v3_multitemp_c_eval	5	positive	positive	none	positive	positive	true	0.00278258882590316	SNR(LISA-3yrs)_sw_0	3
+region_v3_multitemp_c_eval	6	positive	positive	none	positive	positive	true	0.0017968897910964508	SNR(LISA-3yrs)_turb_0	3
+region_v3_multitemp_c_eval	7	fail_or_nonpositive	fail_or_nonpositive	none	coexistence:no_coex_pair	coexistence:no_coex_pair	true	0.0		0
+region_v3_multitemp_c_eval	8	positive	positive	none	positive	positive	true	0.0031024466114441688	SNR(LISA-3yrs)_sw_0	3
+region_v3_multitemp_c_eval	9	positive	positive	none	positive	positive	true	0.00012318793067963579	SNR(LISA-3yrs)_sw_0	3
+region_v3_multitemp_c_eval	10	fail_or_nonpositive	fail_or_nonpositive	none	coexistence:no_coex_pair	coexistence:no_coex_pair	true	0.0		0
+region_v3_multitemp_nv_eval	1	positive	positive	none	positive	positive	true	0.006617428458370728	SNR(LISA-3yrs)_sw_0	3
+region_v3_multitemp_nv_eval	2	positive	positive	none	positive	positive	true	0.018630904831385582	SNR(LISA-3yrs)_sw_0	3
+region_v3_multitemp_nv_eval	3	positive	positive	none	positive	positive	true	0.006736506810314751	SNR(LISA-3yrs)_sw_0	3
+region_v3_multitemp_nv_eval	4	positive	positive	none	positive	positive	true	0.0		3
+region_v3_multitemp_nv_eval	5	positive	positive	none	positive	positive	true	0.020324289724498065	SNR(LISA-3yrs)_sw_0	3
+region_v3_multitemp_ni_eval	1	fail_or_nonpositive	fail_or_nonpositive	none	nlo:no_nlo_stability	nlo:no_nlo_stability	true	0.0		0
+region_v3_multitemp_ni_eval	2	fail_or_nonpositive	fail_or_nonpositive	none	nlo:no_nlo_stability	nlo:no_nlo_stability	true	0.0		0
+region_v3_multitemp_ni_eval	3	fail_or_nonpositive	fail_or_nonpositive	none	nlo:no_nlo_stability	nlo:no_nlo_stability	true	0.0		0
+region_v3_multitemp_ni_eval	4	fail_or_nonpositive	fail_or_nonpositive	none	nlo:no_nlo_stability	nlo:no_nlo_stability	true	0.0		0
+region_v3_multitemp_h_eval	1	positive	positive	none	positive	positive	true	0.0005409973909850154	SNR(LISA-3yrs)_sw_0	3
+region_v3_multitemp_h_eval	2	positive	positive	none	positive	positive	true	0.03740290686339593	SNR(LISA-3yrs)_turb_0	3
+region_v3_multitemp_h_eval	3	positive	positive	none	positive	positive	true	0.00033491111064800803	SNR(LISA-3yrs)_sw_0	3
+e3_broad_a_row2_delta1e4_10_region_v3_eval	1	positive	positive	none	positive	positive	true	0.00044083953496217525	SNR(LISA-3yrs)_sw_0	3
+e3_broad_a_row2_delta1e4_10_region_v3_eval	2	positive	positive	none	positive	positive	true	7.296725492607089e-05	SNR(LISA-3yrs)_sw_0	3
+e3_broad_a_row2_delta1e4_10_region_v3_eval	3	positive	positive	none	positive	positive	true	0.0002786219695458303	SNR(LISA-3yrs)_sw_0	3
+e3_broad_a_row2_delta1e4_10_region_v3_eval	4	positive	positive	none	positive	positive	true	8.252725150077178e-05	SNR(LISA-3yrs)_turb_0	3
+e3_broad_a_row2_delta1e4_10_region_v3_eval	5	positive	positive	none	positive	positive	true	0.00017079202992506312	SNR(LISA-3yrs)_sw_0	3
+e3_broad_a_row2_delta1e4_10_region_v3_eval	6	positive	positive	none	positive	positive	true	0.00024210899740463557	SNR(LISA-3yrs)_sw_0	3
+e3_broad_a_row2_delta1e4_10_region_v3_eval	7	positive	positive	none	positive	positive	true	0.0001933822255772583	SNR(LISA-3yrs)_sw_0	3
+e3_broad_a_row2_delta1e4_10_region_v3_eval	8	positive	positive	none	positive	positive	true	5.975332329498172e-05	SNR(LISA-3yrs)_sw_0	3
+e3_broad_a_row2_delta1e4_10_region_v3_eval	9	positive	positive	none	positive	positive	true	4.446846184892995e-05	SNR(LISA-3yrs)_sw_0	3
+e3_broad_a_row2_delta1e4_10_region_v3_eval	10	positive	positive	none	positive	positive	true	6.95902648787066e-05	SNR(LISA-3yrs)_turb_0	3
+e4_broad_c_row3_delta1e4_10_region_v3_eval	1	positive	positive	none	positive	positive	true	0.0	incompatible_transition_ids	0
+e4_broad_c_row3_delta1e4_10_region_v3_eval	2	positive	positive	none	positive	positive	true	0.0	incompatible_transition_ids	0
+e4_broad_c_row3_delta1e4_10_region_v3_eval	3	positive	positive	none	positive	positive	true	0.0	incompatible_transition_ids	0
+e4_broad_c_row3_delta1e4_10_region_v3_eval	4	positive	positive	none	positive	positive	true	0.0	incompatible_transition_ids	0
+e4_broad_c_row3_delta1e4_10_region_v3_eval	5	positive	positive	none	positive	positive	true	0.0	incompatible_transition_ids	0
+e4_broad_c_row3_delta1e4_10_region_v3_eval	6	positive	positive	none	positive	positive	true	0.0	incompatible_transition_ids	0
+e4_broad_c_row3_delta1e4_10_region_v3_eval	7	positive	positive	none	positive	positive	true	0.0	incompatible_transition_ids	0
+e4_broad_c_row3_delta1e4_10_region_v3_eval	8	positive	positive	none	positive	positive	true	0.0	incompatible_transition_ids	0
+e4_broad_c_row3_delta1e4_10_region_v3_eval	9	positive	positive	none	positive	positive	true	0.0	incompatible_transition_ids	0
+e4_broad_c_row3_delta1e4_10_region_v3_eval	10	positive	positive	none	positive	positive	true	0.0	incompatible_transition_ids	0
+e5_nlo_boundary_segment_10_region_v3_eval	1	positive	positive	none	positive	positive	true	0.0021315002478615465	SNR(LISA-3yrs)_sw_0	3
+e5_nlo_boundary_segment_10_region_v3_eval	2	positive	positive	none	positive	positive	true	0.002321200827469581	SNR(LISA-3yrs)_sw_0	3
+e5_nlo_boundary_segment_10_region_v3_eval	3	positive	positive	none	positive	positive	true	0.0024799030254195006	SNR(LISA-3yrs)_sw_0	3
+e5_nlo_boundary_segment_10_region_v3_eval	4	fail_or_nonpositive	fail_or_nonpositive	none	nlo:no_nlo_stability	nlo:no_nlo_stability	true	0.0		0
+e5_nlo_boundary_segment_10_region_v3_eval	5	fail_or_nonpositive	fail_or_nonpositive	none	nlo:no_nlo_stability	nlo:no_nlo_stability	true	0.0		0
+e5_nlo_boundary_segment_10_region_v3_eval	6	positive	positive	none	positive	positive	true	0.005000741808749196	SNR(LISA-3yrs)_sw_0	3
+e5_nlo_boundary_segment_10_region_v3_eval	7	fail_or_nonpositive	fail_or_nonpositive	none	nlo:no_nlo_stability	nlo:no_nlo_stability	true	0.0		0
+e5_nlo_boundary_segment_10_region_v3_eval	8	fail_or_nonpositive	fail_or_nonpositive	none	nlo:no_nlo_stability	nlo:no_nlo_stability	true	0.0		0
+e5_nlo_boundary_segment_10_region_v3_eval	9	fail_or_nonpositive	fail_or_nonpositive	none	nlo:no_nlo_stability	nlo:no_nlo_stability	true	0.0		0
+e5_nlo_boundary_segment_10_region_v3_eval	10	fail_or_nonpositive	fail_or_nonpositive	none	nlo:no_nlo_stability	nlo:no_nlo_stability	true	0.0		0
+e2_v3_adversarial_mixed_boundary_8_v3_per_point_eval	1	positive	positive	none	positive	positive	true	0.004017888726365484	SNR(LISA-3yrs)_sw_1	6
+e2_v3_adversarial_mixed_boundary_8_v3_per_point_eval	2	positive	positive	none	positive	positive	true	7.528519374974984e-05	SNR(LISA-3yrs)_turb_0	3
+e2_v3_adversarial_mixed_boundary_8_v3_per_point_eval	3	positive	positive	none	positive	positive	true	5.12585700110166e-05	SNR(LISA-3yrs)_turb_0	3
+e2_v3_adversarial_mixed_boundary_8_v3_per_point_eval	4	positive	positive	none	positive	positive	true	0.0	incompatible_transition_history	0
+e2_v3_adversarial_mixed_boundary_8_v3_per_point_eval	5	positive	positive	none	positive	positive	true	0.0029967961231174524	SNR(LISA-3yrs)_sw_0	3
+e2_v3_adversarial_mixed_boundary_8_v3_per_point_eval	6	positive	positive	none	positive	positive	true	0.003947140024474468	SNR(LISA-3yrs)_sw_0	3
+e2_v3_adversarial_mixed_boundary_8_v3_per_point_eval	7	positive	positive	none	positive	positive	true	0.0	incompatible_transition_history	0
+e2_v3_adversarial_mixed_boundary_8_v3_per_point_eval	8	positive	positive	none	positive	positive	true	0.0023669756338249867	SNR(LISA-3yrs)_sw_0	3
+e6_bounce_failure_b8_delta5e5_8_region_v3_eval	1	positive	positive	none	positive	positive	true	0.0		3
+e6_bounce_failure_b8_delta5e5_8_region_v3_eval	2	positive	positive	none	positive	positive	true	0.0		3
+e6_bounce_failure_b8_delta5e5_8_region_v3_eval	3	fail_or_nonpositive	fail_or_nonpositive	none	bounce_0:failure	bounce_0:failure	true	0.0		0
+e6_bounce_failure_b8_delta5e5_8_region_v3_eval	4	fail_or_nonpositive	fail_or_nonpositive	none	bounce_0:failure	bounce_0:failure	true	0.0		0
+e6_bounce_failure_b8_delta5e5_8_region_v3_eval	5	fail_or_nonpositive	fail_or_nonpositive	none	bounce_0:failure	bounce_0:failure	true	0.0		0
+e6_bounce_failure_b8_delta5e5_8_region_v3_eval	6	positive	positive	none	positive	positive	true	0.0		3
+e6_bounce_failure_b8_delta5e5_8_region_v3_eval	7	fail_or_nonpositive	fail_or_nonpositive	none	bounce_0:failure	bounce_0:failure	true	0.0		0
+e6_bounce_failure_b8_delta5e5_8_region_v3_eval	8	fail_or_nonpositive	fail_or_nonpositive	none	bounce_0:failure	bounce_0:failure	true	0.0		0
+e7_coex_a4_delta1e4_8_region_v3_eval	1	fail_or_nonpositive	fail_or_nonpositive	none	coexistence:no_coex_pair	coexistence:no_coex_pair	true	0.0		0
+e7_coex_a4_delta1e4_8_region_v3_eval	2	fail_or_nonpositive	fail_or_nonpositive	none	coexistence:no_coex_pair	coexistence:no_coex_pair	true	0.0		0
+e7_coex_a4_delta1e4_8_region_v3_eval	3	fail_or_nonpositive	fail_or_nonpositive	none	coexistence:no_coex_pair	coexistence:no_coex_pair	true	0.0		0
+e7_coex_a4_delta1e4_8_region_v3_eval	4	fail_or_nonpositive	fail_or_nonpositive	none	coexistence:no_coex_pair	coexistence:no_coex_pair	true	0.0		0
+e7_coex_a4_delta1e4_8_region_v3_eval	5	fail_or_nonpositive	fail_or_nonpositive	none	coexistence:no_coex_pair	coexistence:no_coex_pair	true	0.0		0
+e7_coex_a4_delta1e4_8_region_v3_eval	6	fail_or_nonpositive	fail_or_nonpositive	none	coexistence:no_coex_pair	coexistence:no_coex_pair	true	0.0		0
+e7_coex_a4_delta1e4_8_region_v3_eval	7	fail_or_nonpositive	fail_or_nonpositive	none	coexistence:no_coex_pair	coexistence:no_coex_pair	true	0.0		0
+e7_coex_a4_delta1e4_8_region_v3_eval	8	fail_or_nonpositive	fail_or_nonpositive	none	coexistence:no_coex_pair	coexistence:no_coex_pair	true	0.0		0
+e8_coex_a4_box_challenge_12_region_v4_eval	1	fail_or_nonpositive	fail_or_nonpositive	none	coexistence:no_coex_pair	coexistence:no_coex_pair	true	0.0		0
+e8_coex_a4_box_challenge_12_region_v4_eval	2	fail_or_nonpositive	fail_or_nonpositive	none	coexistence:no_coex_pair	coexistence:no_coex_pair	true	0.0		0
+e8_coex_a4_box_challenge_12_region_v4_eval	3	fail_or_nonpositive	fail_or_nonpositive	none	coexistence:no_coex_pair	coexistence:no_coex_pair	true	0.0		0
+e8_coex_a4_box_challenge_12_region_v4_eval	4	fail_or_nonpositive	fail_or_nonpositive	none	coexistence:no_coex_pair	coexistence:no_coex_pair	true	0.0		0
+e8_coex_a4_box_challenge_12_region_v4_eval	5	fail_or_nonpositive	fail_or_nonpositive	none	coexistence:no_coex_pair	coexistence:no_coex_pair	true	0.0		0
+e8_coex_a4_box_challenge_12_region_v4_eval	6	fail_or_nonpositive	fail_or_nonpositive	none	coexistence:no_coex_pair	coexistence:no_coex_pair	true	0.0		0
+e8_coex_a4_box_challenge_12_region_v4_eval	7	fail_or_nonpositive	fail_or_nonpositive	none	coexistence:no_coex_pair	coexistence:no_coex_pair	true	0.0		0
+e8_coex_a4_box_challenge_12_region_v4_eval	8	fail_or_nonpositive	fail_or_nonpositive	none	coexistence:no_coex_pair	coexistence:no_coex_pair	true	0.0		0
+e8_coex_a4_box_challenge_12_region_v4_eval	9	fail_or_nonpositive	fail_or_nonpositive	none	coexistence:no_coex_pair	coexistence:no_coex_pair	true	0.0		0
+e8_coex_a4_box_challenge_12_region_v4_eval	10	fail_or_nonpositive	fail_or_nonpositive	none	coexistence:no_coex_pair	coexistence:no_coex_pair	true	0.0		0
+e8_coex_a4_box_challenge_12_region_v4_eval	11	fail_or_nonpositive	fail_or_nonpositive	none	coexistence:no_coex_pair	coexistence:no_coex_pair	true	0.0		0
+e8_coex_a4_box_challenge_12_region_v4_eval	12	fail_or_nonpositive	fail_or_nonpositive	none	coexistence:no_coex_pair	coexistence:no_coex_pair	true	0.0		0
+e9_coex_a4_outer1e3_12_region_v3_eval	1	fail_or_nonpositive	fail_or_nonpositive	none	coexistence:no_coex_pair	coexistence:no_coex_pair	true	0.0		0
+e9_coex_a4_outer1e3_12_region_v3_eval	2	fail_or_nonpositive	fail_or_nonpositive	none	coexistence:no_coex_pair	coexistence:no_coex_pair	true	0.0		0
+e9_coex_a4_outer1e3_12_region_v3_eval	3	fail_or_nonpositive	fail_or_nonpositive	none	coexistence:no_coex_pair	coexistence:no_coex_pair	true	0.0		0
+e9_coex_a4_outer1e3_12_region_v3_eval	4	fail_or_nonpositive	fail_or_nonpositive	none	coexistence:no_coex_pair	coexistence:no_coex_pair	true	0.0		0
+e9_coex_a4_outer1e3_12_region_v3_eval	5	fail_or_nonpositive	fail_or_nonpositive	none	coexistence:no_coex_pair	coexistence:no_coex_pair	true	0.0		0
+e9_coex_a4_outer1e3_12_region_v3_eval	6	fail_or_nonpositive	fail_or_nonpositive	none	coexistence:no_coex_pair	coexistence:no_coex_pair	true	0.0		0
+e9_coex_a4_outer1e3_12_region_v3_eval	7	fail_or_nonpositive	fail_or_nonpositive	none	coexistence:no_coex_pair	coexistence:no_coex_pair	true	0.0		0
+e9_coex_a4_outer1e3_12_region_v3_eval	8	fail_or_nonpositive	fail_or_nonpositive	none	coexistence:no_coex_pair	coexistence:no_coex_pair	true	0.0		0
+e9_coex_a4_outer1e3_12_region_v3_eval	9	fail_or_nonpositive	fail_or_nonpositive	none	coexistence:no_coex_pair	coexistence:no_coex_pair	true	0.0		0
+e9_coex_a4_outer1e3_12_region_v3_eval	10	fail_or_nonpositive	fail_or_nonpositive	none	coexistence:no_coex_pair	coexistence:no_coex_pair	true	0.0		0
+e9_coex_a4_outer1e3_12_region_v3_eval	11	fail_or_nonpositive	fail_or_nonpositive	none	coexistence:no_coex_pair	coexistence:no_coex_pair	true	0.0		0
+e9_coex_a4_outer1e3_12_region_v3_eval	12	fail_or_nonpositive	fail_or_nonpositive	none	coexistence:no_coex_pair	coexistence:no_coex_pair	true	0.0		0
+e10_coex_a4_outer1e2_12_region_v3_eval	1	fail_or_nonpositive	fail_or_nonpositive	none	coexistence:no_coex_pair	coexistence:no_coex_pair	true	0.0		0
+e10_coex_a4_outer1e2_12_region_v3_eval	2	fail_or_nonpositive	fail_or_nonpositive	none	coexistence:no_coex_pair	coexistence:no_coex_pair	true	0.0		0
+e10_coex_a4_outer1e2_12_region_v3_eval	3	fail_or_nonpositive	fail_or_nonpositive	none	coexistence:no_coex_pair	coexistence:no_coex_pair	true	0.0		0
+e10_coex_a4_outer1e2_12_region_v3_eval	4	fail_or_nonpositive	fail_or_nonpositive	none	coexistence:no_coex_pair	coexistence:no_coex_pair	true	0.0		0
+e10_coex_a4_outer1e2_12_region_v3_eval	5	fail_or_nonpositive	fail_or_nonpositive	none	coexistence:no_coex_pair	coexistence:no_coex_pair	true	0.0		0
+e10_coex_a4_outer1e2_12_region_v3_eval	6	fail_or_nonpositive	fail_or_nonpositive	none	coexistence:no_coex_pair	coexistence:no_coex_pair	true	0.0		0
+e10_coex_a4_outer1e2_12_region_v3_eval	7	fail_or_nonpositive	fail_or_nonpositive	none	coexistence:no_coex_pair	coexistence:no_coex_pair	true	0.0		0
+e10_coex_a4_outer1e2_12_region_v3_eval	8	fail_or_nonpositive	fail_or_nonpositive	none	coexistence:no_coex_pair	coexistence:no_coex_pair	true	0.0		0
+e10_coex_a4_outer1e2_12_region_v3_eval	9	fail_or_nonpositive	fail_or_nonpositive	none	coexistence:no_coex_pair	coexistence:no_coex_pair	true	0.0		0
+e10_coex_a4_outer1e2_12_region_v3_eval	10	fail_or_nonpositive	fail_or_nonpositive	none	coexistence:no_coex_pair	coexistence:no_coex_pair	true	0.0		0
+e10_coex_a4_outer1e2_12_region_v3_eval	11	fail_or_nonpositive	fail_or_nonpositive	none	coexistence:no_coex_pair	coexistence:no_coex_pair	true	0.0		0
+e10_coex_a4_outer1e2_12_region_v3_eval	12	fail_or_nonpositive	fail_or_nonpositive	none	coexistence:no_coex_pair	coexistence:no_coex_pair	true	0.0		0
+e11_coex_a4_outer5e2_12_region_v3_eval	1	fail_or_nonpositive	fail_or_nonpositive	none	coexistence:no_coex_pair	coexistence:no_coex_pair	true	0.0		0
+e11_coex_a4_outer5e2_12_region_v3_eval	2	fail_or_nonpositive	fail_or_nonpositive	none	coexistence:no_coex_pair	coexistence:no_coex_pair	true	0.0		0
+e11_coex_a4_outer5e2_12_region_v3_eval	3	fail_or_nonpositive	fail_or_nonpositive	none	coexistence:no_coex_pair	coexistence:no_coex_pair	true	0.0		0
+e11_coex_a4_outer5e2_12_region_v3_eval	4	fail_or_nonpositive	fail_or_nonpositive	none	coexistence:no_coex_pair	coexistence:no_coex_pair	true	0.0		0
+e11_coex_a4_outer5e2_12_region_v3_eval	5	fail_or_nonpositive	fail_or_nonpositive	none	coexistence:no_coex_pair	coexistence:no_coex_pair	true	0.0		0
+e11_coex_a4_outer5e2_12_region_v3_eval	6	fail_or_nonpositive	fail_or_nonpositive	none	coexistence:no_coex_pair	coexistence:no_coex_pair	true	0.0		0
+e11_coex_a4_outer5e2_12_region_v3_eval	7	fail_or_nonpositive	fail_or_nonpositive	none	coexistence:no_coex_pair	coexistence:no_coex_pair	true	0.0		0
+e11_coex_a4_outer5e2_12_region_v3_eval	8	fail_or_nonpositive	fail_or_nonpositive	none	coexistence:no_coex_pair	coexistence:no_coex_pair	true	0.0		0
+e11_coex_a4_outer5e2_12_region_v3_eval	9	fail_or_nonpositive	fail_or_nonpositive	none	coexistence:no_coex_pair	coexistence:no_coex_pair	true	0.0		0
+e11_coex_a4_outer5e2_12_region_v3_eval	10	fail_or_nonpositive	fail_or_nonpositive	none	coexistence:no_coex_pair	coexistence:no_coex_pair	true	0.0		0
+e11_coex_a4_outer5e2_12_region_v3_eval	11	fail_or_nonpositive	fail_or_nonpositive	none	coexistence:no_coex_pair	coexistence:no_coex_pair	true	0.0		0
+e11_coex_a4_outer5e2_12_region_v3_eval	12	fail_or_nonpositive	fail_or_nonpositive	none	coexistence:no_coex_pair	coexistence:no_coex_pair	true	0.0		0
+e12_coex_a4_outer1e1_12_region_v3_eval	1	positive	positive	none	positive	positive	true	0.0005576732346435166	SNR(LISA-3yrs)_turb_0	3
+e12_coex_a4_outer1e1_12_region_v3_eval	2	fail_or_nonpositive	fail_or_nonpositive	none	coexistence:no_coex_pair	coexistence:no_coex_pair	true	0.0		0
+e12_coex_a4_outer1e1_12_region_v3_eval	3	fail_or_nonpositive	fail_or_nonpositive	none	coexistence:no_coex_pair	coexistence:no_coex_pair	true	0.0		0
+e12_coex_a4_outer1e1_12_region_v3_eval	4	fail_or_nonpositive	fail_or_nonpositive	none	coexistence:no_coex_pair	coexistence:no_coex_pair	true	0.0		0
+e12_coex_a4_outer1e1_12_region_v3_eval	5	fail_or_nonpositive	fail_or_nonpositive	none	coexistence:no_coex_pair	coexistence:no_coex_pair	true	0.0		0
+e12_coex_a4_outer1e1_12_region_v3_eval	6	fail_or_nonpositive	fail_or_nonpositive	none	coexistence:no_coex_pair	coexistence:no_coex_pair	true	0.0		0
+e12_coex_a4_outer1e1_12_region_v3_eval	7	fail_or_nonpositive	fail_or_nonpositive	none	coexistence:no_coex_pair	coexistence:no_coex_pair	true	0.0		0
+e12_coex_a4_outer1e1_12_region_v3_eval	8	fail_or_nonpositive	fail_or_nonpositive	none	coexistence:no_coex_pair	coexistence:no_coex_pair	true	0.0		0
+e12_coex_a4_outer1e1_12_region_v3_eval	9	fail_or_nonpositive	fail_or_nonpositive	none	coexistence:no_coex_pair	coexistence:no_coex_pair	true	0.0		0
+e12_coex_a4_outer1e1_12_region_v3_eval	10	fail_or_nonpositive	fail_or_nonpositive	none	coexistence:no_coex_pair	coexistence:no_coex_pair	true	0.0		0
+e12_coex_a4_outer1e1_12_region_v3_eval	11	fail_or_nonpositive	fail_or_nonpositive	none	coexistence:no_coex_pair	coexistence:no_coex_pair	true	0.0		0
+e12_coex_a4_outer1e1_12_region_v3_eval	12	fail_or_nonpositive	fail_or_nonpositive	none	coexistence:no_coex_pair	coexistence:no_coex_pair	true	0.0		0
+e13_coex_a4_certify4e2_12_region_v3_eval	1	fail_or_nonpositive	fail_or_nonpositive	none	coexistence:no_coex_pair	coexistence:no_coex_pair	true	0.0		0
+e13_coex_a4_certify4e2_12_region_v3_eval	2	fail_or_nonpositive	fail_or_nonpositive	none	coexistence:no_coex_pair	coexistence:no_coex_pair	true	0.0		0
+e13_coex_a4_certify4e2_12_region_v3_eval	3	fail_or_nonpositive	fail_or_nonpositive	none	coexistence:no_coex_pair	coexistence:no_coex_pair	true	0.0		0
+e13_coex_a4_certify4e2_12_region_v3_eval	4	fail_or_nonpositive	fail_or_nonpositive	none	coexistence:no_coex_pair	coexistence:no_coex_pair	true	0.0		0
+e13_coex_a4_certify4e2_12_region_v3_eval	5	fail_or_nonpositive	fail_or_nonpositive	none	coexistence:no_coex_pair	coexistence:no_coex_pair	true	0.0		0
+e13_coex_a4_certify4e2_12_region_v3_eval	6	fail_or_nonpositive	fail_or_nonpositive	none	coexistence:no_coex_pair	coexistence:no_coex_pair	true	0.0		0
+e13_coex_a4_certify4e2_12_region_v3_eval	7	fail_or_nonpositive	fail_or_nonpositive	none	coexistence:no_coex_pair	coexistence:no_coex_pair	true	0.0		0
+e13_coex_a4_certify4e2_12_region_v3_eval	8	fail_or_nonpositive	fail_or_nonpositive	none	coexistence:no_coex_pair	coexistence:no_coex_pair	true	0.0		0
+e13_coex_a4_certify4e2_12_region_v3_eval	9	fail_or_nonpositive	fail_or_nonpositive	none	coexistence:no_coex_pair	coexistence:no_coex_pair	true	0.0		0
+e13_coex_a4_certify4e2_12_region_v3_eval	10	fail_or_nonpositive	fail_or_nonpositive	none	coexistence:no_coex_pair	coexistence:no_coex_pair	true	0.0		0
+e13_coex_a4_certify4e2_12_region_v3_eval	11	fail_or_nonpositive	fail_or_nonpositive	none	coexistence:no_coex_pair	coexistence:no_coex_pair	true	0.0		0
+e13_coex_a4_certify4e2_12_region_v3_eval	12	fail_or_nonpositive	fail_or_nonpositive	none	coexistence:no_coex_pair	coexistence:no_coex_pair	true	0.0		0

@@ -44,6 +44,18 @@ bsmpt_speed_lab/run_calcgw_exact_fast.sh R2HDM input.tsv output.tsv 2 2
 bsmpt_speed_lab/run_calcgw_approx_safe.sh R2HDM input.tsv output.tsv 2 2
 ```
 
+当前最保守的显式认证域候选是region-v4：
+
+```bash
+bsmpt_speed_lab/run_calcgw_approx_region_v4_certified.sh \
+  --model=r2hdm --input=input.tsv --output=output.tsv \
+  --firstline=2 --lastline=2
+```
+
+v4只在严格配对过的局部认证域接受三温shadow或无共存相结论；域外严格回退。
+判断规则和证据边界见`REGION_V4_CERTIFIED_ROUTER_ZH.md`。它仍是研究候选，不能
+解释为全参数空间证明。
+
 若关心SNR=10和100边界：
 
 ```bash
@@ -62,11 +74,16 @@ BSMPT_APPROX_SNR_CUTS=10,100 \
 - 旧42行矩阵：exact-fast 2173.759秒，当前近似首遍约908.155秒；但guard只接受6行、
   回退36行。85.7%回退率不可接受，当前guard只作为历史原型；新方案E3目标回退≤20%。
 - E1辅助先导已确认一个54.95% SNR反例；当前严格复算与历史严格只差0.0281%。
+- N1a重新按定性标准统计旧42点裸近似：TP=20、TN=21、FP=1、FN=0；41/42定性
+  一致说明旧guard存在严重过度回退，但该比例不能外推到完整参数空间。
+- region-v4累计去重严格配对证据为192点：TP=68、TN=124、FP=FN=0；核心42点完整严格
+  路由4/42，v3同路由实测约降低45%。v4域外覆盖更保守，不能用该数字外推未知点。
 
 ## 当前执行顺序
 
-1. N1a：先建立严格/裸近似/guard最终的定性混淆矩阵和失败阶段账本。
-2. N1b：增加不改变结果的内部诊断，用全部定性翻转反例验证零漏放潜力。
+1. 围绕v4的零半径coexistence锚点建立严格局部邻域，逐域决定是否能扩大半径。
+2. 对域外三温全成功点做严格邻域复验，只有局部FP=FN=0才加入正点认证表。
+3. 持续围绕bounce/NLO反例采样；出现任何FP/FN立即缩小或撤销相应认证域。
 3. N2：action midpoint、raster局部加密、bounce独立复核，分别建立低成本证书。
 4. E2：不经过thdmTools的纯BSMPT边界和扰动验证。
 5. N3：有证书的continuation、shooting、adaptive和SpectrumJet逐项优化。

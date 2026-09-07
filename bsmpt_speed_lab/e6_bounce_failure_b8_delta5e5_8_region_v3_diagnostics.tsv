@@ -1,0 +1,17 @@
+input_row	diagnostic
+1	region-v2: exact_nlo_success:runtime=0.188:continue_region_v1
+1	region-v1: exact fallback: fallback_three_temperature_shadow_pattern
+2	region-v2: exact_nlo_success:runtime=0.20399999999999999:continue_region_v1
+2	region-v1: exact fallback: fallback_three_temperature_shadow_pattern
+3	region-v2: exact_nlo_success:runtime=0.185:continue_region_v1
+3	region-v1: exact fallback: fallback_late_failure:gw_0:failure
+4	region-v2: exact_nlo_success:runtime=0.182:continue_region_v1
+4	region-v1: exact fallback: fallback_late_failure:bounce_0:failure
+5	region-v2: exact_nlo_success:runtime=0.17599999999999999:continue_region_v1
+5	region-v1: exact fallback: fallback_late_failure:bounce_0:failure
+6	region-v2: exact_nlo_success:runtime=0.187:continue_region_v1
+6	region-v1: exact fallback: fallback_late_failure:gw_0:failure
+7	region-v2: exact_nlo_success:runtime=0.193:continue_region_v1
+7	region-v1: exact fallback: fallback_late_failure:bounce_0:failure
+8	region-v2: exact_nlo_success:runtime=0.193:continue_region_v1
+8	region-v1: exact fallback: fallback_late_failure:bounce_0:failure

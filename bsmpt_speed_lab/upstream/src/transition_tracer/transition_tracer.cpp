@@ -59,6 +59,15 @@ TransitionTracer::TransitionTracer(user_input &input)
   }
   profile_stamp("nlo_stability");
 
+  // Lab-only, opt-in certificate path.  This returns immediately after the
+  // exact NLO decision so approximate runners can cheaply reject points whose
+  // thermal-fast arithmetic changes the boundary classification.  The
+  // environment variable is unset on every normal/strict production path.
+  if (std::getenv("BSMPT_NLO_ONLY") != nullptr)
+  {
+    return;
+  }
+
   if (output_store.status.status_nlo_stability ==
           BSMPT::StatusNLOStability::Success or
       output_store.status.status_nlo_stability ==

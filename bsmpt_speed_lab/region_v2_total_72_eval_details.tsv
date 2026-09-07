@@ -1,0 +1,73 @@
+group	row	strict_class	raw_approx_class	raw_error_kind	strict_failure_stage	raw_approx_failure_stage	raw_qualitative_match	secondary_max_snr_relative_error	secondary_max_snr_field	secondary_snr_fields_compared
+region_v2_regression_a_eval	1	positive	positive	none	positive	positive	true	0.00021981994712616526	SNR(LISA-3yrs)_sw_0	3
+region_v2_regression_a_eval	2	positive	positive	none	positive	positive	true	0.00012689243613974862	SNR(LISA-3yrs)_turb_0	3
+region_v2_regression_a_eval	3	positive	positive	none	positive	positive	true	0.01291586084320463	SNR(LISA-3yrs)_sw_0	3
+region_v2_regression_a_eval	4	fail_or_nonpositive	fail_or_nonpositive	none	coexistence:no_coex_pair	coexistence:no_coex_pair	true	0.0		0
+region_v2_regression_a_eval	5	positive	positive	none	positive	positive	true	0.00025997816820372255	SNR(LISA-3yrs)_sw_0	3
+region_v2_regression_a_eval	6	positive	positive	none	positive	positive	true	0.009508926105908986	SNR(LISA-3yrs)_sw_0	3
+region_v2_regression_a_eval	7	fail_or_nonpositive	fail_or_nonpositive	none	nlo:no_nlo_stability	nlo:no_nlo_stability	true	0.0		0
+region_v2_regression_a_eval	8	fail_or_nonpositive	fail_or_nonpositive	none	coexistence:no_coex_pair	coexistence:no_coex_pair	true	0.0		0
+region_v2_regression_a_eval	9	fail_or_nonpositive	fail_or_nonpositive	none	nucleation_approx_0:not_met	nucleation_approx_0:not_met	true	0.0		0
+region_v2_regression_a_eval	10	fail_or_nonpositive	fail_or_nonpositive	none	coexistence:no_coex_pair	coexistence:no_coex_pair	true	0.0		0
+region_v2_regression_b_eval	1	fail_or_nonpositive	fail_or_nonpositive	none	coexistence:no_coex_pair	coexistence:no_coex_pair	true	0.0		0
+region_v2_regression_b_eval	2	fail_or_nonpositive	fail_or_nonpositive	none	nlo:no_nlo_stability	nlo:no_nlo_stability	true	0.0		0
+region_v2_regression_b_eval	3	positive	positive	none	positive	positive	true	0.0		3
+region_v2_regression_b_eval	4	positive	positive	none	positive	positive	true	0.0		3
+region_v2_regression_b_eval	5	fail_or_nonpositive	fail_or_nonpositive	none	coexistence:no_coex_pair	coexistence:no_coex_pair	true	0.0		0
+region_v2_regression_b_eval	6	fail_or_nonpositive	fail_or_nonpositive	none	coexistence:no_coex_pair	coexistence:no_coex_pair	true	0.0		0
+region_v2_regression_b_eval	7	fail_or_nonpositive	fail_or_nonpositive	none	nlo:no_nlo_stability	nlo:no_nlo_stability	true	0.0		0
+region_v2_regression_b_eval	8	fail_or_nonpositive	fail_or_nonpositive	none	bounce_0:failure	bounce_0:failure	true	0.0		0
+region_v2_regression_b_eval	9	fail_or_nonpositive	fail_or_nonpositive	none	coexistence:no_coex_pair	coexistence:no_coex_pair	true	0.0		0
+region_v2_regression_b_eval	10	fail_or_nonpositive	fail_or_nonpositive	none	bounce_0:failure	bounce_0:failure	true	0.0		0
+region_v2_regression_c_eval	1	fail_or_nonpositive	fail_or_nonpositive	none	coexistence:no_coex_pair	coexistence:no_coex_pair	true	0.0		0
+region_v2_regression_c_eval	2	fail_or_nonpositive	fail_or_nonpositive	none	nlo:no_nlo_stability	nlo:no_nlo_stability	true	0.0		0
+region_v2_regression_c_eval	3	positive	positive	none	positive	positive	true	0.001933176500906772	SNR(LISA-3yrs)_sw_0	3
+region_v2_regression_c_eval	4	fail_or_nonpositive	fail_or_nonpositive	none	coexistence:no_coex_pair	coexistence:no_coex_pair	true	0.0		0
+region_v2_regression_c_eval	5	positive	positive	none	positive	positive	true	0.00278258882590316	SNR(LISA-3yrs)_sw_0	3
+region_v2_regression_c_eval	6	positive	positive	none	positive	positive	true	0.0017968897910964508	SNR(LISA-3yrs)_turb_0	3
+region_v2_regression_c_eval	7	fail_or_nonpositive	fail_or_nonpositive	none	coexistence:no_coex_pair	coexistence:no_coex_pair	true	0.0		0
+region_v2_regression_c_eval	8	positive	positive	none	positive	positive	true	0.0031024466114441688	SNR(LISA-3yrs)_sw_0	3
+region_v2_regression_c_eval	9	positive	positive	none	positive	positive	true	0.00012318793067963579	SNR(LISA-3yrs)_sw_0	3
+region_v2_regression_c_eval	10	fail_or_nonpositive	fail_or_nonpositive	none	coexistence:no_coex_pair	coexistence:no_coex_pair	true	0.0		0
+region_v2_regression_nv_eval	1	positive	positive	none	positive	positive	true	0.006617428458370728	SNR(LISA-3yrs)_sw_0	3
+region_v2_regression_nv_eval	2	positive	positive	none	positive	positive	true	0.018630904831385582	SNR(LISA-3yrs)_sw_0	3
+region_v2_regression_nv_eval	3	positive	positive	none	positive	positive	true	0.006736506810314751	SNR(LISA-3yrs)_sw_0	3
+region_v2_regression_nv_eval	4	positive	positive	none	positive	positive	true	0.0		3
+region_v2_regression_nv_eval	5	positive	positive	none	positive	positive	true	0.020324289724498065	SNR(LISA-3yrs)_sw_0	3
+region_v2_regression_ni_eval	1	fail_or_nonpositive	fail_or_nonpositive	none	nlo:no_nlo_stability	nlo:no_nlo_stability	true	0.0		0
+region_v2_regression_ni_eval	2	fail_or_nonpositive	fail_or_nonpositive	none	nlo:no_nlo_stability	nlo:no_nlo_stability	true	0.0		0
+region_v2_regression_ni_eval	3	fail_or_nonpositive	fail_or_nonpositive	none	nlo:no_nlo_stability	nlo:no_nlo_stability	true	0.0		0
+region_v2_regression_ni_eval	4	fail_or_nonpositive	fail_or_nonpositive	none	nlo:no_nlo_stability	nlo:no_nlo_stability	true	0.0		0
+region_v2_regression_h_eval	1	positive	positive	none	positive	positive	true	0.0005409973909850154	SNR(LISA-3yrs)_sw_0	3
+region_v2_regression_h_eval	2	positive	positive	none	positive	positive	true	0.03740290686339593	SNR(LISA-3yrs)_turb_0	3
+region_v2_regression_h_eval	3	positive	positive	none	positive	positive	true	0.00033491111064800803	SNR(LISA-3yrs)_sw_0	3
+e3_broad_a_row2_delta1e4_10_region_v2_eval	1	positive	positive	none	positive	positive	true	0.00044083953496217525	SNR(LISA-3yrs)_sw_0	3
+e3_broad_a_row2_delta1e4_10_region_v2_eval	2	positive	positive	none	positive	positive	true	7.296725492607089e-05	SNR(LISA-3yrs)_sw_0	3
+e3_broad_a_row2_delta1e4_10_region_v2_eval	3	positive	positive	none	positive	positive	true	0.0002786219695458303	SNR(LISA-3yrs)_sw_0	3
+e3_broad_a_row2_delta1e4_10_region_v2_eval	4	positive	positive	none	positive	positive	true	8.252725150077178e-05	SNR(LISA-3yrs)_turb_0	3
+e3_broad_a_row2_delta1e4_10_region_v2_eval	5	positive	positive	none	positive	positive	true	0.00017079202992506312	SNR(LISA-3yrs)_sw_0	3
+e3_broad_a_row2_delta1e4_10_region_v2_eval	6	positive	positive	none	positive	positive	true	0.00024210899740463557	SNR(LISA-3yrs)_sw_0	3
+e3_broad_a_row2_delta1e4_10_region_v2_eval	7	positive	positive	none	positive	positive	true	0.0001933822255772583	SNR(LISA-3yrs)_sw_0	3
+e3_broad_a_row2_delta1e4_10_region_v2_eval	8	positive	positive	none	positive	positive	true	5.975332329498172e-05	SNR(LISA-3yrs)_sw_0	3
+e3_broad_a_row2_delta1e4_10_region_v2_eval	9	positive	positive	none	positive	positive	true	4.446846184892995e-05	SNR(LISA-3yrs)_sw_0	3
+e3_broad_a_row2_delta1e4_10_region_v2_eval	10	positive	positive	none	positive	positive	true	6.95902648787066e-05	SNR(LISA-3yrs)_turb_0	3
+e4_broad_c_row3_delta1e4_10_region_v2_eval	1	positive	positive	none	positive	positive	true	0.0005105960364829785	SNR(LISA-3yrs)_sw_0	3
+e4_broad_c_row3_delta1e4_10_region_v2_eval	2	positive	positive	none	positive	positive	true	0.0012731098925563434	SNR(LISA-3yrs)_sw_0	3
+e4_broad_c_row3_delta1e4_10_region_v2_eval	3	positive	positive	none	positive	positive	true	0.00039350281436577924	SNR(LISA-3yrs)_sw_0	3
+e4_broad_c_row3_delta1e4_10_region_v2_eval	4	positive	positive	none	positive	positive	true	0.0008439896325230237	SNR(LISA-3yrs)_sw_0	3
+e4_broad_c_row3_delta1e4_10_region_v2_eval	5	positive	positive	none	positive	positive	true	0.002968522436785149	SNR(LISA-3yrs)_sw_0	3
+e4_broad_c_row3_delta1e4_10_region_v2_eval	6	positive	positive	none	positive	positive	true	0.00012615187517169937	SNR(LISA-3yrs)_sw_0	3
+e4_broad_c_row3_delta1e4_10_region_v2_eval	7	positive	positive	none	positive	positive	true	0.0008862319840301332	SNR(LISA-3yrs)_sw_0	3
+e4_broad_c_row3_delta1e4_10_region_v2_eval	8	positive	positive	none	positive	positive	true	0.0012296603540915398	SNR(LISA-3yrs)_sw_0	3
+e4_broad_c_row3_delta1e4_10_region_v2_eval	9	positive	positive	none	positive	positive	true	0.002911661521352382	SNR(LISA-3yrs)_sw_0	3
+e4_broad_c_row3_delta1e4_10_region_v2_eval	10	positive	positive	none	positive	positive	true	0.002198687595750663	SNR(LISA-3yrs)_sw_0	3
+e5_nlo_boundary_segment_10_region_v2_eval	1	positive	positive	none	positive	positive	true	0.0021315002478615465	SNR(LISA-3yrs)_sw_0	3
+e5_nlo_boundary_segment_10_region_v2_eval	2	positive	positive	none	positive	positive	true	0.002321200827469581	SNR(LISA-3yrs)_sw_0	3
+e5_nlo_boundary_segment_10_region_v2_eval	3	positive	positive	none	positive	positive	true	0.0024799030254195006	SNR(LISA-3yrs)_sw_0	3
+e5_nlo_boundary_segment_10_region_v2_eval	4	fail_or_nonpositive	fail_or_nonpositive	none	nlo:no_nlo_stability	nlo:no_nlo_stability	true	0.0		0
+e5_nlo_boundary_segment_10_region_v2_eval	5	fail_or_nonpositive	fail_or_nonpositive	none	nlo:no_nlo_stability	nlo:no_nlo_stability	true	0.0		0
+e5_nlo_boundary_segment_10_region_v2_eval	6	positive	positive	none	positive	positive	true	0.005000741808749196	SNR(LISA-3yrs)_sw_0	3
+e5_nlo_boundary_segment_10_region_v2_eval	7	fail_or_nonpositive	fail_or_nonpositive	none	nlo:no_nlo_stability	nlo:no_nlo_stability	true	0.0		0
+e5_nlo_boundary_segment_10_region_v2_eval	8	fail_or_nonpositive	fail_or_nonpositive	none	nlo:no_nlo_stability	nlo:no_nlo_stability	true	0.0		0
+e5_nlo_boundary_segment_10_region_v2_eval	9	fail_or_nonpositive	fail_or_nonpositive	none	nlo:no_nlo_stability	nlo:no_nlo_stability	true	0.0		0
+e5_nlo_boundary_segment_10_region_v2_eval	10	fail_or_nonpositive	fail_or_nonpositive	none	nlo:no_nlo_stability	nlo:no_nlo_stability	true	0.0		0

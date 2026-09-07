@@ -1,0 +1,5 @@
+row	strict_class	raw_approx_class	raw_error_kind	strict_failure_stage	raw_approx_failure_stage	raw_qualitative_match	secondary_max_snr_relative_error	secondary_max_snr_field	secondary_snr_fields_compared
+1	fail_or_nonpositive	positive	false_positive	bounce_0:failure	positive	false	0.0		0
+2	fail_or_nonpositive	positive	false_positive	bounce_0:failure	positive	false	0.0		0
+3	fail_or_nonpositive	fail_or_nonpositive	none	bounce_0:failure	bounce_0:failure	true	0.0		0
+4	positive	fail_or_nonpositive	false_negative	positive	gw_0:failure	false	0.0		0

@@ -1,0 +1,9 @@
+row	strict_class	raw_approx_class	raw_error_kind	strict_failure_stage	raw_approx_failure_stage	raw_qualitative_match	secondary_max_snr_relative_error	secondary_max_snr_field	secondary_snr_fields_compared
+1	positive	positive	none	positive	positive	true	0.004017888726365484	SNR(LISA-3yrs)_sw_1	6
+2	positive	positive	none	positive	positive	true	7.528519374974984e-05	SNR(LISA-3yrs)_turb_0	3
+3	positive	positive	none	positive	positive	true	5.12585700110166e-05	SNR(LISA-3yrs)_turb_0	3
+4	positive	positive	none	positive	positive	true	0.0	incompatible_transition_history	0
+5	positive	positive	none	positive	positive	true	0.0029967961231174524	SNR(LISA-3yrs)_sw_0	3
+6	positive	positive	none	positive	positive	true	0.003947140024474468	SNR(LISA-3yrs)_sw_0	3
+7	positive	positive	none	positive	positive	true	0.0	incompatible_transition_history	0
+8	positive	positive	none	positive	positive	true	0.0023669756338249867	SNR(LISA-3yrs)_sw_0	3

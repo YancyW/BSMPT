@@ -1,0 +1,15 @@
+{
+  "approx_sha256": "ec6873c1773ad368689968f9afb4996767bf526c1d8ddb77d3f08b28d533a696",
+  "primary_contract": "strict positive iff approximate positive",
+  "raw_approx_confusion": {
+    "false_negative": 0,
+    "false_positive": 0,
+    "true_negative": 0,
+    "true_positive": 3
+  },
+  "raw_qualitative_errors": 0,
+  "rows": 3,
+  "secondary_incompatible_transition_schema": 0,
+  "secondary_snr_amplitude_over_10pct": 0,
+  "strict_sha256": "aeaef626b92a15b9dddcfbda943d2e95c882fbf1f1830ae8c2dc4dec74f30941"
+}

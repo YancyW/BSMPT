@@ -1,0 +1,12 @@
+{
+  "primary_contract": "strict positive iff approximate positive",
+  "raw_approx_confusion": {
+    "false_negative": 0,
+    "false_positive": 0,
+    "true_negative": 4,
+    "true_positive": 0
+  },
+  "raw_qualitative_errors": 0,
+  "rows": 4,
+  "secondary_snr_amplitude_over_10pct": 0
+}
