@@ -11,10 +11,10 @@
 
 | 组 | 来源 | 半径 | 点数 | seed | 预期路由用途 |
 |---|---|---:|---:|---:|---|
-| C1 | high-SNR Yukawa type-2 | `2.5e-4` | 4 | 52007 | v5正点认证域 |
-| C2 | high-SNR Yukawa type-4 | `8e-5` | 4 | 52107 | v5正点认证域 |
-| C3 | broad-B row1 coexistence | `4e-4` | 4 | 52207 | v5失败认证域 |
-| C4 | broad-C row1 coexistence | `5e-4` | 4 | 52307 | v5失败认证域 |
+| C1 | high-SNR Yukawa type-2 | `8e-5` | 4 | 52007 | v5正点认证域 |
+| C2 | high-SNR Yukawa type-4 | `2e-5` | 4 | 52107 | v5正点认证域 |
+| C3 | broad-B row1 coexistence | `8e-5` | 4 | 52207 | v5失败认证域 |
+| C4 | broad-C row1 coexistence | `5e-5` | 4 | 52307 | v5失败认证域 |
 | C5 | broad-B row10 bounce | `3e-5` | 2 | 52407 | 域外严格回退控制 |
 | C6 | broad-A row9 late failure | `6e-5` | 2 | 52507 | 域外严格回退控制 |
 
@@ -22,6 +22,11 @@
 --max-points N`。C1/C2分别来自`stratified_high_snr_yukawa_3.tsv`第1/3行；C3/C5来自
 `stratified_broad_group_b_10.tsv`第1/10行；C4来自`stratified_broad_group_c_10.tsv`
 第1行；C6来自`stratified_broad_group_a_10.tsv`第9行。
+
+预注册勘误：在生成任何样本、查看任何结果之前，静态检查发现生成器使用
+`delta*max(abs(value),1)`，而router使用`radius*abs(reference)`。因此将C1--C4的
+生成delta修正为上表数值，确保小参数方向也位于已经冻结的认证盒内；锚点、点数、种子、
+路由规则和验收条件均未改变。
 
 ## 固定验收
 
