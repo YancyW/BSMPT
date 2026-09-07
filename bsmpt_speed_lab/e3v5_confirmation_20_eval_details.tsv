@@ -1,0 +1,21 @@
+group	row	strict_class	raw_approx_class	raw_error_kind	strict_failure_stage	raw_approx_failure_stage	raw_qualitative_match	secondary_max_snr_relative_error	secondary_max_snr_field	secondary_snr_fields_compared
+e3v5_c1_yuk2_4_region_v5_eval	1	positive	positive	none	positive	positive	true	0.002069170532808394	SNR(LISA-3yrs)_sw_0	3
+e3v5_c1_yuk2_4_region_v5_eval	2	positive	positive	none	positive	positive	true	0.0011964255597616074	SNR(LISA-3yrs)_sw_0	3
+e3v5_c1_yuk2_4_region_v5_eval	3	positive	positive	none	positive	positive	true	0.0012867467935031083	SNR(LISA-3yrs)_sw_0	3
+e3v5_c1_yuk2_4_region_v5_eval	4	positive	positive	none	positive	positive	true	0.00914057465113775	SNR(LISA-3yrs)_sw_0	3
+e3v5_c2_yuk4_4_region_v5_eval	1	positive	positive	none	positive	positive	true	0.010496984782152302	SNR(LISA-3yrs)_sw_0	3
+e3v5_c2_yuk4_4_region_v5_eval	2	positive	positive	none	positive	positive	true	0.0007010243142098634	SNR(LISA-3yrs)_sw_0	3
+e3v5_c2_yuk4_4_region_v5_eval	3	positive	positive	none	positive	positive	true	0.0001165518561349867	SNR(LISA-3yrs)_turb_0	3
+e3v5_c2_yuk4_4_region_v5_eval	4	positive	positive	none	positive	positive	true	0.0010374229703332407	SNR(LISA-3yrs)_sw_0	3
+e3v5_c3_coex_b1_4_region_v5_eval	1	fail_or_nonpositive	fail_or_nonpositive	none	coexistence:no_coex_pair	coexistence:no_coex_pair	true	0.0		0
+e3v5_c3_coex_b1_4_region_v5_eval	2	fail_or_nonpositive	fail_or_nonpositive	none	coexistence:no_coex_pair	coexistence:no_coex_pair	true	0.0		0
+e3v5_c3_coex_b1_4_region_v5_eval	3	fail_or_nonpositive	fail_or_nonpositive	none	coexistence:no_coex_pair	coexistence:no_coex_pair	true	0.0		0
+e3v5_c3_coex_b1_4_region_v5_eval	4	fail_or_nonpositive	fail_or_nonpositive	none	coexistence:no_coex_pair	coexistence:no_coex_pair	true	0.0		0
+e3v5_c4_coex_c1_4_region_v5_eval	1	fail_or_nonpositive	fail_or_nonpositive	none	coexistence:no_coex_pair	coexistence:no_coex_pair	true	0.0		0
+e3v5_c4_coex_c1_4_region_v5_eval	2	fail_or_nonpositive	fail_or_nonpositive	none	coexistence:no_coex_pair	coexistence:no_coex_pair	true	0.0		0
+e3v5_c4_coex_c1_4_region_v5_eval	3	fail_or_nonpositive	fail_or_nonpositive	none	coexistence:no_coex_pair	coexistence:no_coex_pair	true	0.0		0
+e3v5_c4_coex_c1_4_region_v5_eval	4	fail_or_nonpositive	fail_or_nonpositive	none	coexistence:no_coex_pair	coexistence:no_coex_pair	true	0.0		0
+e3v5_c5_bounce_b10_2_region_v5_eval	1	fail_or_nonpositive	fail_or_nonpositive	none	bounce_0:failure	bounce_0:failure	true	0.0		0
+e3v5_c5_bounce_b10_2_region_v5_eval	2	fail_or_nonpositive	fail_or_nonpositive	none	bounce_0:failure	bounce_0:failure	true	0.0		0
+e3v5_c6_late_a9_2_region_v5_eval	1	fail_or_nonpositive	fail_or_nonpositive	none	nucleation_approx_0:not_met	nucleation_approx_0:not_met	true	0.0		0
+e3v5_c6_late_a9_2_region_v5_eval	2	fail_or_nonpositive	fail_or_nonpositive	none	bounce_0:failure	bounce_0:failure	true	0.0		0

@@ -13,7 +13,7 @@
 | 42行v3/v4已覆盖路由 | TP=20、TN=22、FP=FN=0；完整严格4/42；已测路由约降低45% | `region_v3_validation_summary.json`、日志A34/A38 |
 | 新的主要缺口 | 状态正常仍可能SNR偏差54.95% | 日志A22、`classified_safe_pilot_counterexample_*` |
 | N1a定性账本 | 42点TP=20、TN=21、FP=1、FN=0 | `n1a_42_combined_*`、日志A27 |
-| 当前下一步 | 冻结v5后做独立E3确认；另研究比三温shadow更便宜的晚期失败证书 | `REGION_V5_RELEASE_REPORT_ZH.md`、日志A42 |
+| 当前下一步 | 扩大独立E3分层；另研究比三温shadow更便宜的晚期失败证书 | `E3_V5_CONFIRMATION_PROTOCOL_ZH.md`、日志A44 |
 
 ## 2. 已接受并仍在当前路径中的研究
 

@@ -1,0 +1,9 @@
+input_row	diagnostic
+1	region-v2: exact_nlo_success:runtime=0.32600000000000001:continue_region_v1
+1	region-v1: accepted_positive_all_three_shadow
+2	region-v2: exact_nlo_success:runtime=0.29999999999999999:continue_region_v1
+2	region-v1: accepted_positive_all_three_shadow
+3	region-v2: exact_nlo_success:runtime=0.27600000000000002:continue_region_v1
+3	region-v1: accepted_positive_all_three_shadow
+4	region-v2: exact_nlo_success:runtime=0.28899999999999998:continue_region_v1
+4	region-v1: accepted_positive_all_three_shadow
