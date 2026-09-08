@@ -1,0 +1,12 @@
+{
+  "accepted": 10,
+  "corrected_region_v7_runtime_seconds": 596.585,
+  "fallback": 2,
+  "nlo_prefix_runtime_seconds": 4.723,
+  "raw_approx_runtime_seconds": 490.498,
+  "region_v7_output_runtime_seconds": 591.862,
+  "relative_runtime_reduction": 0.4975241958374148,
+  "rows": 12,
+  "strict_runtime_seconds": 1187.291,
+  "warning": "runtime is the sum of CalcGW output runtime fields; corrected v7 adds the separately observed strict-NLO prefixes"
+}

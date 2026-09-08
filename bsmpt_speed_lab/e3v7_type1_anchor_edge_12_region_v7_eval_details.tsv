@@ -1,0 +1,13 @@
+row	strict_class	raw_approx_class	raw_error_kind	strict_failure_stage	raw_approx_failure_stage	raw_qualitative_match	secondary_max_snr_relative_error	secondary_max_snr_field	secondary_snr_fields_compared	guarded_class	guarded_failure_stage	guarded_qualitative_match	guarded_equals_strict_nonruntime	guarded_equals_raw_nonruntime	fallback_inferred
+1	fail_or_nonpositive	fail_or_nonpositive	none	bounce_0:failure	bounce_0:failure	true	0.0		0	fail_or_nonpositive	bounce_0:failure	true	false	true	false
+2	fail_or_nonpositive	fail_or_nonpositive	none	nucleation_approx_0:not_met	bounce_0:failure	true	0.0		0	fail_or_nonpositive	bounce_0:failure	true	false	true	false
+3	fail_or_nonpositive	fail_or_nonpositive	none	bounce_0:failure	bounce_0:failure	true	0.0		0	fail_or_nonpositive	bounce_0:failure	true	false	true	false
+4	fail_or_nonpositive	fail_or_nonpositive	none	bounce_0:failure	nucleation_approx_0:not_met	true	0.0		0	fail_or_nonpositive	bounce_0:failure	true	true	false	true
+5	fail_or_nonpositive	fail_or_nonpositive	none	nucleation_approx_0:not_met	bounce_0:failure	true	0.0		0	fail_or_nonpositive	bounce_0:failure	true	false	true	false
+6	fail_or_nonpositive	fail_or_nonpositive	none	bounce_0:failure	bounce_0:failure	true	0.0		0	fail_or_nonpositive	bounce_0:failure	true	false	true	false
+7	fail_or_nonpositive	fail_or_nonpositive	none	bounce_0:failure	nucleation_approx_0:not_met	true	0.0		0	fail_or_nonpositive	bounce_0:failure	true	true	false	true
+8	fail_or_nonpositive	fail_or_nonpositive	none	bounce_0:failure	bounce_0:failure	true	0.0		0	fail_or_nonpositive	bounce_0:failure	true	false	true	false
+9	fail_or_nonpositive	fail_or_nonpositive	none	bounce_0:failure	bounce_0:failure	true	0.0		0	fail_or_nonpositive	bounce_0:failure	true	false	true	false
+10	fail_or_nonpositive	fail_or_nonpositive	none	bounce_0:failure	bounce_0:failure	true	0.0		0	fail_or_nonpositive	bounce_0:failure	true	false	true	false
+11	fail_or_nonpositive	fail_or_nonpositive	none	bounce_0:failure	bounce_0:failure	true	0.0		0	fail_or_nonpositive	bounce_0:failure	true	false	true	false
+12	fail_or_nonpositive	fail_or_nonpositive	none	bounce_0:failure	bounce_0:failure	true	0.0		0	fail_or_nonpositive	bounce_0:failure	true	false	true	false

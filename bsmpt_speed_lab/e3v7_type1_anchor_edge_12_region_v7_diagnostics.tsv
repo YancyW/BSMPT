@@ -1,0 +1,235 @@
+input_row	diagnostic
+1	region-v2: exact_nlo_success:runtime=0.39400000000000002:continue_region_v1
+1	region-v1: accepted_late_failure_low_temperature_count:bounce_0:failure:temperatures=6
+2	region-v2: exact_nlo_success:runtime=0.39500000000000002:continue_region_v1
+2	region-v1: accepted_late_failure_low_temperature_count:bounce_0:failure:temperatures=6
+3	region-v2: exact_nlo_success:runtime=0.35899999999999999:continue_region_v1
+3	region-v1: accepted_late_failure_low_temperature_count:bounce_0:failure:temperatures=6
+4	region-v2: exact_nlo_success:runtime=0.36899999999999999:continue_region_v1
+4	region-v1: exact fallback: fallback_late_failure_temperature_count:nucleation_approx_0:not_met:temperatures=10
+4	BSMPT_BOUNCE_CERT	path_check	T=224.922	max_relative_error=1	max_force=9638.15	max_gradient=9639.49	max_perpendicular_gradient=9638.15	max_dldrho=80.4843	spline_length=41.0713	converged=0
+4	BSMPT_BOUNCE_CERT	path_deformation	T=224.922	best_relative_error=0.979746	iterations=21	converged_without_1d=0
+4	BSMPT_BOUNCE_CERT	path_check	T=224.922	max_relative_error=1.00026	max_force=1111.23	max_gradient=1123.4	max_perpendicular_gradient=1110.89	max_dldrho=80.4843	spline_length=41.0708	converged=0
+4	BSMPT_BOUNCE_CERT	path_deformation	T=224.922	best_relative_error=0.225887	iterations=21	converged_without_1d=0
+4	BSMPT_BOUNCE_CERT	path_check	T=224.922	max_relative_error=0.999656	max_force=695.911	max_gradient=718.809	max_perpendicular_gradient=696.193	max_dldrho=79.97	spline_length=41.0711	converged=0
+4	BSMPT_BOUNCE_CERT	path_deformation	T=224.922	best_relative_error=0.0788092	iterations=21	converged_without_1d=0
+4	BSMPT_BOUNCE_CERT	path_check	T=224.922	max_relative_error=1.00092	max_force=292.581	max_gradient=382.837	max_perpendicular_gradient=292.267	max_dldrho=79.9658	spline_length=41.0711	converged=0
+4	BSMPT_BOUNCE_CERT	path_deformation	T=224.922	best_relative_error=0.763483	iterations=21	converged_without_1d=0
+4	BSMPT_BOUNCE_CERT	path_check	T=224.922	max_relative_error=0.999289	max_force=355.954	max_gradient=426.265	max_perpendicular_gradient=356.247	max_dldrho=79.9635	spline_length=41.071	converged=0
+4	BSMPT_BOUNCE_CERT	path_deformation	T=224.922	best_relative_error=0.827898	iterations=21	converged_without_1d=0
+4	BSMPT_BOUNCE_CERT	path_check	T=224.922	max_relative_error=1.00011	max_force=3152.54	max_gradient=3156.7	max_perpendicular_gradient=3152.14	max_dldrho=79.9638	spline_length=41.0709	converged=0
+4	BSMPT_BOUNCE_CERT	path_deformation	T=224.922	best_relative_error=0.992121	iterations=21	converged_without_1d=0
+4	BSMPT_BOUNCE_CERT	path_check	T=224.922	max_relative_error=1.00009	max_force=3894.39	max_gradient=3897.72	max_perpendicular_gradient=3893.96	max_dldrho=80.018	spline_length=41.0717	converged=0
+4	BSMPT_BOUNCE_CERT	path_check	T=224.878	max_relative_error=1	max_force=10549.7	max_gradient=10552.3	max_perpendicular_gradient=10549.7	max_dldrho=84.1876	spline_length=42.3314	converged=0
+4	BSMPT_BOUNCE_CERT	path_deformation	T=224.878	best_relative_error=0.98192	iterations=21	converged_without_1d=0
+4	BSMPT_BOUNCE_CERT	path_check	T=224.878	max_relative_error=1.00023	max_force=1295.47	max_gradient=1317.81	max_perpendicular_gradient=1295.08	max_dldrho=84.1877	spline_length=42.32	converged=0
+4	BSMPT_BOUNCE_CERT	path_deformation	T=224.878	best_relative_error=0.3853	iterations=21	converged_without_1d=0
+4	BSMPT_BOUNCE_CERT	path_check	T=224.878	max_relative_error=0.999775	max_force=1061.93	max_gradient=1090.61	max_perpendicular_gradient=1062.24	max_dldrho=83.5985	spline_length=42.3181	converged=0
+4	BSMPT_BOUNCE_CERT	path_deformation	T=224.878	best_relative_error=0.115416	iterations=21	converged_without_1d=0
+4	BSMPT_BOUNCE_CERT	path_check	T=224.878	max_relative_error=1.00067	max_force=412.752	max_gradient=511.412	max_perpendicular_gradient=412.396	max_dldrho=83.5957	spline_length=42.3181	converged=0
+4	BSMPT_BOUNCE_CERT	path_deformation	T=224.878	best_relative_error=0.51982	iterations=21	converged_without_1d=0
+4	BSMPT_BOUNCE_CERT	path_check	T=224.878	max_relative_error=0.999885	max_force=1864.49	max_gradient=1879.69	max_perpendicular_gradient=1864.77	max_dldrho=83.5903	spline_length=42.3181	converged=0
+4	BSMPT_BOUNCE_CERT	path_deformation	T=224.878	best_relative_error=0.882107	iterations=21	converged_without_1d=0
+4	BSMPT_BOUNCE_CERT	path_check	T=224.878	max_relative_error=1.00018	max_force=1735.59	max_gradient=1751.3	max_perpendicular_gradient=1735.19	max_dldrho=83.6082	spline_length=42.3183	converged=0
+4	BSMPT_BOUNCE_CERT	path_deformation	T=224.878	best_relative_error=0.82974	iterations=21	converged_without_1d=0
+4	BSMPT_BOUNCE_CERT	path_check	T=224.878	max_relative_error=0.999859	max_force=1674.93	max_gradient=1691.3	max_perpendicular_gradient=1675.2	max_dldrho=83.6021	spline_length=42.3059	converged=0
+4	BSMPT_BOUNCE_CERT	path_check	T=224.834	max_relative_error=1	max_force=11423.6	max_gradient=11427.7	max_perpendicular_gradient=11423.6	max_dldrho=86.8262	spline_length=43.4734	converged=0
+4	BSMPT_BOUNCE_CERT	path_deformation	T=224.834	best_relative_error=0.974369	iterations=21	converged_without_1d=0
+4	BSMPT_BOUNCE_CERT	path_check	T=224.834	max_relative_error=0.999999	max_force=10772.1	max_gradient=10776.5	max_perpendicular_gradient=10772.1	max_dldrho=86.8263	spline_length=43.2904	converged=0
+4	BSMPT_BOUNCE_CERT	path_deformation	T=224.834	best_relative_error=0.969933	iterations=21	converged_without_1d=0
+4	BSMPT_BOUNCE_CERT	path_check	T=224.834	max_relative_error=1.00022	max_force=1320.86	max_gradient=1359.19	max_perpendicular_gradient=1320.44	max_dldrho=86.7497	spline_length=43.2878	converged=0
+4	BSMPT_BOUNCE_CERT	path_deformation	T=224.834	best_relative_error=0.341597	iterations=21	converged_without_1d=0
+4	BSMPT_BOUNCE_CERT	path_check	T=224.834	max_relative_error=0.999764	max_force=1010.8	max_gradient=1063.26	max_perpendicular_gradient=1011.14	max_dldrho=86.1434	spline_length=43.2657	converged=0
+4	BSMPT_BOUNCE_CERT	path_deformation	T=224.834	best_relative_error=0.0590659	iterations=21	converged_without_1d=0
+4	BSMPT_BOUNCE_CERT	path_check	T=224.834	max_relative_error=1.00116	max_force=226.31	max_gradient=472.795	max_perpendicular_gradient=225.932	max_dldrho=86.1398	spline_length=43.2663	converged=0
+4	BSMPT_BOUNCE_CERT	path_deformation	T=224.834	best_relative_error=0.392956	iterations=21	converged_without_1d=0
+4	BSMPT_BOUNCE_CERT	path_check	T=224.834	max_relative_error=0.999857	max_force=1551.48	max_gradient=1583.11	max_perpendicular_gradient=1551.79	max_dldrho=86.1345	spline_length=43.2654	converged=0
+4	BSMPT_BOUNCE_CERT	path_deformation	T=224.834	best_relative_error=0.585705	iterations=21	converged_without_1d=0
+4	BSMPT_BOUNCE_CERT	path_check	T=224.834	max_relative_error=1.00021	max_force=1433.02	max_gradient=1466.75	max_perpendicular_gradient=1432.6	max_dldrho=86.1471	spline_length=43.2666	converged=0
+4	BSMPT_BOUNCE_CERT	path_check	T=224.79	max_relative_error=1	max_force=12270.1	max_gradient=12276.1	max_perpendicular_gradient=12270.1	max_dldrho=88.5149	spline_length=44.5257	converged=0
+4	BSMPT_BOUNCE_CERT	path_deformation	T=224.79	best_relative_error=0.961715	iterations=21	converged_without_1d=0
+4	BSMPT_BOUNCE_CERT	path_check	T=224.79	max_relative_error=0.999991	max_force=8618.24	max_gradient=8626.93	max_perpendicular_gradient=8618.35	max_dldrho=88.5146	spline_length=43.7539	converged=0
+4	BSMPT_BOUNCE_CERT	path_deformation	T=224.79	best_relative_error=0.106883	iterations=21	converged_without_1d=0
+4	BSMPT_BOUNCE_CERT	path_check	T=224.79	max_relative_error=1.00177	max_force=136.54	max_gradient=516.787	max_perpendicular_gradient=136.148	max_dldrho=88.106	spline_length=43.7137	converged=0
+4	BSMPT_BOUNCE_CERT	path_deformation	T=224.79	best_relative_error=0.150947	iterations=21	converged_without_1d=0
+4	BSMPT_BOUNCE_CERT	path_check	T=224.79	max_relative_error=0.999628	max_force=601.204	max_gradient=737.03	max_perpendicular_gradient=601.568	max_dldrho=87.708	spline_length=43.6728	converged=0
+4	BSMPT_BOUNCE_CERT	path_deformation	T=224.79	best_relative_error=0.0604432	iterations=21	converged_without_1d=0
+4	BSMPT_BOUNCE_CERT	path_check	T=224.79	max_relative_error=1.00105	max_force=236.252	max_gradient=542.445	max_perpendicular_gradient=235.855	max_dldrho=87.7099	spline_length=43.673	converged=0
+4	BSMPT_BOUNCE_CERT	path_deformation	T=224.79	best_relative_error=0.203515	iterations=21	converged_without_1d=0
+4	BSMPT_BOUNCE_CERT	path_check	T=224.79	max_relative_error=0.999723	max_force=797.463	max_gradient=897.309	max_perpendicular_gradient=797.825	max_dldrho=87.7082	spline_length=43.6728	converged=0
+4	BSMPT_BOUNCE_CERT	path_deformation	T=224.79	best_relative_error=0.0100218	iterations=0	converged_without_1d=1
+4	BSMPT_BOUNCE_CERT	path_check	T=224.698	max_relative_error=0.999833	max_force=1161.04	max_gradient=1297.28	max_perpendicular_gradient=1161.4	max_dldrho=87.9841	spline_length=45.6245	converged=0
+4	BSMPT_BOUNCE_CERT	path_deformation	T=224.698	best_relative_error=0.130171	iterations=21	converged_without_1d=0
+4	BSMPT_BOUNCE_CERT	path_check	T=224.698	max_relative_error=1.00056	max_force=480.333	max_gradient=791.783	max_perpendicular_gradient=479.981	max_dldrho=87.984	spline_length=42.5416	converged=0
+4	BSMPT_BOUNCE_CERT	path_deformation	T=224.698	best_relative_error=0.00890916	iterations=0	converged_without_1d=1
+4	BSMPT_BOUNCE_CERT	path_check	T=224.872	max_relative_error=1.00028	max_force=1030.61	max_gradient=1063.13	max_perpendicular_gradient=1030.23	max_dldrho=84.0303	spline_length=41.6913	converged=0
+4	BSMPT_BOUNCE_CERT	path_deformation	T=224.872	best_relative_error=0.102548	iterations=21	converged_without_1d=0
+4	BSMPT_BOUNCE_CERT	path_check	T=224.872	max_relative_error=0.999255	max_force=366.521	max_gradient=476.154	max_perpendicular_gradient=366.838	max_dldrho=84.0304	spline_length=42.4747	converged=0
+4	BSMPT_BOUNCE_CERT	path_deformation	T=224.872	best_relative_error=0.565878	iterations=21	converged_without_1d=0
+4	BSMPT_BOUNCE_CERT	path_check	T=224.872	max_relative_error=1.00016	max_force=2098.16	max_gradient=2109.29	max_perpendicular_gradient=2097.77	max_dldrho=84.0254	spline_length=42.4743	converged=0
+4	BSMPT_BOUNCE_CERT	path_deformation	T=224.872	best_relative_error=0.935882	iterations=21	converged_without_1d=0
+4	BSMPT_BOUNCE_CERT	path_check	T=224.872	max_relative_error=0.999879	max_force=1803.64	max_gradient=1818.59	max_perpendicular_gradient=1803.93	max_dldrho=84.0507	spline_length=42.4807	converged=0
+4	BSMPT_BOUNCE_CERT	path_deformation	T=224.872	best_relative_error=0.842199	iterations=21	converged_without_1d=0
+4	BSMPT_BOUNCE_CERT	path_check	T=224.872	max_relative_error=1.00018	max_force=1708.99	max_gradient=1724.06	max_perpendicular_gradient=1708.6	max_dldrho=84.0443	spline_length=42.4804	converged=0
+4	BSMPT_BOUNCE_CERT	path_deformation	T=224.872	best_relative_error=0.787611	iterations=21	converged_without_1d=0
+4	BSMPT_BOUNCE_CERT	path_check	T=224.872	max_relative_error=0.999867	max_force=1646.64	max_gradient=1662.75	max_perpendicular_gradient=1646.93	max_dldrho=84.0422	spline_length=42.4802	converged=0
+4	BSMPT_BOUNCE_CERT	path_deformation	T=224.872	best_relative_error=0.743729	iterations=21	converged_without_1d=0
+4	BSMPT_BOUNCE_CERT	path_check	T=224.872	max_relative_error=1.00019	max_force=1593.53	max_gradient=1609.39	max_perpendicular_gradient=1593.14	max_dldrho=84.0411	spline_length=42.4794	converged=0
+4	BSMPT_BOUNCE_CERT	path_check	T=224.872	max_relative_error=1	max_force=10679.9	max_gradient=10682.7	max_perpendicular_gradient=10679.9	max_dldrho=84.6384	spline_length=42.5055	converged=0
+4	BSMPT_BOUNCE_CERT	path_deformation	T=224.872	best_relative_error=0.981962	iterations=21	converged_without_1d=0
+4	BSMPT_BOUNCE_CERT	path_check	T=224.872	max_relative_error=1	max_force=13070.2	max_gradient=13072.4	max_perpendicular_gradient=13070.1	max_dldrho=84.6385	spline_length=42.4863	converged=0
+4	BSMPT_BOUNCE_CERT	path_deformation	T=224.872	best_relative_error=0.973008	iterations=21	converged_without_1d=0
+4	BSMPT_BOUNCE_CERT	path_check	T=224.872	max_relative_error=0.999959	max_force=4175.46	max_gradient=4182.99	max_perpendicular_gradient=4175.67	max_dldrho=84.9404	spline_length=42.4821	converged=0
+4	BSMPT_BOUNCE_CERT	path_deformation	T=224.872	best_relative_error=0.953089	iterations=21	converged_without_1d=0
+4	BSMPT_BOUNCE_CERT	path_check	T=224.872	max_relative_error=0.999816	max_force=1298.41	max_gradient=1324.59	max_perpendicular_gradient=1298.71	max_dldrho=84.1184	spline_length=42.4756	converged=0
+4	BSMPT_BOUNCE_CERT	path_deformation	T=224.872	best_relative_error=0.37698	iterations=21	converged_without_1d=0
+4	BSMPT_BOUNCE_CERT	path_check	T=224.872	max_relative_error=1.00028	max_force=1048.4	max_gradient=1081.01	max_perpendicular_gradient=1048.01	max_dldrho=84.0359	spline_length=42.4826	converged=0
+4	BSMPT_BOUNCE_CERT	path_deformation	T=224.872	best_relative_error=0.0986278	iterations=21	converged_without_1d=0
+4	BSMPT_BOUNCE_CERT	path_check	T=224.872	max_relative_error=0.999283	max_force=359.216	max_gradient=487.927	max_perpendicular_gradient=359.551	max_dldrho=84.032	spline_length=42.4822	converged=0
+4	BSMPT_BOUNCE_CERT	path_deformation	T=224.872	best_relative_error=0.548302	iterations=21	converged_without_1d=0
+4	BSMPT_BOUNCE_CERT	path_check	T=224.872	max_relative_error=1.00016	max_force=2033.96	max_gradient=2048.79	max_perpendicular_gradient=2033.55	max_dldrho=84.0268	spline_length=42.4821	converged=0
+4	BSMPT_BOUNCE_CERT	path_check	T=224.872	max_relative_error=1.00028	max_force=1030.61	max_gradient=1063.13	max_perpendicular_gradient=1030.23	max_dldrho=84.0303	spline_length=41.6913	converged=0
+4	BSMPT_BOUNCE_CERT	path_deformation	T=224.872	best_relative_error=0.102548	iterations=21	converged_without_1d=0
+4	BSMPT_BOUNCE_CERT	path_check	T=224.872	max_relative_error=0.999255	max_force=366.521	max_gradient=476.154	max_perpendicular_gradient=366.838	max_dldrho=84.0304	spline_length=42.4747	converged=0
+4	BSMPT_BOUNCE_CERT	path_deformation	T=224.872	best_relative_error=0.565878	iterations=21	converged_without_1d=0
+4	BSMPT_BOUNCE_CERT	path_check	T=224.872	max_relative_error=1.00016	max_force=2098.16	max_gradient=2109.29	max_perpendicular_gradient=2097.77	max_dldrho=84.0254	spline_length=42.4743	converged=0
+4	BSMPT_BOUNCE_CERT	path_deformation	T=224.872	best_relative_error=0.935882	iterations=21	converged_without_1d=0
+4	BSMPT_BOUNCE_CERT	path_check	T=224.872	max_relative_error=0.999879	max_force=1803.64	max_gradient=1818.59	max_perpendicular_gradient=1803.93	max_dldrho=84.0507	spline_length=42.4807	converged=0
+4	BSMPT_BOUNCE_CERT	path_deformation	T=224.872	best_relative_error=0.842199	iterations=21	converged_without_1d=0
+4	BSMPT_BOUNCE_CERT	path_check	T=224.872	max_relative_error=1.00018	max_force=1708.99	max_gradient=1724.06	max_perpendicular_gradient=1708.6	max_dldrho=84.0443	spline_length=42.4804	converged=0
+4	BSMPT_BOUNCE_CERT	path_deformation	T=224.872	best_relative_error=0.787611	iterations=21	converged_without_1d=0
+4	BSMPT_BOUNCE_CERT	path_check	T=224.872	max_relative_error=0.999867	max_force=1646.64	max_gradient=1662.75	max_perpendicular_gradient=1646.93	max_dldrho=84.0422	spline_length=42.4802	converged=0
+4	BSMPT_BOUNCE_CERT	path_deformation	T=224.872	best_relative_error=0.743729	iterations=21	converged_without_1d=0
+4	BSMPT_BOUNCE_CERT	path_check	T=224.872	max_relative_error=1.00019	max_force=1593.53	max_gradient=1609.39	max_perpendicular_gradient=1593.14	max_dldrho=84.0411	spline_length=42.4794	converged=0
+4	BSMPT_BOUNCE_CERT	path_check	T=224.872	max_relative_error=1	max_force=10679.9	max_gradient=10682.7	max_perpendicular_gradient=10679.9	max_dldrho=84.6384	spline_length=42.5055	converged=0
+4	BSMPT_BOUNCE_CERT	path_deformation	T=224.872	best_relative_error=0.981962	iterations=21	converged_without_1d=0
+4	BSMPT_BOUNCE_CERT	path_check	T=224.872	max_relative_error=1	max_force=13070.2	max_gradient=13072.4	max_perpendicular_gradient=13070.1	max_dldrho=84.6385	spline_length=42.4863	converged=0
+4	BSMPT_BOUNCE_CERT	path_deformation	T=224.872	best_relative_error=0.973008	iterations=21	converged_without_1d=0
+4	BSMPT_BOUNCE_CERT	path_check	T=224.872	max_relative_error=0.999959	max_force=4175.46	max_gradient=4182.99	max_perpendicular_gradient=4175.67	max_dldrho=84.9404	spline_length=42.4821	converged=0
+4	BSMPT_BOUNCE_CERT	path_deformation	T=224.872	best_relative_error=0.953089	iterations=21	converged_without_1d=0
+4	BSMPT_BOUNCE_CERT	path_check	T=224.872	max_relative_error=0.999816	max_force=1298.41	max_gradient=1324.59	max_perpendicular_gradient=1298.71	max_dldrho=84.1184	spline_length=42.4756	converged=0
+4	BSMPT_BOUNCE_CERT	path_deformation	T=224.872	best_relative_error=0.37698	iterations=21	converged_without_1d=0
+4	BSMPT_BOUNCE_CERT	path_check	T=224.872	max_relative_error=1.00028	max_force=1048.4	max_gradient=1081.01	max_perpendicular_gradient=1048.01	max_dldrho=84.0359	spline_length=42.4826	converged=0
+4	BSMPT_BOUNCE_CERT	path_deformation	T=224.872	best_relative_error=0.0986278	iterations=21	converged_without_1d=0
+4	BSMPT_BOUNCE_CERT	path_check	T=224.872	max_relative_error=0.999283	max_force=359.216	max_gradient=487.927	max_perpendicular_gradient=359.551	max_dldrho=84.032	spline_length=42.4822	converged=0
+4	BSMPT_BOUNCE_CERT	path_deformation	T=224.872	best_relative_error=0.548302	iterations=21	converged_without_1d=0
+4	BSMPT_BOUNCE_CERT	path_check	T=224.872	max_relative_error=1.00016	max_force=2033.96	max_gradient=2048.79	max_perpendicular_gradient=2033.55	max_dldrho=84.0268	spline_length=42.4821	converged=0
+5	region-v2: exact_nlo_success:runtime=0.33900000000000002:continue_region_v1
+5	region-v1: accepted_late_failure_low_temperature_count:bounce_0:failure:temperatures=6
+6	region-v2: exact_nlo_success:runtime=0.41999999999999998:continue_region_v1
+6	region-v1: accepted_late_failure_low_temperature_count:bounce_0:failure:temperatures=6
+7	region-v2: exact_nlo_success:runtime=0.499:continue_region_v1
+7	region-v1: exact fallback: fallback_late_failure_temperature_count:nucleation_approx_0:not_met:temperatures=11
+7	BSMPT_BOUNCE_CERT	path_check	T=225.026	max_relative_error=1	max_force=9631.75	max_gradient=9633.08	max_perpendicular_gradient=9631.75	max_dldrho=80.4844	spline_length=41.0653	converged=0
+7	BSMPT_BOUNCE_CERT	path_deformation	T=225.026	best_relative_error=0.979606	iterations=21	converged_without_1d=0
+7	BSMPT_BOUNCE_CERT	path_check	T=225.026	max_relative_error=1.00026	max_force=1109.57	max_gradient=1121.74	max_perpendicular_gradient=1109.22	max_dldrho=80.4844	spline_length=41.0652	converged=0
+7	BSMPT_BOUNCE_CERT	path_deformation	T=225.026	best_relative_error=0.223741	iterations=21	converged_without_1d=0
+7	BSMPT_BOUNCE_CERT	path_check	T=225.026	max_relative_error=0.999654	max_force=690.808	max_gradient=713.991	max_perpendicular_gradient=691.089	max_dldrho=79.9708	spline_length=41.0652	converged=0
+7	BSMPT_BOUNCE_CERT	path_deformation	T=225.026	best_relative_error=0.0849142	iterations=21	converged_without_1d=0
+7	BSMPT_BOUNCE_CERT	path_check	T=225.026	max_relative_error=1.00086	max_force=313.883	max_gradient=397.002	max_perpendicular_gradient=313.567	max_dldrho=79.9666	spline_length=41.0649	converged=0
+7	BSMPT_BOUNCE_CERT	path_deformation	T=225.026	best_relative_error=0.791662	iterations=21	converged_without_1d=0
+7	BSMPT_BOUNCE_CERT	path_check	T=225.026	max_relative_error=0.999293	max_force=357.409	max_gradient=427.362	max_perpendicular_gradient=357.702	max_dldrho=79.9645	spline_length=41.0651	converged=0
+7	BSMPT_BOUNCE_CERT	path_deformation	T=225.026	best_relative_error=0.825888	iterations=21	converged_without_1d=0
+7	BSMPT_BOUNCE_CERT	path_check	T=225.026	max_relative_error=1.00011	max_force=3133.69	max_gradient=3137.87	max_perpendicular_gradient=3133.29	max_dldrho=79.9646	spline_length=41.0652	converged=0
+7	BSMPT_BOUNCE_CERT	path_deformation	T=225.026	best_relative_error=0.992274	iterations=21	converged_without_1d=0
+7	BSMPT_BOUNCE_CERT	path_check	T=225.026	max_relative_error=1.00009	max_force=3976.39	max_gradient=3979.61	max_perpendicular_gradient=3975.96	max_dldrho=80.0181	spline_length=41.0652	converged=0
+7	BSMPT_BOUNCE_CERT	path_check	T=224.982	max_relative_error=1	max_force=10542.4	max_gradient=10545	max_perpendicular_gradient=10542.4	max_dldrho=84.1878	spline_length=42.3249	converged=0
+7	BSMPT_BOUNCE_CERT	path_deformation	T=224.982	best_relative_error=0.98179	iterations=21	converged_without_1d=0
+7	BSMPT_BOUNCE_CERT	path_check	T=224.982	max_relative_error=1.00023	max_force=1294.34	max_gradient=1316.72	max_perpendicular_gradient=1293.96	max_dldrho=84.1879	spline_length=42.3137	converged=0
+7	BSMPT_BOUNCE_CERT	path_deformation	T=224.982	best_relative_error=0.384154	iterations=21	converged_without_1d=0
+7	BSMPT_BOUNCE_CERT	path_check	T=224.982	max_relative_error=0.999776	max_force=1059.73	max_gradient=1088.4	max_perpendicular_gradient=1060.04	max_dldrho=83.5996	spline_length=42.3119	converged=0
+7	BSMPT_BOUNCE_CERT	path_deformation	T=224.982	best_relative_error=0.112988	iterations=21	converged_without_1d=0
+7	BSMPT_BOUNCE_CERT	path_check	T=224.982	max_relative_error=1.00067	max_force=404.67	max_gradient=508.618	max_perpendicular_gradient=404.319	max_dldrho=83.5966	spline_length=42.3109	converged=0
+7	BSMPT_BOUNCE_CERT	path_deformation	T=224.982	best_relative_error=0.52615	iterations=21	converged_without_1d=0
+7	BSMPT_BOUNCE_CERT	path_check	T=224.982	max_relative_error=0.999886	max_force=1895.71	max_gradient=1911.04	max_perpendicular_gradient=1895.99	max_dldrho=83.5976	spline_length=42.3131	converged=0
+7	BSMPT_BOUNCE_CERT	path_deformation	T=224.982	best_relative_error=0.88802	iterations=21	converged_without_1d=0
+7	BSMPT_BOUNCE_CERT	path_check	T=224.982	max_relative_error=1.00018	max_force=1742.74	max_gradient=1759.52	max_perpendicular_gradient=1742.34	max_dldrho=83.6057	spline_length=42.2982	converged=0
+7	BSMPT_BOUNCE_CERT	path_deformation	T=224.982	best_relative_error=0.837198	iterations=21	converged_without_1d=0
+7	BSMPT_BOUNCE_CERT	path_check	T=224.982	max_relative_error=0.99986	max_force=1682.4	max_gradient=1699.49	max_perpendicular_gradient=1682.66	max_dldrho=83.6032	spline_length=42.299	converged=0
+7	BSMPT_BOUNCE_CERT	path_check	T=224.938	max_relative_error=1	max_force=11415.9	max_gradient=11420.1	max_perpendicular_gradient=11415.9	max_dldrho=86.8267	spline_length=43.4671	converged=0
+7	BSMPT_BOUNCE_CERT	path_deformation	T=224.938	best_relative_error=0.974339	iterations=21	converged_without_1d=0
+7	BSMPT_BOUNCE_CERT	path_check	T=224.938	max_relative_error=0.999999	max_force=10793.1	max_gradient=10797.5	max_perpendicular_gradient=10793.1	max_dldrho=86.8268	spline_length=43.2844	converged=0
+7	BSMPT_BOUNCE_CERT	path_deformation	T=224.938	best_relative_error=0.970621	iterations=21	converged_without_1d=0
+7	BSMPT_BOUNCE_CERT	path_check	T=224.938	max_relative_error=1.00022	max_force=1324.42	max_gradient=1362.67	max_perpendicular_gradient=1324	max_dldrho=86.7534	spline_length=43.2818	converged=0
+7	BSMPT_BOUNCE_CERT	path_deformation	T=224.938	best_relative_error=0.345399	iterations=21	converged_without_1d=0
+7	BSMPT_BOUNCE_CERT	path_check	T=224.938	max_relative_error=0.999767	max_force=1018.13	max_gradient=1070.64	max_perpendicular_gradient=1018.47	max_dldrho=86.1448	spline_length=43.2604	converged=0
+7	BSMPT_BOUNCE_CERT	path_deformation	T=224.938	best_relative_error=0.0643145	iterations=21	converged_without_1d=0
+7	BSMPT_BOUNCE_CERT	path_check	T=224.938	max_relative_error=1.00108	max_force=245.201	max_gradient=479.814	max_perpendicular_gradient=244.819	max_dldrho=86.1412	spline_length=43.2601	converged=0
+7	BSMPT_BOUNCE_CERT	path_deformation	T=224.938	best_relative_error=0.398684	iterations=21	converged_without_1d=0
+7	BSMPT_BOUNCE_CERT	path_check	T=224.938	max_relative_error=0.999859	max_force=1564.42	max_gradient=1595.95	max_perpendicular_gradient=1564.74	max_dldrho=86.1359	spline_length=43.2593	converged=0
+7	BSMPT_BOUNCE_CERT	path_deformation	T=224.938	best_relative_error=0.598338	iterations=21	converged_without_1d=0
+7	BSMPT_BOUNCE_CERT	path_check	T=224.938	max_relative_error=1.0002	max_force=1450.01	max_gradient=1483.47	max_perpendicular_gradient=1449.59	max_dldrho=86.1487	spline_length=43.2604	converged=0
+7	BSMPT_BOUNCE_CERT	path_check	T=224.894	max_relative_error=1	max_force=12261.9	max_gradient=12267.9	max_perpendicular_gradient=12261.9	max_dldrho=88.5154	spline_length=44.5192	converged=0
+7	BSMPT_BOUNCE_CERT	path_deformation	T=224.894	best_relative_error=0.961727	iterations=21	converged_without_1d=0
+7	BSMPT_BOUNCE_CERT	path_check	T=224.894	max_relative_error=0.999991	max_force=8637.67	max_gradient=8646.32	max_perpendicular_gradient=8637.78	max_dldrho=88.5151	spline_length=43.7476	converged=0
+7	BSMPT_BOUNCE_CERT	path_deformation	T=224.894	best_relative_error=0.124058	iterations=21	converged_without_1d=0
+7	BSMPT_BOUNCE_CERT	path_check	T=224.894	max_relative_error=1.00156	max_force=157.244	max_gradient=521.167	max_perpendicular_gradient=156.849	max_dldrho=88.1094	spline_length=43.7076	converged=0
+7	BSMPT_BOUNCE_CERT	path_deformation	T=224.894	best_relative_error=0.166561	iterations=21	converged_without_1d=0
+7	BSMPT_BOUNCE_CERT	path_check	T=224.894	max_relative_error=0.999659	max_force=661.518	max_gradient=783.664	max_perpendicular_gradient=661.882	max_dldrho=87.7096	spline_length=43.6663	converged=0
+7	BSMPT_BOUNCE_CERT	path_deformation	T=224.894	best_relative_error=0.0302113	iterations=0	converged_without_1d=1
+7	BSMPT_BOUNCE_CERT	path_check	T=224.802	max_relative_error=0.999809	max_force=1035.55	max_gradient=1190.79	max_perpendicular_gradient=1035.92	max_dldrho=87.9848	spline_length=45.6182	converged=0
+7	BSMPT_BOUNCE_CERT	path_deformation	T=224.802	best_relative_error=0.0678889	iterations=21	converged_without_1d=0
+7	BSMPT_BOUNCE_CERT	path_check	T=224.802	max_relative_error=1.001	max_force=262.644	max_gradient=700.757	max_perpendicular_gradient=262.296	max_dldrho=87.9846	spline_length=42.5358	converged=0
+7	BSMPT_BOUNCE_CERT	path_deformation	T=224.802	best_relative_error=0.0258144	iterations=0	converged_without_1d=1
+7	BSMPT_BOUNCE_CERT	path_check	T=224.976	max_relative_error=1.00026	max_force=1144.62	max_gradient=1172.78	max_perpendicular_gradient=1144.23	max_dldrho=84.0304	spline_length=41.684	converged=0
+7	BSMPT_BOUNCE_CERT	path_deformation	T=224.976	best_relative_error=0.214079	iterations=21	converged_without_1d=0
+7	BSMPT_BOUNCE_CERT	path_check	T=224.976	max_relative_error=0.999649	max_force=683.571	max_gradient=738.552	max_perpendicular_gradient=683.899	max_dldrho=84.0305	spline_length=42.4745	converged=0
+7	BSMPT_BOUNCE_CERT	path_deformation	T=224.976	best_relative_error=0.0656694	iterations=21	converged_without_1d=0
+7	BSMPT_BOUNCE_CERT	path_check	T=224.976	max_relative_error=1.00109	max_force=252.941	max_gradient=429.803	max_perpendicular_gradient=252.584	max_dldrho=84.0259	spline_length=42.4744	converged=0
+7	BSMPT_BOUNCE_CERT	path_deformation	T=224.976	best_relative_error=0.588542	iterations=21	converged_without_1d=0
+7	BSMPT_BOUNCE_CERT	path_check	T=224.976	max_relative_error=0.999008	max_force=263.882	max_gradient=435.572	max_perpendicular_gradient=264.22	max_dldrho=84.0235	spline_length=42.4742	converged=0
+7	BSMPT_BOUNCE_CERT	path_deformation	T=224.976	best_relative_error=0.605214	iterations=21	converged_without_1d=0
+7	BSMPT_BOUNCE_CERT	path_check	T=224.976	max_relative_error=1.00102	max_force=268.159	max_gradient=437.814	max_perpendicular_gradient=267.803	max_dldrho=84.0227	spline_length=42.4707	converged=0
+7	BSMPT_BOUNCE_CERT	path_deformation	T=224.976	best_relative_error=0.614807	iterations=21	converged_without_1d=0
+7	BSMPT_BOUNCE_CERT	path_check	T=224.976	max_relative_error=0.999029	max_force=270.492	max_gradient=438.762	max_perpendicular_gradient=270.829	max_dldrho=84.0238	spline_length=42.4742	converged=0
+7	BSMPT_BOUNCE_CERT	path_deformation	T=224.976	best_relative_error=0.616702	iterations=21	converged_without_1d=0
+7	BSMPT_BOUNCE_CERT	path_check	T=224.976	max_relative_error=1.00102	max_force=271.085	max_gradient=438.903	max_perpendicular_gradient=270.728	max_dldrho=84.0238	spline_length=42.4744	converged=0
+7	BSMPT_BOUNCE_CERT	path_check	T=224.976	max_relative_error=1	max_force=10671.5	max_gradient=10674.4	max_perpendicular_gradient=10671.5	max_dldrho=84.6333	spline_length=42.4976	converged=0
+7	BSMPT_BOUNCE_CERT	path_deformation	T=224.976	best_relative_error=0.981954	iterations=21	converged_without_1d=0
+7	BSMPT_BOUNCE_CERT	path_check	T=224.976	max_relative_error=1	max_force=13100.5	max_gradient=13102.7	max_perpendicular_gradient=13100.4	max_dldrho=84.6334	spline_length=42.4779	converged=0
+7	BSMPT_BOUNCE_CERT	path_deformation	T=224.976	best_relative_error=0.972387	iterations=21	converged_without_1d=0
+7	BSMPT_BOUNCE_CERT	path_check	T=224.976	max_relative_error=0.999958	max_force=4092.54	max_gradient=4100.25	max_perpendicular_gradient=4092.76	max_dldrho=84.9422	spline_length=42.4795	converged=0
+7	BSMPT_BOUNCE_CERT	path_deformation	T=224.976	best_relative_error=0.959758	iterations=21	converged_without_1d=0
+7	BSMPT_BOUNCE_CERT	path_check	T=224.976	max_relative_error=0.999837	max_force=1456.63	max_gradient=1479.57	max_perpendicular_gradient=1456.92	max_dldrho=84.1108	spline_length=42.4635	converged=0
+7	BSMPT_BOUNCE_CERT	path_deformation	T=224.976	best_relative_error=0.562074	iterations=21	converged_without_1d=0
+7	BSMPT_BOUNCE_CERT	path_check	T=224.976	max_relative_error=1.00023	max_force=1342.03	max_gradient=1368.7	max_perpendicular_gradient=1341.65	max_dldrho=84.0328	spline_length=42.4658	converged=0
+7	BSMPT_BOUNCE_CERT	path_deformation	T=224.976	best_relative_error=0.438861	iterations=21	converged_without_1d=0
+7	BSMPT_BOUNCE_CERT	path_check	T=224.976	max_relative_error=0.999795	max_force=1162.2	max_gradient=1192.29	max_perpendicular_gradient=1162.51	max_dldrho=84.0334	spline_length=42.4746	converged=0
+7	BSMPT_BOUNCE_CERT	path_deformation	T=224.976	best_relative_error=0.214855	iterations=21	converged_without_1d=0
+7	BSMPT_BOUNCE_CERT	path_check	T=224.976	max_relative_error=1.00041	max_force=696.414	max_gradient=751.838	max_perpendicular_gradient=696.044	max_dldrho=84.0306	spline_length=42.4741	converged=0
+7	BSMPT_BOUNCE_CERT	path_check	T=224.976	max_relative_error=1.00026	max_force=1144.62	max_gradient=1172.78	max_perpendicular_gradient=1144.23	max_dldrho=84.0304	spline_length=41.684	converged=0
+7	BSMPT_BOUNCE_CERT	path_deformation	T=224.976	best_relative_error=0.214079	iterations=21	converged_without_1d=0
+7	BSMPT_BOUNCE_CERT	path_check	T=224.976	max_relative_error=0.999649	max_force=683.571	max_gradient=738.552	max_perpendicular_gradient=683.899	max_dldrho=84.0305	spline_length=42.4745	converged=0
+7	BSMPT_BOUNCE_CERT	path_deformation	T=224.976	best_relative_error=0.0656694	iterations=21	converged_without_1d=0
+7	BSMPT_BOUNCE_CERT	path_check	T=224.976	max_relative_error=1.00109	max_force=252.941	max_gradient=429.803	max_perpendicular_gradient=252.584	max_dldrho=84.0259	spline_length=42.4744	converged=0
+7	BSMPT_BOUNCE_CERT	path_deformation	T=224.976	best_relative_error=0.588542	iterations=21	converged_without_1d=0
+7	BSMPT_BOUNCE_CERT	path_check	T=224.976	max_relative_error=0.999008	max_force=263.882	max_gradient=435.572	max_perpendicular_gradient=264.22	max_dldrho=84.0235	spline_length=42.4742	converged=0
+7	BSMPT_BOUNCE_CERT	path_deformation	T=224.976	best_relative_error=0.605214	iterations=21	converged_without_1d=0
+7	BSMPT_BOUNCE_CERT	path_check	T=224.976	max_relative_error=1.00102	max_force=268.159	max_gradient=437.814	max_perpendicular_gradient=267.803	max_dldrho=84.0227	spline_length=42.4707	converged=0
+7	BSMPT_BOUNCE_CERT	path_deformation	T=224.976	best_relative_error=0.614807	iterations=21	converged_without_1d=0
+7	BSMPT_BOUNCE_CERT	path_check	T=224.976	max_relative_error=0.999029	max_force=270.492	max_gradient=438.762	max_perpendicular_gradient=270.829	max_dldrho=84.0238	spline_length=42.4742	converged=0
+7	BSMPT_BOUNCE_CERT	path_deformation	T=224.976	best_relative_error=0.616702	iterations=21	converged_without_1d=0
+7	BSMPT_BOUNCE_CERT	path_check	T=224.976	max_relative_error=1.00102	max_force=271.085	max_gradient=438.903	max_perpendicular_gradient=270.728	max_dldrho=84.0238	spline_length=42.4744	converged=0
+7	BSMPT_BOUNCE_CERT	path_check	T=224.976	max_relative_error=1	max_force=10671.5	max_gradient=10674.4	max_perpendicular_gradient=10671.5	max_dldrho=84.6333	spline_length=42.4976	converged=0
+7	BSMPT_BOUNCE_CERT	path_deformation	T=224.976	best_relative_error=0.981954	iterations=21	converged_without_1d=0
+7	BSMPT_BOUNCE_CERT	path_check	T=224.976	max_relative_error=1	max_force=13100.5	max_gradient=13102.7	max_perpendicular_gradient=13100.4	max_dldrho=84.6334	spline_length=42.4779	converged=0
+7	BSMPT_BOUNCE_CERT	path_deformation	T=224.976	best_relative_error=0.972387	iterations=21	converged_without_1d=0
+7	BSMPT_BOUNCE_CERT	path_check	T=224.976	max_relative_error=0.999958	max_force=4092.54	max_gradient=4100.25	max_perpendicular_gradient=4092.76	max_dldrho=84.9422	spline_length=42.4795	converged=0
+7	BSMPT_BOUNCE_CERT	path_deformation	T=224.976	best_relative_error=0.959758	iterations=21	converged_without_1d=0
+7	BSMPT_BOUNCE_CERT	path_check	T=224.976	max_relative_error=0.999837	max_force=1456.63	max_gradient=1479.57	max_perpendicular_gradient=1456.92	max_dldrho=84.1108	spline_length=42.4635	converged=0
+7	BSMPT_BOUNCE_CERT	path_deformation	T=224.976	best_relative_error=0.562074	iterations=21	converged_without_1d=0
+7	BSMPT_BOUNCE_CERT	path_check	T=224.976	max_relative_error=1.00023	max_force=1342.03	max_gradient=1368.7	max_perpendicular_gradient=1341.65	max_dldrho=84.0328	spline_length=42.4658	converged=0
+7	BSMPT_BOUNCE_CERT	path_deformation	T=224.976	best_relative_error=0.438861	iterations=21	converged_without_1d=0
+7	BSMPT_BOUNCE_CERT	path_check	T=224.976	max_relative_error=0.999795	max_force=1162.2	max_gradient=1192.29	max_perpendicular_gradient=1162.51	max_dldrho=84.0334	spline_length=42.4746	converged=0
+7	BSMPT_BOUNCE_CERT	path_deformation	T=224.976	best_relative_error=0.214855	iterations=21	converged_without_1d=0
+7	BSMPT_BOUNCE_CERT	path_check	T=224.976	max_relative_error=1.00041	max_force=696.414	max_gradient=751.838	max_perpendicular_gradient=696.044	max_dldrho=84.0306	spline_length=42.4741	converged=0
+8	region-v2: exact_nlo_success:runtime=0.436:continue_region_v1
+8	region-v1: accepted_late_failure_low_temperature_count:bounce_0:failure:temperatures=4
+9	region-v2: exact_nlo_success:runtime=0.39000000000000001:continue_region_v1
+9	region-v1: accepted_late_failure_low_temperature_count:bounce_0:failure:temperatures=6
+10	region-v2: exact_nlo_success:runtime=0.35799999999999998:continue_region_v1
+10	region-v1: accepted_late_failure_low_temperature_count:bounce_0:failure:temperatures=6
+11	region-v2: exact_nlo_success:runtime=0.38600000000000001:continue_region_v1
+11	region-v1: accepted_late_failure_low_temperature_count:bounce_0:failure:temperatures=4
+12	region-v2: exact_nlo_success:runtime=0.378:continue_region_v1
+12	region-v1: accepted_late_failure_low_temperature_count:bounce_0:failure:temperatures=4
