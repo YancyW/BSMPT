@@ -31,6 +31,19 @@ if classification == "fail_or_nonpositive":
     if stage.startswith("coexistence:"):
         print(f"fallback_coexistence_outside_certified_region:{stage}")
         raise SystemExit(1)
+    if os.environ.get("BSMPT_ALLOW_LATE_FAILURE") == "1":
+        temperatures = set()
+        for line in open(args.diagnostics, errors="replace"):
+            if not line.startswith("BSMPT_BOUNCE_CERT"):
+                continue
+            temperature = re.search(r"(?:^|\t)T=([^\t]+)(?:\t|$)", line)
+            if temperature:
+                temperatures.add(temperature.group(1))
+        if temperatures and len(temperatures) <= 6:
+            print(f"accepted_late_failure_low_temperature_count:{stage}:temperatures={len(temperatures)}")
+            raise SystemExit(0)
+        print(f"fallback_late_failure_temperature_count:{stage}:temperatures={len(temperatures)}")
+        raise SystemExit(1)
     print(f"fallback_late_failure:{stage}")
     raise SystemExit(1)
 

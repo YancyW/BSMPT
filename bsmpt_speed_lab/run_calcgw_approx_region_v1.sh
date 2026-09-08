@@ -24,6 +24,7 @@ decision_script="${BSMPT_APPROX_DECISION:-${script_dir}/region_v1_decision.py}"
 two_neighbor_anchors="${BSMPT_APPROX_TWO_NEIGHBOR_ANCHORS:-}"
 all_three_anchors="${BSMPT_APPROX_ALL_THREE_ANCHORS:-}"
 coex_anchors="${BSMPT_APPROX_COEX_ANCHORS:-}"
+late_failure_anchors="${BSMPT_APPROX_LATE_FAILURE_ANCHORS:-}"
 if reason="$(python3 "${script_dir}/approx_input_prefilter.py" --anchors "$anchors" -- "${args[@]}")"; then
   echo "region-v1: direct exact: ${reason}" >&2
   exec "${script_dir}/run_calcgw_exact_fast.sh" "$@"
@@ -62,8 +63,15 @@ if [[ -n "$coex_anchors" ]]; then
     allow_coex=1
   fi
 fi
+allow_late_failure=0
+if [[ -n "$late_failure_anchors" ]] &&
+   python3 "${script_dir}/approx_input_prefilter.py" \
+     --anchors "$late_failure_anchors" -- "${args[@]}" >/dev/null; then
+  allow_late_failure=1
+fi
 if reason="$(BSMPT_ALLOW_TWO_NEIGHBOR="$allow_two_neighbor" \
   BSMPT_ALLOW_ALL_THREE="$allow_all_three" BSMPT_ALLOW_COEX="$allow_coex" \
+  BSMPT_ALLOW_LATE_FAILURE="$allow_late_failure" \
   python3 "$decision_script" "$approx_output" "$diagnostics")"; then
   echo "region-v1: ${reason}" >&2
   mv -- "$approx_output" "$output"

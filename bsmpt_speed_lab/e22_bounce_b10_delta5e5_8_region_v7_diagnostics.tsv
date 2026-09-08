@@ -1,0 +1,17 @@
+input_row	diagnostic
+1	region-v2: exact_nlo_success:runtime=0.38700000000000001:continue_region_v1
+1	region-v1: accepted_late_failure_low_temperature_count:bounce_0:failure:temperatures=4
+2	region-v2: exact_nlo_success:runtime=0.39500000000000002:continue_region_v1
+2	region-v1: accepted_late_failure_low_temperature_count:bounce_0:failure:temperatures=4
+3	region-v2: exact_nlo_success:runtime=0.38200000000000001:continue_region_v1
+3	region-v1: accepted_late_failure_low_temperature_count:bounce_0:failure:temperatures=4
+4	region-v2: exact_nlo_success:runtime=0.36799999999999999:continue_region_v1
+4	region-v1: accepted_late_failure_low_temperature_count:bounce_0:failure:temperatures=4
+5	region-v2: exact_nlo_success:runtime=0.436:continue_region_v1
+5	region-v1: accepted_late_failure_low_temperature_count:bounce_0:failure:temperatures=6
+6	region-v2: exact_nlo_success:runtime=0.42499999999999999:continue_region_v1
+6	region-v1: accepted_late_failure_low_temperature_count:bounce_0:failure:temperatures=4
+7	region-v2: exact_nlo_success:runtime=0.35799999999999998:continue_region_v1
+7	region-v1: accepted_late_failure_low_temperature_count:bounce_0:failure:temperatures=4
+8	region-v2: exact_nlo_success:runtime=0.38900000000000001:continue_region_v1
+8	region-v1: accepted_late_failure_low_temperature_count:bounce_0:failure:temperatures=4

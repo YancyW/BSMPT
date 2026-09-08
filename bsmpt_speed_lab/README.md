@@ -44,15 +44,16 @@ bsmpt_speed_lab/run_calcgw_exact_fast.sh R2HDM input.tsv output.tsv 2 2
 bsmpt_speed_lab/run_calcgw_approx_safe.sh R2HDM input.tsv output.tsv 2 2
 ```
 
-当前type-I优先的保守入口是region-v6：
+当前type-I优先入口是region-v7：
 
 ```bash
-bsmpt_speed_lab/run_calcgw_approx_region_v6_type1_safe.sh \
+bsmpt_speed_lab/run_calcgw_approx_region_v7_type1_latecert.sh \
   --model=r2hdm --input=input.tsv --output=output.tsv \
   --firstline=2 --lastline=2
 ```
 
-v6保留v5认证，并将发现相变历史不一致的type-I C3局部域前置严格；域外严格回退。
+v7保留v6安全收缩，并在显式type-I锚点内用低温度数证书接受稳定bounce失败；域外严格
+回退，nucleation失败目前多数仍回退。
 判断规则和证据边界见`REGION_V4_CERTIFIED_ROUTER_ZH.md`。它仍是研究候选，不能
 解释为全参数空间证明。
 

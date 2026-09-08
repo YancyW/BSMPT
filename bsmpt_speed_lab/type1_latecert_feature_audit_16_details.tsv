@@ -1,0 +1,17 @@
+case	row	strict_class	raw_approx_class	raw_error_kind	temperature_count	would_accept	unsafe_accept
+danger4	1	fail_or_nonpositive	positive	false_positive	17	false	false
+danger4	2	fail_or_nonpositive	positive	false_positive	18	false	false
+danger4	3	fail_or_nonpositive	positive	false_positive	12	false	false
+danger4	4	positive	fail_or_nonpositive	false_negative	13	false	false
+e6_boundary8	1	positive	positive	none	16	false	false
+e6_boundary8	2	positive	positive	none	13	false	false
+e6_boundary8	3	fail_or_nonpositive	fail_or_nonpositive	none	14	false	false
+e6_boundary8	4	fail_or_nonpositive	fail_or_nonpositive	none	12	false	false
+e6_boundary8	5	fail_or_nonpositive	fail_or_nonpositive	none	13	false	false
+e6_boundary8	6	positive	fail_or_nonpositive	false_negative	13	false	false
+e6_boundary8	7	fail_or_nonpositive	fail_or_nonpositive	none	12	false	false
+e6_boundary8	8	fail_or_nonpositive	fail_or_nonpositive	none	12	false	false
+b10_stable2	1	fail_or_nonpositive	fail_or_nonpositive	none	4	true	false
+b10_stable2	2	fail_or_nonpositive	fail_or_nonpositive	none	4	true	false
+a9_stable2	1	fail_or_nonpositive	fail_or_nonpositive	none	6	true	false
+a9_stable2	2	fail_or_nonpositive	fail_or_nonpositive	none	6	true	false

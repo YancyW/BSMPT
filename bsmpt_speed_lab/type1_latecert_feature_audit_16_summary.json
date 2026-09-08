@@ -1,0 +1,7 @@
+{
+  "max_temperatures": 6,
+  "rows": 16,
+  "unsafe_accept": 0,
+  "warning": "certificate is valid only together with explicit type-I anchor gating",
+  "would_accept": 4
+}

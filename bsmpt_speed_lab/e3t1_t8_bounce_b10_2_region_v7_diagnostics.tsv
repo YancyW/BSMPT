@@ -1,0 +1,5 @@
+input_row	diagnostic
+1	region-v2: exact_nlo_success:runtime=0.42799999999999999:continue_region_v1
+1	region-v1: accepted_late_failure_low_temperature_count:bounce_0:failure:temperatures=4
+2	region-v2: exact_nlo_success:runtime=0.433:continue_region_v1
+2	region-v1: accepted_late_failure_low_temperature_count:bounce_0:failure:temperatures=4
